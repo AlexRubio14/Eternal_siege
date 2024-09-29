@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
     [SerializeField] private float spawnTimer;
+    [SerializeField] private GameObject[] player;
 
     Camera cam;
     float timer;
@@ -33,6 +34,7 @@ public class EnemyManager : MonoBehaviour
     private void SpwanEnemy()
     {
         GameObject newEnemy = Instantiate(enemy);
+        newEnemy.GetComponent<Enemy>().SetTarget(player);
 
         Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
 
@@ -41,6 +43,7 @@ public class EnemyManager : MonoBehaviour
 
         newEnemy.transform.position = spwanPosition;
         newEnemy.transform.SetParent(this.gameObject.transform);
+
     }
 
     private Vector3 GenerateRandomPosition(GameObject enemy)
