@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject[] enemy;
     [SerializeField] private float spawnTimer;
     [SerializeField] private GameObject[] player;
 
@@ -33,17 +33,8 @@ public class EnemyManager : MonoBehaviour
 
     private void SpwanEnemy()
     {
-        GameObject newEnemy = Instantiate(enemy);
-        newEnemy.GetComponent<Enemy>().SetTarget(player);
-
-        Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
-
-        spwanPosition += cam.transform.position;
-        spwanPosition.z = 0;
-
-        newEnemy.transform.position = spwanPosition;
-        newEnemy.transform.SetParent(this.gameObject.transform);
-
+        GameObject _enemy = GenerateEnemy();
+        CreateEnemy(_enemy);
     }
 
     private Vector3 GenerateRandomPosition(GameObject enemy)
@@ -76,5 +67,55 @@ public class EnemyManager : MonoBehaviour
         position.z = 0;
 
         return position;
+    }
+
+    private GameObject GenerateEnemy()
+    {
+        switch (UnityEngine.Random.Range(0, 2))
+        {
+            case 0:
+                return enemy[0];
+                break;
+            case 1:
+                return enemy[1];
+                break;
+        }
+        return null;
+    }
+
+    private void CreateEnemy(GameObject _enemy)
+    {
+        if(_enemy == enemy[0])
+        {
+            for(int i = 0; i< UnityEngine.Random.Range(3, 6); i++)
+            {
+                GameObject newEnemy = Instantiate(_enemy);
+                newEnemy.GetComponent<Enemy>().SetTarget(player);
+
+                Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
+
+                spwanPosition += cam.transform.position;
+                spwanPosition.z = 0;
+
+                newEnemy.transform.position = spwanPosition;
+                newEnemy.transform.SetParent(this.gameObject.transform);
+            }
+        }
+        else if (_enemy == enemy[1])
+        {
+            for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
+            {
+                GameObject newEnemy = Instantiate(_enemy);
+                newEnemy.GetComponent<Enemy>().SetTarget(player);
+
+                Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
+
+                spwanPosition += cam.transform.position;
+                spwanPosition.z = 0;
+
+                newEnemy.transform.position = spwanPosition;
+                newEnemy.transform.SetParent(this.gameObject.transform);
+            }
+        }
     }
 }
