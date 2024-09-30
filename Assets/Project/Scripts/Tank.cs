@@ -2,34 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Archer : MonoBehaviour
+public class Tank : MonoBehaviour
 {
-    [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private GameObject ultimatePrefab;
-
-    [SerializeField] private Transform firingPoint;
-    [SerializeField] private Transform firingPointLeft;
-    [SerializeField] private Transform firingPointRight;
-
-    [Range(0.1f, 5f)]
+    [SerializeField] private BoxCollider2D attackCollider;
     [SerializeField] private float attackSpeed;
-    private float baseAttackSpeed;
     private float fireTimer;
 
     [SerializeField] private float abilityCooldown;
     private float abilityTimer;
     [SerializeField] private float abilityDuration;
-    [SerializeField] private float attackSpeedAugment;
 
     [SerializeField] private float ultimateCooldown;
     private float ultimateTimer;
 
-    [SerializeField] private float damage;
-    private bool doubleShooting;
-
     private void Start()
     {
-        baseAttackSpeed = attackSpeed;
+        DisableAttackCollider();
     }
 
     private void Update()
@@ -47,20 +35,18 @@ public class Archer : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(arrowPrefab, firingPoint.position, firingPoint.rotation);
+        attackCollider.enabled = true;
+        Invoke("DisableAttackCollider", 0.5f);
     }
 
-    private void DoubleShoot()
+    private void DisableAttackCollider()
     {
-        Instantiate(arrowPrefab, firingPointLeft.position, firingPointLeft.rotation);
-        Instantiate(arrowPrefab, firingPointRight.position, firingPointRight.rotation);
+        attackCollider.enabled = false;
     }
 
     private void Ability()
     {
-        attackSpeed += attackSpeed * attackSpeedAugment;
-
-        doubleShooting = true;
+        //aumentar radio de el circulo en un periodo de tiempo corto
         //Falta movementSpeed
 
         abilityTimer = abilityCooldown + abilityDuration;
@@ -68,7 +54,7 @@ public class Archer : MonoBehaviour
 
     private void Ultimate()
     {
-        Instantiate(ultimatePrefab, firingPoint.position, firingPoint.rotation);
+        //Pensar en algo
         ultimateTimer = ultimateCooldown;
     }
 
@@ -76,10 +62,7 @@ public class Archer : MonoBehaviour
     {
         if (fireTimer <= 0f)
         {
-            if (doubleShooting)
-                DoubleShoot();
-            else
-                Shoot();
+            Shoot();
 
             fireTimer = 1 / attackSpeed;
         }
@@ -96,8 +79,7 @@ public class Archer : MonoBehaviour
             abilityTimer -= Time.deltaTime;
             if (abilityTimer < abilityCooldown)
             {
-                attackSpeed = baseAttackSpeed;
-                doubleShooting = false;
+                //decrecer collider
             }
         }
     }
@@ -109,6 +91,4 @@ public class Archer : MonoBehaviour
             ultimateTimer -= Time.deltaTime;
         }
     }
-
-
 }

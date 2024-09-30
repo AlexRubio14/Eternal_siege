@@ -7,24 +7,22 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed;
 
-    private GameObject[] target = new GameObject[2];
+    private List<GameObject> target;
     private GameObject currentTarget;
     private Rigidbody2D rgbd2d;
-    private bool canMove;
-
+    
     private void Start()
     {
         rgbd2d = GetComponent<Rigidbody2D>();
-        canMove = true;
     }
 
     private void Update()
     {
-        if (target[0] != null && canMove) 
+        if (target.Count > 0 && target[0]) 
         {
             Vector3 direction = (target[0].transform.localPosition - transform.localPosition).normalized;
             currentTarget = target[0];
-            for (int i = 1; i < target.Length; i++) 
+            for (int i = 1; i < target.Count; i++) 
             {
                 float distancePostion1 = Vector3.Distance(transform.localPosition, target[i].transform.position);
                 float distancePostion2 = Vector3.Distance(transform.localPosition, target[i - 1].transform.position);
@@ -36,25 +34,11 @@ public class Enemy : MonoBehaviour
             }
             rgbd2d.velocity = direction * speed;
         }
-        else if(!canMove)
-        {
-            rgbd2d.velocity = Vector3.zero;
-        }
-
-
     }
 
-    public void SetTarget(GameObject[] _target)
+    public void SetTarget(List<GameObject> _target)
     {
-        for (int i = 0; i < _target.Length; i++)
-        {
-            target[i] = _target[i];
-        }
-    }
-
-    public void SetCanMove(bool state)
-    {
-        canMove = state;
+        target = _target;
     }
 
     public GameObject GetTarget()

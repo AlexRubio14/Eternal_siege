@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UltimateArrow : MonoBehaviour
 {
-    [Range(0f, 10f)]
     [SerializeField] private float speed = 10f;
 
-    [Range(0f, 10f)]
     [SerializeField] private float lifeTime = 3f;
+
+    [SerializeField] private float damage;
 
     private Rigidbody2D rb2d;
 

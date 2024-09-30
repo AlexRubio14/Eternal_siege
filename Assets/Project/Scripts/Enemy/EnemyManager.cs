@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemy;
+    [SerializeField] private List<GameObject> enemy;
     [SerializeField] private float spawnTimer;
-    [SerializeField] private GameObject[] player;
+    [SerializeField] private List<GameObject> player;
 
     Camera cam;
     float timer;
@@ -75,10 +75,8 @@ public class EnemyManager : MonoBehaviour
         {
             case 0:
                 return enemy[0];
-                break;
             case 1:
                 return enemy[1];
-                break;
         }
         return null;
     }
