@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    [Range(0f, 10f)]
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed;
 
-    [Range(0f, 10f)]
-    [SerializeField] private float lifeTime = 3f;
+    [SerializeField] private float lifeTime;
 
     [SerializeField] private float damage;
 

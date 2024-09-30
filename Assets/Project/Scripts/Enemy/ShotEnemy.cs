@@ -16,7 +16,6 @@ public class ShotEnemy : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GetComponent<Enemy>().SetCanMove(false);
             canShoot = true;
             time = 0;
         }
@@ -26,7 +25,6 @@ public class ShotEnemy : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GetComponent<Enemy>().SetCanMove(true);
             canShoot = false;
             time = 0;
         }
