@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private int maxHP;
+    [SerializeField] private float experience;
+    [SerializeField] private GameObject experienceBall;
 
     private List<GameObject> target;
     private GameObject currentTarget;
@@ -59,6 +61,9 @@ public class Enemy : MonoBehaviour
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.normalizedTime > 1.0f)
             {
+                GameObject _experienceBall = Instantiate(experienceBall);
+                _experienceBall.transform.localPosition = transform.localPosition;
+                _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
                 Destroy(gameObject);
             }
         }
