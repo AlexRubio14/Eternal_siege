@@ -17,11 +17,6 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer sprite;
 
-    [SerializeField]
-    private int playerIndex;
-
-    
-
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -59,8 +54,5 @@ public class PlayerController : MonoBehaviour
         movementDirection = obj.action.ReadValue<Vector2>();
     }
 
-    public int GetPlayerIndex()
-    {
-        return playerIndex;
-    }
+    
 }
