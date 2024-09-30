@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayersManager.instance.AddPlayer(gameObject);
     }
 
     // Update is called once per frame

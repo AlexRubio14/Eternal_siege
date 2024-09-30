@@ -24,6 +24,8 @@ public class MidPointController : MonoBehaviour
         if (PlayersManager.instance.spawnedPlayers.Count == 0)
             return;
 
+        posToGo = Vector3.zero;
+
         foreach(GameObject player in PlayersManager.instance.spawnedPlayers)
         {
             posToGo += player.transform.position;

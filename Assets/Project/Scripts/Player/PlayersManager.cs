@@ -9,8 +9,6 @@ public class PlayersManager : MonoBehaviour
 
     public static PlayersManager instance;
 
-    public GameObject playerPrefab;
-
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -36,11 +34,5 @@ public class PlayersManager : MonoBehaviour
     public void AddPlayer(GameObject player)
     {
         spawnedPlayers.Add(player);
-    }
-
-    public void OnPlayerJoined(PlayerInputManager playerInputManager)
-    {
-        GameObject player = playerInputManager.playerPrefab;
-        AddPlayer(player);
     }
 }
