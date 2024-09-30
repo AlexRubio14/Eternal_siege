@@ -17,7 +17,7 @@ public class ShotEnemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             canShoot = true;
-            time = 0;
+            time = maxTime;
         }
     }
 
@@ -26,7 +26,7 @@ public class ShotEnemy : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             canShoot = false;
-            time = 0;
+            time = maxTime;
         }
     }
 
