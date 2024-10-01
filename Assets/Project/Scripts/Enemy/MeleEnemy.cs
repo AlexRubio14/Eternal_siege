@@ -69,19 +69,19 @@ public class MeleEnemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && collision.gameObject == currentTarget)
-        {
-            targetDetected = true;
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && collision.gameObject == currentTarget)
         {
             targetDetected = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && collision.gameObject == currentTarget)
+        {
+            targetDetected = true;
         }
     }
 

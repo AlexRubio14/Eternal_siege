@@ -27,9 +27,13 @@ public class CameraController : MonoBehaviour
 
     private bool CheckIfPlayersAreOutOfCamera()
     {
-        foreach(GameObject player in PlayersManager.instance.playersList)
+        foreach(GameObject player in PlayersManager.instance.GetPlayersList())
         {
+            if(player.transform.position.x < camera.transform.position.x)
+            {
 
+            }
+                
         }
 
         return true;

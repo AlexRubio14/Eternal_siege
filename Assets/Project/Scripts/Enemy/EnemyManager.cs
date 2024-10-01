@@ -8,7 +8,6 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemy;
     [SerializeField] private float spawnTimer;
-    [SerializeField] private List<GameObject> player;
 
     Camera cam;
     float timer;
@@ -24,14 +23,15 @@ public class EnemyManager : MonoBehaviour
     private void Update()
     {
         timer -= Time.deltaTime;
-        if(timer < 0)
+
+        if (timer < 0 && PlayersManager.instance.GetPlayersList().Count > 0)
         {
-            SpwanEnemy();
+            SpawnEnemy();
             timer = spawnTimer;
         }
     }
 
-    private void SpwanEnemy()
+    private void SpawnEnemy()
     {
         GameObject _enemy = GenerateEnemy();
         CreateEnemy(_enemy);
@@ -83,19 +83,21 @@ public class EnemyManager : MonoBehaviour
 
     private void CreateEnemy(GameObject _enemy)
     {
-        //if(_enemy == enemy[0])
+        GameObject newEnemy = null;
+
+        //if (_enemy == enemy[0])
         //{
-        //    for(int i = 0; i< UnityEngine.Random.Range(3, 6); i++)
+        //    for (int i = 0; i < UnityEngine.Random.Range(3, 6); i++)
         //    {
-        //        GameObject newEnemy = Instantiate(_enemy);
-        //        newEnemy.GetComponent<Enemy>().SetTarget(player);
+        //        newEnemy = Instantiate(_enemy);
+        //        newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
-        //        Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
+        //        Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
 
-        //        spwanPosition += cam.transform.position;
-        //        spwanPosition.z = 0;
+        //        spawnPosition += cam.transform.position;
+        //        spawnPosition.z = 0;
 
-        //        newEnemy.transform.position = spwanPosition;
+        //        newEnemy.transform.position = spawnPosition;
         //        newEnemy.transform.SetParent(this.gameObject.transform);
         //    }
         //}
@@ -103,20 +105,20 @@ public class EnemyManager : MonoBehaviour
         //{
         //    for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
         //    {
-        //        GameObject newEnemy = Instantiate(_enemy);
-        //        newEnemy.GetComponent<Enemy>().SetTarget(player);
+        //        newEnemy = Instantiate(_enemy);
+        //        newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
-        //        Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
+        //        Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
 
-        //        spwanPosition += cam.transform.position;
-        //        spwanPosition.z = 0;
+        //        spawnPosition += cam.transform.position;
+        //        spawnPosition.z = 0;
 
-        //        newEnemy.transform.position = spwanPosition;
+        //        newEnemy.transform.position = spawnPosition;
         //        newEnemy.transform.SetParent(this.gameObject.transform);
         //    }
         //}
-        GameObject newEnemy = Instantiate(enemy[2]);
-        newEnemy.GetComponent<Enemy>().SetTarget(player);
+        newEnemy = Instantiate(enemy[2]);
+        newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
         Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
 
@@ -125,5 +127,6 @@ public class EnemyManager : MonoBehaviour
 
         newEnemy.transform.position = spwanPosition;
         newEnemy.transform.SetParent(this.gameObject.transform);
+
     }
 }
