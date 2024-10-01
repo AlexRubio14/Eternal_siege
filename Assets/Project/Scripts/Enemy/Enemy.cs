@@ -38,7 +38,6 @@ public class Enemy : MonoBehaviour
     }
     private void Seek()
     {
-
         if (target.Count > 0 && target[0] && !isDead && canMove)
         {
             direction = (target[0].transform.localPosition - transform.localPosition).normalized;
@@ -74,6 +73,7 @@ public class Enemy : MonoBehaviour
                 GameObject _experienceBall = Instantiate(experienceBall);
                 _experienceBall.transform.localPosition = transform.localPosition;
                 _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
+                EnemyManager.instance.GetEnemies().Remove(this.gameObject);
                 Destroy(gameObject);
             }
         }

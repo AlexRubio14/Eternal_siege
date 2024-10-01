@@ -349,11 +349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef35335181180ee4da3393f7e420551e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy:
+  typesOfEnemies:
   - {fileID: 3644879491550420163, guid: 6d2839eab7a09db4f8598e6d5ce25f8d, type: 3}
   - {fileID: 3644879491550420163, guid: f0d52e1fab7c742459f0ba20916f52a3, type: 3}
   - {fileID: 3644879491550420163, guid: 4ae3ff2fda23d0849a60577c5420ddd2, type: 3}
-  spawnTimer: 3.402823e+38
+  enemies: []
+  spawnTimer: 2
+  secondsMiniBoss: 30
 --- !u!1 &1480484726
 GameObject:
   m_ObjectHideFlags: 0

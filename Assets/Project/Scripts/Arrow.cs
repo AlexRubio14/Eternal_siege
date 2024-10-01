@@ -10,6 +10,7 @@ public class Arrow : MonoBehaviour
 
     [SerializeField] private float damage;
 
+    private Vector3 direction;
     private Rigidbody2D rb2d;
 
     private void Awake()
@@ -20,17 +21,25 @@ public class Arrow : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, lifeTime);
+        if (EnemyManager.instance.GetEnemies().Count > 0 )
+            direction = EnemyManager.instance.GetNearestEnemyDirection(transform.position);
+        else
+            direction = Vector3.right;
+
     }
 
     private void FixedUpdate()
     {
-        rb2d.velocity = transform.up * speed;
+        //transform.Rotate(0, 0, direction.z);
+        rb2d.velocity = direction * speed * Time.deltaTime;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //Do damage
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.ReciveDamage(damage);
             Destroy(gameObject);
         }
     }
