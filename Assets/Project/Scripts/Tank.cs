@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Tank : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D attackCollider;
+    [SerializeField] private CapsuleCollider2D attackCollider;
     [SerializeField] private float attackSpeed;
     private float fireTimer;
 
     [SerializeField] private float abilityCooldown;
     private float abilityTimer;
     [SerializeField] private float abilityDuration;
+    [SerializeField] private CircleCollider2D abilityCollider;
+    [SerializeField] private float minRadius;
+    [SerializeField] private float maxRadius;
+    private float interpolationTime;
+    private bool isAbiltyActive;
 
     [SerializeField] private float ultimateCooldown;
     private float ultimateTimer;
@@ -18,6 +23,8 @@ public class Tank : MonoBehaviour
     private void Start()
     {
         DisableAttackCollider();
+        interpolationTime = 0f;
+        isAbiltyActive = false;
     }
 
     private void Update()
@@ -25,6 +32,23 @@ public class Tank : MonoBehaviour
         UpdateFireTimer();
         UpdateAbilityTimer();
         UpdateUltimateTimer();
+
+        if (isAbiltyActive)
+        {
+            if (interpolationTime < 1f) 
+            {
+                interpolationTime += Time.deltaTime;
+            }
+            abilityCollider.radius = Mathf.Lerp(minRadius, maxRadius, interpolationTime);
+        }
+        else
+        {
+            if (interpolationTime < 1f)
+            {
+                interpolationTime += Time.deltaTime;
+            }
+            abilityCollider.radius = Mathf.Lerp(maxRadius, minRadius, interpolationTime);
+        }
 
         //Check Inputs
         if (Input.GetMouseButtonDown(0) && abilityTimer <= 0f)
@@ -46,9 +70,9 @@ public class Tank : MonoBehaviour
 
     private void Ability()
     {
-        //aumentar radio de el circulo en un periodo de tiempo corto
-        //Falta movementSpeed
-
+        isAbiltyActive = true;
+        interpolationTime = 0f;
+        //Falta decrecer movementSpeed
         abilityTimer = abilityCooldown + abilityDuration;
     }
 
@@ -79,7 +103,8 @@ public class Tank : MonoBehaviour
             abilityTimer -= Time.deltaTime;
             if (abilityTimer < abilityCooldown)
             {
-                //decrecer collider
+                isAbiltyActive = false;
+                interpolationTime = 0f;
             }
         }
     }
@@ -89,6 +114,12 @@ public class Tank : MonoBehaviour
         if (ultimateTimer > 0f)
         {
             ultimateTimer -= Time.deltaTime;
+            if (ultimateTimer < ultimateCooldown)
+            {
+                //activar invulnerabilidad
+                //incrementar movement speed
+                //bloquear activar habilidad
+            }
         }
     }
 }
