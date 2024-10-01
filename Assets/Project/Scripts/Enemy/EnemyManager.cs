@@ -83,37 +83,47 @@ public class EnemyManager : MonoBehaviour
 
     private void CreateEnemy(GameObject _enemy)
     {
-        if(_enemy == enemy[0])
-        {
-            for(int i = 0; i< UnityEngine.Random.Range(3, 6); i++)
-            {
-                GameObject newEnemy = Instantiate(_enemy);
-                newEnemy.GetComponent<Enemy>().SetTarget(player);
+        //if(_enemy == enemy[0])
+        //{
+        //    for(int i = 0; i< UnityEngine.Random.Range(3, 6); i++)
+        //    {
+        //        GameObject newEnemy = Instantiate(_enemy);
+        //        newEnemy.GetComponent<Enemy>().SetTarget(player);
 
-                Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
+        //        Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
 
-                spwanPosition += cam.transform.position;
-                spwanPosition.z = 0;
+        //        spwanPosition += cam.transform.position;
+        //        spwanPosition.z = 0;
 
-                newEnemy.transform.position = spwanPosition;
-                newEnemy.transform.SetParent(this.gameObject.transform);
-            }
-        }
-        else if (_enemy == enemy[1])
-        {
-            for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
-            {
-                GameObject newEnemy = Instantiate(_enemy);
-                newEnemy.GetComponent<Enemy>().SetTarget(player);
+        //        newEnemy.transform.position = spwanPosition;
+        //        newEnemy.transform.SetParent(this.gameObject.transform);
+        //    }
+        //}
+        //else if (_enemy == enemy[1])
+        //{
+        //    for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
+        //    {
+        //        GameObject newEnemy = Instantiate(_enemy);
+        //        newEnemy.GetComponent<Enemy>().SetTarget(player);
 
-                Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
+        //        Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
 
-                spwanPosition += cam.transform.position;
-                spwanPosition.z = 0;
+        //        spwanPosition += cam.transform.position;
+        //        spwanPosition.z = 0;
 
-                newEnemy.transform.position = spwanPosition;
-                newEnemy.transform.SetParent(this.gameObject.transform);
-            }
-        }
+        //        newEnemy.transform.position = spwanPosition;
+        //        newEnemy.transform.SetParent(this.gameObject.transform);
+        //    }
+        //}
+        GameObject newEnemy = Instantiate(enemy[2]);
+        newEnemy.GetComponent<Enemy>().SetTarget(player);
+
+        Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
+
+        spwanPosition += cam.transform.position;
+        spwanPosition.z = 0;
+
+        newEnemy.transform.position = spwanPosition;
+        newEnemy.transform.SetParent(this.gameObject.transform);
     }
 }
