@@ -6,18 +6,35 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> enemy;
+    public static EnemyManager instance;
+
+    [SerializeField] private List<GameObject> typesOfEnemies;
+    [SerializeField] private List<GameObject> enemies;
     [SerializeField] private float spawnTimer;
+    [SerializeField] private float secondsMiniBoss;
 
     Camera cam;
     float timer;
     Vector2 cameraBorder;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+
+        instance = this;
+    }
 
     private void Start()
     {
         cam = Camera.main;
         timer = 0;
         cameraBorder = new Vector2(cam.aspect * cam.orthographicSize, cam.orthographicSize);
+
+        Invoke("SpawnMiniBoss", secondsMiniBoss);
     }
 
     private void Update()
@@ -74,9 +91,9 @@ public class EnemyManager : MonoBehaviour
         switch (UnityEngine.Random.Range(0, 2))
         {
             case 0:
-                return enemy[0];
+                return typesOfEnemies[0];
             case 1:
-                return enemy[1];
+                return typesOfEnemies[1];
         }
         return null;
     }
@@ -85,39 +102,45 @@ public class EnemyManager : MonoBehaviour
     {
         GameObject newEnemy = null;
 
-        //if (_enemy == enemy[0])
-        //{
-        //    for (int i = 0; i < UnityEngine.Random.Range(3, 6); i++)
-        //    {
-        //        newEnemy = Instantiate(_enemy);
-        //        newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
+        if (_enemy == typesOfEnemies[0])
+        {
+            for (int i = 0; i < UnityEngine.Random.Range(3, 6); i++)
+            {
+                newEnemy = Instantiate(_enemy);
+                newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
-        //        Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
+                Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
 
-        //        spawnPosition += cam.transform.position;
-        //        spawnPosition.z = 0;
+                spawnPosition += cam.transform.position;
+                spawnPosition.z = 0;
 
-        //        newEnemy.transform.position = spawnPosition;
-        //        newEnemy.transform.SetParent(this.gameObject.transform);
-        //    }
-        //}
-        //else if (_enemy == enemy[1])
-        //{
-        //    for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
-        //    {
-        //        newEnemy = Instantiate(_enemy);
-        //        newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
+                newEnemy.transform.position = spawnPosition;
+                newEnemy.transform.SetParent(this.gameObject.transform);
+            }
+        }
+        else if (_enemy == typesOfEnemies[1])
+        {
+            for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
+            {
+                newEnemy = Instantiate(_enemy);
+                newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
-        //        Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
+                Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
 
-        //        spawnPosition += cam.transform.position;
-        //        spawnPosition.z = 0;
+                spawnPosition += cam.transform.position;
+                spawnPosition.z = 0;
 
-        //        newEnemy.transform.position = spawnPosition;
-        //        newEnemy.transform.SetParent(this.gameObject.transform);
-        //    }
-        //}
-        newEnemy = Instantiate(enemy[2]);
+                newEnemy.transform.position = spawnPosition;
+                newEnemy.transform.SetParent(this.gameObject.transform);
+            }
+        }
+    }
+
+    private void SpawnMiniBoss()
+    {
+        GameObject newEnemy = null;
+
+        newEnemy = Instantiate(typesOfEnemies[2]);
         newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
         Vector3 spwanPosition = GenerateRandomPosition(newEnemy);
@@ -127,6 +150,32 @@ public class EnemyManager : MonoBehaviour
 
         newEnemy.transform.position = spwanPosition;
         newEnemy.transform.SetParent(this.gameObject.transform);
+
+        enemies.Add(newEnemy);
+
+        Invoke("SpawnMiniBoss", 60);
+    }
+
+    public List<GameObject> GetEnemies()
+    {
+        return enemies;
+    }
+
+    public Vector3 GetNearestEnemyDirection(Vector3 position)
+    {
+        Vector3 direction = (enemies[0].transform.localPosition - position).normalized;
+
+        for (int i = 1; i < enemies.Count; i++)
+        {
+            float distancePostion1 = Vector3.Distance(position, enemies[i].transform.position);
+            float distancePostion2 = Vector3.Distance(position, enemies[i - 1].transform.position);
+            if (distancePostion1 < distancePostion2)
+            {
+                direction = (enemies[i].transform.localPosition - position).normalized;
+            }
+        }
+
+        return direction;
 
     }
 }

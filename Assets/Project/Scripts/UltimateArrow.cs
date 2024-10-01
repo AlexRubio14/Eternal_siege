@@ -10,6 +10,7 @@ public class UltimateArrow : MonoBehaviour
 
     [SerializeField] private float damage;
 
+    private Vector3 direction;
     private Rigidbody2D rb2d;
 
     private void Awake()
@@ -20,15 +21,25 @@ public class UltimateArrow : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, lifeTime);
+        if (EnemyManager.instance.GetEnemies().Count > 0)
+            direction = EnemyManager.instance.GetNearestEnemyDirection(transform.position);
+        else
+            direction = Vector3.right;
+
+        //transform.Rotate(direction.x, direction.y, direction.z);
     }
 
     private void FixedUpdate()
     {
-        rb2d.velocity = transform.up * speed;
+        rb2d.velocity = direction * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Do damage
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.ReciveDamage(damage);
+        }
     }
 }

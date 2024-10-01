@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Archer : MonoBehaviour
@@ -24,7 +25,6 @@ public class Archer : MonoBehaviour
     [SerializeField] private float ultimateCooldown;
     private float ultimateTimer;
 
-    [SerializeField] private float damage;
     private bool doubleShooting;
 
     private void Start()
