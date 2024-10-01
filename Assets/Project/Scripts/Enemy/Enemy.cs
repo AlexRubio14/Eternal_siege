@@ -17,7 +17,10 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private float currentHP;
     private bool isDead;
-    
+    private bool canMove;
+    Vector3 direction;
+
+
     private void Start()
     {
         rgbd2d = GetComponent<Rigidbody2D>();
@@ -25,6 +28,7 @@ public class Enemy : MonoBehaviour
 
         currentHP = maxHP;
         isDead = false;
+        canMove = true;
     }
 
     private void Update()
@@ -34,9 +38,9 @@ public class Enemy : MonoBehaviour
     }
     private void Seek()
     {
-        if (target.Count > 0 && target[0] && !isDead)
+        if (target.Count > 0 && target[0] && !isDead && canMove)
         {
-            Vector3 direction = (target[0].transform.localPosition - transform.localPosition).normalized;
+            direction = (target[0].transform.localPosition - transform.localPosition).normalized;
             currentTarget = target[0];
             for (int i = 1; i < target.Count; i++)
             {
@@ -49,6 +53,10 @@ public class Enemy : MonoBehaviour
                 }
             }
             rgbd2d.velocity = direction * speed;
+        }
+        if(!canMove)
+        {
+            rgbd2d.velocity = Vector3.zero;
         }
         Rotate();
     }
@@ -97,7 +105,22 @@ public class Enemy : MonoBehaviour
         target = _target;
     }
 
+    public void SetCanMove(bool state)
+    {
+        canMove = state;
+    }
+
     public GameObject GetTarget()
+    {
+        return currentTarget;
+    }
+
+    public Vector3 GetDirection()
+    {
+        return direction;
+    }
+
+    public GameObject GetCurrentTarget()
     {
         return currentTarget;
     }

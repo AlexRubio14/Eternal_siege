@@ -552,7 +552,8 @@ MonoBehaviour:
   enemy:
   - {fileID: 3644879491550420163, guid: 6d2839eab7a09db4f8598e6d5ce25f8d, type: 3}
   - {fileID: 3644879491550420163, guid: f0d52e1fab7c742459f0ba20916f52a3, type: 3}
-  spawnTimer: 2
+  - {fileID: 3644879491550420163, guid: 4ae3ff2fda23d0849a60577c5420ddd2, type: 3}
+  spawnTimer: 3.4028235e+38
   player:
   - {fileID: 1074463296}
   - {fileID: 1106568481}
