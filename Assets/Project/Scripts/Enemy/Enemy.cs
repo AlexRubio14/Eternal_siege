@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
     }
     private void Seek()
     {
+
         if (target.Count > 0 && target[0] && !isDead && canMove)
         {
             direction = (target[0].transform.localPosition - transform.localPosition).normalized;
@@ -66,6 +67,7 @@ public class Enemy : MonoBehaviour
         if (isDead)
         {
             animator.SetBool("Die", true);
+
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.normalizedTime > 1.0f)
             {
