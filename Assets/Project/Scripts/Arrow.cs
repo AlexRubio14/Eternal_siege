@@ -10,7 +10,7 @@ public class Arrow : MonoBehaviour
 
     [SerializeField] private float damage;
 
-    private Vector3 direction;
+    private Vector2 direction;
     private Rigidbody2D rb2d;
 
     private void Awake()
@@ -24,7 +24,7 @@ public class Arrow : MonoBehaviour
         if (EnemyManager.instance.GetEnemies().Count > 0 )
             direction = EnemyManager.instance.GetNearestEnemyDirection(transform.position);
         else
-            direction = Vector3.right;
+            direction = Vector2.right;
 
     }
 
@@ -35,6 +35,16 @@ public class Arrow : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
+        //    Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        //    enemy.ReciveDamage(damage);
+        //    Destroy(gameObject);
+        //}
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {

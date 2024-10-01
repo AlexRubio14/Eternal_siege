@@ -116,6 +116,9 @@ public class EnemyManager : MonoBehaviour
 
                 newEnemy.transform.position = spawnPosition;
                 newEnemy.transform.SetParent(this.gameObject.transform);
+
+                enemies.Add(newEnemy);
+
             }
         }
         else if (_enemy == typesOfEnemies[1])
@@ -132,8 +135,12 @@ public class EnemyManager : MonoBehaviour
 
                 newEnemy.transform.position = spawnPosition;
                 newEnemy.transform.SetParent(this.gameObject.transform);
+
+                enemies.Add(newEnemy);
+
             }
         }
+
     }
 
     private void SpawnMiniBoss()
@@ -161,21 +168,21 @@ public class EnemyManager : MonoBehaviour
         return enemies;
     }
 
-    public Vector3 GetNearestEnemyDirection(Vector3 position)
+    public Vector2 GetNearestEnemyDirection(Vector2 position)
     {
-        Vector3 direction = (enemies[0].transform.localPosition - position).normalized;
+        Vector2 direction = ((Vector2)enemies[0].transform.localPosition - position);
 
         for (int i = 1; i < enemies.Count; i++)
         {
-            float distancePostion1 = Vector3.Distance(position, enemies[i].transform.position);
-            float distancePostion2 = Vector3.Distance(position, enemies[i - 1].transform.position);
-            if (distancePostion1 < distancePostion2)
+            Vector2 distancePosition1 = (Vector2)enemies[i].transform.localPosition - position;
+
+            if(distancePosition1.magnitude < direction.magnitude)
             {
-                direction = (enemies[i].transform.localPosition - position).normalized;
+                direction = distancePosition1;
             }
         }
 
-        return direction;
+        return direction.normalized;
 
     }
 }

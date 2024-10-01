@@ -10,7 +10,7 @@ public class UltimateArrow : MonoBehaviour
 
     [SerializeField] private float damage;
 
-    private Vector3 direction;
+    private Vector2 direction;
     private Rigidbody2D rb2d;
 
     private void Awake()
@@ -24,7 +24,7 @@ public class UltimateArrow : MonoBehaviour
         if (EnemyManager.instance.GetEnemies().Count > 0)
             direction = EnemyManager.instance.GetNearestEnemyDirection(transform.position);
         else
-            direction = Vector3.right;
+            direction = Vector2.right;
 
         //transform.Rotate(direction.x, direction.y, direction.z);
     }
