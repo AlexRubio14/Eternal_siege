@@ -5,10 +5,14 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    [SerializeField]
     private Camera camera;
 
 
+
+    private void Awake()
+    {
+        camera = GetComponent<Camera>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +22,17 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
+    private bool CheckIfPlayersAreOutOfCamera()
+    {
+        foreach(GameObject player in PlayersManager.instance.playersList)
+        {
+
+        }
+
+        return true;
+    }
 
 }

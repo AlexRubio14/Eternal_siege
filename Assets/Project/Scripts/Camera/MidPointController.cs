@@ -21,17 +21,17 @@ public class MidPointController : MonoBehaviour
 
     private void CalculatePosToGo()
     {
-        if (PlayersManager.instance.spawnedPlayers.Count == 0)
+        if (PlayersManager.instance.GetPlayersList().Count == 0)
             return;
 
         posToGo = Vector3.zero;
 
-        foreach(GameObject player in PlayersManager.instance.spawnedPlayers)
+        foreach(GameObject player in PlayersManager.instance.GetPlayersList())
         {
             posToGo += player.transform.position;
         }
 
-        posToGo /= PlayersManager.instance.spawnedPlayers.Count;
+        posToGo /= PlayersManager.instance.GetPlayersList().Count;
     }
 
     private void Move()

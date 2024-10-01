@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayersManager : MonoBehaviour
 {
     [SerializeField]
-    public List<GameObject> spawnedPlayers = new List<GameObject>();
+    private List<GameObject> playersList = new List<GameObject>();
 
     public static PlayersManager instance;
 
@@ -33,6 +33,11 @@ public class PlayersManager : MonoBehaviour
 
     public void AddPlayer(GameObject player)
     {
-        spawnedPlayers.Add(player);
+        playersList.Add(player);
+    }
+
+    public List<GameObject> GetPlayersList()
+    {
+        return playersList;
     }
 }
