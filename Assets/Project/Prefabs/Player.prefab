@@ -138,6 +138,7 @@ MonoBehaviour:
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
   speed: 1000
   health: 40
+  archer: {fileID: -5209090732708262816}
 --- !u!114 &-5727511496464818337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +184,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1603b3ad-1129-49fb-990d-2f20aaabd9ed
     m_ActionName: Player/Join[/XInputControllerWindows/start,/DualShock4GamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7994772659196139191}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: BasicAbilityAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6879789c-898d-4177-8add-3ae3f4b63e4e
+    m_ActionName: Player/Basic Ability[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7994772659196139191}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UltimateAbilityAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c3eea1f6-e676-4b67-9650-4824d5099218
+    m_ActionName: Player/Ultimate Ability[/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -271,7 +304,7 @@ MonoBehaviour:
   abilityCooldown: 10
   abilityDuration: 5
   attackSpeedAugment: 0.2
-  ultimateCooldown: 30
+  ultimateCooldown: 5
 --- !u!1 &7871893491829107646
 GameObject:
   m_ObjectHideFlags: 0

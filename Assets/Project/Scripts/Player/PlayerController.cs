@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     private float health;
     private float currentHealth;
 
+    [SerializeField]
+    private Archer archer;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -60,6 +63,17 @@ public class PlayerController : MonoBehaviour
     {
         movementDirection = obj.action.ReadValue<Vector2>();
     }
+
+    public void BasicAbilityAction(InputAction.CallbackContext obj)
+    {
+        archer.Ability();
+    }
+
+    public void UltimateAbilityAction(InputAction.CallbackContext obj)
+    {
+        archer.Ultimate();
+    }
+
 
     public void ReceiveDamage(float damage)
     {

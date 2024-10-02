@@ -37,12 +37,6 @@ public class Archer : MonoBehaviour
         UpdateFireTimer();
         UpdateAbilityTimer();
         UpdateUltimateTimer();
-
-        //Check Inputs
-        if (Input.GetMouseButtonDown(0) && abilityTimer <= 0f)
-            Ability();
-        if (Input.GetMouseButtonDown(1) && ultimateTimer <= 0f)
-            Ultimate();
     }
 
     private void Shoot()
@@ -56,20 +50,26 @@ public class Archer : MonoBehaviour
         Instantiate(arrowPrefab, firingPointRight.position, Quaternion.identity);
     }
 
-    private void Ability()
+    public void Ability()
     {
-        attackSpeed += attackSpeed * attackSpeedAugment;
+        if (abilityTimer <= 0f)
+        {
+            attackSpeed += attackSpeed * attackSpeedAugment;
 
-        doubleShooting = true;
-        //Falta movementSpeed
+            doubleShooting = true;
+            //Falta movementSpeed
 
-        abilityTimer = abilityCooldown + abilityDuration;
+            abilityTimer = abilityCooldown + abilityDuration;
+        }
     }
 
-    private void Ultimate()
+    public void Ultimate()
     {
-        Instantiate(ultimatePrefab, firingPoint.position, firingPoint.rotation);
-        ultimateTimer = ultimateCooldown;
+        if (ultimateTimer <= 0f)
+        {
+            Instantiate(ultimatePrefab, firingPoint.position, firingPoint.rotation);
+            ultimateTimer = ultimateCooldown;
+        }
     }
 
     private void UpdateFireTimer()
