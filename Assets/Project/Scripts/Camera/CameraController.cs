@@ -23,16 +23,11 @@ public class CameraController : MonoBehaviour
 
     private float minZoomValue;
 
-    [SerializeField]
-    private float maxZoomValue;
+    [SerializeField] private float maxZoomValue;
 
-    [SerializeField]
-    private float offsetBetweenPlayerAndCamera;
+    [SerializeField] private float offsetZoom;
 
-    [SerializeField]
-    private float zoomOutSpeed;
-
-
+    [SerializeField] private float zoomOutSpeed;
 
 
     private void Awake()
@@ -67,8 +62,8 @@ public class CameraController : MonoBehaviour
     {
         foreach(GameObject player in PlayersManager.instance.GetPlayersList())
         {
-            if (player.transform.position.x < this.cameraReferences.xMin + offsetBetweenPlayerAndCamera || player.transform.position.x > this.cameraReferences.xMax - offsetBetweenPlayerAndCamera
-                || player.transform.position.y < this.cameraReferences.yMin + offsetBetweenPlayerAndCamera || player.transform.position.y > this.cameraReferences.yMax - offsetBetweenPlayerAndCamera)
+            if (player.transform.position.x < this.cameraReferences.xMin + offsetZoom || player.transform.position.x > this.cameraReferences.xMax - offsetZoom
+                || player.transform.position.y < this.cameraReferences.yMin + offsetZoom || player.transform.position.y > this.cameraReferences.yMax - offsetZoom)
             {
                 return true;
             }
