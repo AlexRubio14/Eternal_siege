@@ -47,13 +47,13 @@ public class Archer : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(arrowPrefab, firingPoint.position, firingPoint.rotation);
+        Instantiate(arrowPrefab, firingPoint.position, Quaternion.identity);
     }
 
     private void DoubleShoot()
     {
-        Instantiate(arrowPrefab, firingPointLeft.position, firingPointLeft.rotation);
-        Instantiate(arrowPrefab, firingPointRight.position, firingPointRight.rotation);
+        Instantiate(arrowPrefab, firingPointLeft.position, Quaternion.identity);
+        Instantiate(arrowPrefab, firingPointRight.position, Quaternion.identity);
     }
 
     private void Ability()

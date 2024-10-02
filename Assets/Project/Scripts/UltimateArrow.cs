@@ -26,7 +26,7 @@ public class UltimateArrow : MonoBehaviour
         else
             direction = Vector2.right;
 
-        //transform.Rotate(direction.x, direction.y, direction.z);
+        transform.up = direction;
     }
 
     private void FixedUpdate()
