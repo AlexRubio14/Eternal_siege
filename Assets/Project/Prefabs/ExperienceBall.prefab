@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5864111764682944921}
   - component: {fileID: 6417274595825080361}
   - component: {fileID: 9102945670569784652}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: ExperienceBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1921
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

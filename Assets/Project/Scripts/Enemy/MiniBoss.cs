@@ -62,6 +62,12 @@ public class MiniBoss : Enemy
         {
             timeCd -= Time.deltaTime;
         }
+
+        if(currentHP <= 0 && transform.GetChild(0) != null)
+        {
+            Destroy(transform.GetChild(0));
+        }
+
     }
 
     private void CircleLerp()

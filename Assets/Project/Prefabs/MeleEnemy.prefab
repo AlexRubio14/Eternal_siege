@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4332444893990916982}
   - component: {fileID: 5420591964642457964}
   - component: {fileID: 7874072672773570298}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeleEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 769
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

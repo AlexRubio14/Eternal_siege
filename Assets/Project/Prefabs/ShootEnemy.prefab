@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2540613028456970325}
   - component: {fileID: 5195898985854996593}
   - component: {fileID: 7248285219148391735}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -218,7 +218,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1920
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

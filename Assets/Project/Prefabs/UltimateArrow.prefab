@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7229265457004443597}
   - component: {fileID: 3414684367074002641}
   - component: {fileID: 4311823307570484551}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UltimateArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1792
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
