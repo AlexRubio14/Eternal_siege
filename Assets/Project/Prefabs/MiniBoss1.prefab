@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6265724056535281159}
   - component: {fileID: 3259437166949438817}
-  - component: {fileID: 4702097934055740377}
-  - component: {fileID: 9131019289197710563}
+  - component: {fileID: 3840613897981125256}
   - component: {fileID: 4332444893990916982}
   - component: {fileID: 4443832656795170280}
   - component: {fileID: 5420591964642457964}
@@ -90,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4702097934055740377
+--- !u!114 &3840613897981125256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,27 +98,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3644879491550420163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70bd038140432dc4c9c5e20c77a0998c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d5885b362434fa4390d1575a07138b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 250
   maxHP: 200
-  experience: 0
-  experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   damage: 20
+  experience: 20
+  experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   animationDivide: 2
---- !u!114 &9131019289197710563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3644879491550420163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff9ea32113a671d489c53b5402331db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   cd: 5
   attackCircle: {fileID: 3644879491550420163, guid: 1fa3dc14dc6a0a84c9ccd6036e62e392, type: 3}
 --- !u!61 &4332444893990916982

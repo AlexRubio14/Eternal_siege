@@ -8,8 +8,10 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
+    [Header("Enemies")]
     [SerializeField] private List<GameObject> typesOfEnemies;
     [SerializeField] private List<GameObject> enemies;
+
     [SerializeField] private float spawnTimer;
     [SerializeField] private float secondsMiniBoss;
 
@@ -34,7 +36,7 @@ public class EnemyManager : MonoBehaviour
         timer = 0;
         cameraBorder = new Vector2(cam.aspect * cam.orthographicSize, cam.orthographicSize);
 
-        Invoke("SpawnMiniBoss", 30);
+        Invoke("SpawnMiniBoss", secondsMiniBoss);
     }
 
     private void Update()
@@ -101,8 +103,8 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy(GameObject _enemy)
     {
-        GameObject newEnemy = null;
-        newEnemy = Instantiate(_enemy);
+        GameObject newEnemy = Instantiate(_enemy);
+
         newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
         Vector3 spawnPosition = GenerateRandomPosition(newEnemy);

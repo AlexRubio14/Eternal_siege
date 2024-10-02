@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6265724056535281159}
   - component: {fileID: 3259437166949438817}
-  - component: {fileID: 4702097934055740377}
+  - component: {fileID: 4309740183503353679}
   - component: {fileID: 4332444893990916982}
   - component: {fileID: 5420591964642457964}
   - component: {fileID: 7874072672773570298}
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4702097934055740377
+--- !u!114 &4309740183503353679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,14 +97,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3644879491550420163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70bd038140432dc4c9c5e20c77a0998c, type: 3}
+  m_Script: {fileID: 11500000, guid: ff9ea32113a671d489c53b5402331db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 300
   maxHP: 25
-  experience: 0
-  experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   damage: 20
+  experience: 5
+  experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   animationDivide: 1
 --- !u!61 &4332444893990916982
 BoxCollider2D:
