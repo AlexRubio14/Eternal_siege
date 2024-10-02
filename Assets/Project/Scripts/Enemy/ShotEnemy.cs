@@ -33,7 +33,7 @@ public class ShotEnemy : Enemy
     private void Shoot()
     {
         GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.identity);
-        _bullet.GetComponent<Rigidbody2D>().velocity = (currentTarget.transform.position - transform.localPosition).normalized * speed * Time.deltaTime;
+        _bullet.GetComponent<Rigidbody2D>().velocity = (currentTarget.transform.position - transform.localPosition).normalized * bulletSpeed * Time.deltaTime;
         time = 0;
     }
 

@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
-        currentHealth -= damage;
+        //currentHealth -= damage;
 
         Debug.Log(currentHealth);
 

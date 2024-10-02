@@ -54,7 +54,7 @@ public abstract class Enemy : MonoBehaviour
                     currentTarget = target[i];
                 }
             }
-            rgbd2d.velocity = direction.normalized * speed * Time.deltaTime;
+            rgbd2d.velocity = direction.normalized * speed;
         }
         if (!canMove)
         {
@@ -91,6 +91,7 @@ public abstract class Enemy : MonoBehaviour
     {
         GameObject _experienceBall = Instantiate(experienceBall, transform.localPosition, Quaternion.identity);
         _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
+        GetComponent<BoxCollider2D>().isTrigger = true;
         EnemyManager.instance.GetEnemies().Remove(gameObject);
         Destroy(gameObject);
     }
