@@ -13,11 +13,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Detection
+  - Player
+  - Enemy
+  - AttackArea
   - Experience
-  - 
-  - 
-  - 
+  - Bullet
   - 
   - 
   - 
