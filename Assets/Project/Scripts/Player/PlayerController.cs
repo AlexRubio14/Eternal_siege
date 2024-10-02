@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,20 +19,21 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
 
     [SerializeField]
-    private int playerIndex;
-
-    
+    private float health;
+    private float currentHealth;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        currentHealth = health;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayersManager.instance.AddPlayer(gameObject);
     }
 
     // Update is called once per frame
@@ -59,8 +61,28 @@ public class PlayerController : MonoBehaviour
         movementDirection = obj.action.ReadValue<Vector2>();
     }
 
-    public int GetPlayerIndex()
+    public void ReceiveDamage(float damage)
     {
-        return playerIndex;
+        currentHealth -= damage;
+
+        Debug.Log(currentHealth);
+
+        if(currentHealth < 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        PlayersManager.instance.ErasePlayer(gameObject);
+        Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
+        }
     }
 }

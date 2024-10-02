@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Archer : MonoBehaviour
@@ -12,19 +13,18 @@ public class Archer : MonoBehaviour
     [SerializeField] private Transform firingPointRight;
 
     [Range(0.1f, 5f)]
-    [SerializeField] private float attackSpeed = 0.5f;
+    [SerializeField] private float attackSpeed;
     private float baseAttackSpeed;
     private float fireTimer;
 
-    [SerializeField] private float abilityCooldown = 10f;
+    [SerializeField] private float abilityCooldown;
     private float abilityTimer;
-    [SerializeField] private float abilityDuration = 5f;
-    [SerializeField] private float attackSpeedAugment = 0.2f;
+    [SerializeField] private float abilityDuration;
+    [SerializeField] private float attackSpeedAugment;
 
-    [SerializeField] private float ultimateCooldown = 45f;
+    [SerializeField] private float ultimateCooldown;
     private float ultimateTimer;
 
-    [SerializeField] private float damage;
     private bool doubleShooting;
 
     private void Start()
@@ -47,13 +47,13 @@ public class Archer : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(arrowPrefab, firingPoint.position, firingPoint.rotation);
+        Instantiate(arrowPrefab, firingPoint.position, Quaternion.identity);
     }
 
     private void DoubleShoot()
     {
-        Instantiate(arrowPrefab, firingPointLeft.position, firingPointLeft.rotation);
-        Instantiate(arrowPrefab, firingPointRight.position, firingPointRight.rotation);
+        Instantiate(arrowPrefab, firingPointLeft.position, Quaternion.identity);
+        Instantiate(arrowPrefab, firingPointRight.position, Quaternion.identity);
     }
 
     private void Ability()

@@ -1,30 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private int maxHP;
+    [SerializeField] private float experience;
+    [SerializeField] private GameObject experienceBall;
+    [SerializeField] private float damage;
+    [SerializeField] private float animationDivide;
 
-    private GameObject[] target = new GameObject[2];
+    private List<GameObject> target;
     private GameObject currentTarget;
     private Rigidbody2D rgbd2d;
+    private Animator animator;
+    private float currentHP;
     private bool canMove;
+    Vector3 direction;
+
 
     private void Start()
     {
         rgbd2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
+        currentHP = maxHP;
         canMove = true;
     }
 
     private void Update()
     {
-        if (target[0] != null && canMove) 
+        Seek();
+    }
+    private void Seek()
+    {
+        if (target.Count > 0 && target[0] && canMove)
         {
-            Vector3 direction = (target[0].transform.localPosition - transform.localPosition).normalized;
+            direction = (target[0].transform.localPosition - transform.localPosition).normalized;
             currentTarget = target[0];
-            for (int i = 1; i < target.Length; i++) 
+            for (int i = 1; i < target.Count; i++)
             {
                 float distancePostion1 = Vector3.Distance(transform.localPosition, target[i].transform.position);
                 float distancePostion2 = Vector3.Distance(transform.localPosition, target[i - 1].transform.position);
@@ -36,20 +53,52 @@ public class Enemy : MonoBehaviour
             }
             rgbd2d.velocity = direction * speed;
         }
-        else if(!canMove)
+        if(!canMove)
         {
             rgbd2d.velocity = Vector3.zero;
         }
-
-
+        Rotate();
     }
 
-    public void SetTarget(GameObject[] _target)
+    private void Die()
     {
-        for (int i = 0; i < _target.Length; i++)
+        GameObject _experienceBall = Instantiate(experienceBall);
+        _experienceBall.transform.localPosition = transform.localPosition;
+        _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
+        EnemyManager.instance.GetEnemies().Remove(gameObject);
+        Destroy(gameObject);
+    }
+
+    private void Rotate()
+    {
+        if (rgbd2d.velocity.x < 0)
         {
-            target[i] = _target[i];
+            GetComponent<SpriteRenderer>().flipX = false;
         }
+        else if (rgbd2d.velocity.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
+    public void ReceiveDamage(float amount)
+    {
+        currentHP -= amount;
+        if(currentHP <= 0)
+        {
+            animator.SetBool("Die", true);
+            currentHP = 0;
+            canMove = false;
+            rgbd2d.velocity = Vector3.zero;
+            Invoke("Die", animator.GetCurrentAnimatorStateInfo(0).length / animationDivide);
+        }
+    }
+
+
+
+    public void SetTarget(List<GameObject> _target)
+    {
+        target = _target;
     }
 
     public void SetCanMove(bool state)
@@ -60,5 +109,20 @@ public class Enemy : MonoBehaviour
     public GameObject GetTarget()
     {
         return currentTarget;
+    }
+
+    public Vector3 GetDirection()
+    {
+        return direction;
+    }
+
+    public GameObject GetCurrentTarget()
+    {
+        return currentTarget;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

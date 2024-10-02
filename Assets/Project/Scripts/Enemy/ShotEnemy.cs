@@ -9,39 +9,23 @@ public class ShotEnemy : MonoBehaviour
     [SerializeField] private float maxTime;
     [SerializeField] private float speed;
 
-    private bool canShoot;
     private float time;
     private GameObject target;
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            GetComponent<Enemy>().SetCanMove(false);
-            canShoot = true;
-            time = 0;
-        }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void Start()
     {
-        if (collision.CompareTag("Player"))
-        {
-            GetComponent<Enemy>().SetCanMove(true);
-            canShoot = false;
-            time = 0;
-        }
+        time = maxTime;
     }
-
     private void Update()
     {
+        target = GetComponent<Enemy>().GetTarget();
         time += Time.deltaTime;
-        if (canShoot && time > maxTime) 
-        { 
+        if (time > maxTime && target != null) 
+        {
             GameObject _bullet = Instantiate(bullet);
-            target = GetComponent<Enemy>().GetTarget();
             _bullet.transform.position = transform.position;
             _bullet.transform.SetParent(transform);
-            _bullet.GetComponent<Rigidbody2D>().velocity = (target.transform.localPosition - transform.localPosition).normalized * speed;
+            _bullet.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.localPosition).normalized * speed;
             time = 0;
         }
     }

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class UltimateArrow : MonoBehaviour
 {
-    [Range(0f, 10f)]
     [SerializeField] private float speed = 10f;
 
-    [Range(0f, 10f)]
     [SerializeField] private float lifeTime = 3f;
 
+    [SerializeField] private float damage;
+
+    private Vector2 direction;
     private Rigidbody2D rb2d;
 
     private void Awake()
@@ -20,15 +21,25 @@ public class UltimateArrow : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, lifeTime);
+        if (EnemyManager.instance.GetEnemies().Count > 0)
+            direction = EnemyManager.instance.GetNearestEnemyDirection(transform.position);
+        else
+            direction = Vector2.right;
+
+        transform.up = direction;
     }
 
     private void FixedUpdate()
     {
-        rb2d.velocity = transform.up * speed;
+        rb2d.velocity = direction * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Do damage
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.ReceiveDamage(damage);
+        }
     }
 }
