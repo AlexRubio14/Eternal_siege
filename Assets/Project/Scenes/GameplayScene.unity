@@ -304,10 +304,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9dc5d4e6b5982438c522fda73e7084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 133370190}
+  minZoomValue: 0
   maxZoomValue: 10
-  offsetBetweenPlayerAndCamera: 2
-  zoomOutSpeed: 0.2
+  offsetZoomOut: 1
+  offsetZoomIn: 3
+  zoomOutSpeed: 0.02
+  camera: {fileID: 133370190}
+  cameraState: 2
 --- !u!1 &1369205665
 GameObject:
   m_ObjectHideFlags: 0
