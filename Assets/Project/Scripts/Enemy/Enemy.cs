@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int maxHP;
     [SerializeField] private float experience;
     [SerializeField] private GameObject experienceBall;
+    [SerializeField]
+    private float damage;
 
     private List<GameObject> target;
     private GameObject currentTarget;
@@ -65,7 +67,7 @@ public class Enemy : MonoBehaviour
     {
         if (isDead)
         {
-            animator.SetBool("Die", true);
+            
 
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.normalizedTime > 1.0f)
@@ -91,11 +93,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void ReciveDamage(float amount)
+    public void ReceiveDamage(float amount)
     {
         currentHP -= amount;
         if(currentHP < 0)
         {
+            animator.SetBool("Die", true);
             currentHP = 0;
             rgbd2d.velocity = Vector3.zero;
             isDead = true;
@@ -125,5 +128,13 @@ public class Enemy : MonoBehaviour
     public GameObject GetCurrentTarget()
     {
         return currentTarget;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerController>().ReceiveDamage(damage);
+        }
     }
 }

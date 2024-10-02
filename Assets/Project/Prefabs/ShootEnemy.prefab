@@ -106,6 +106,7 @@ MonoBehaviour:
   maxHP: 50
   experience: 0
   experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
+  damage: 20
 --- !u!114 &3017409893586714686
 MonoBehaviour:
   m_ObjectHideFlags: 0

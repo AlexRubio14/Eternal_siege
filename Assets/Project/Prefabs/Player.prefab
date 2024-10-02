@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
   speed: 1000
+  health: 40
 --- !u!114 &-5727511496464818337
 MonoBehaviour:
   m_ObjectHideFlags: 0

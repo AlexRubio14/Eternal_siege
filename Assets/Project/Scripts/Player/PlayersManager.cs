@@ -36,8 +36,18 @@ public class PlayersManager : MonoBehaviour
         playersList.Add(player);
     }
 
+    public void ErasePlayer(GameObject player)
+    {
+        playersList.Remove(player);
+    }
+
     public List<GameObject> GetPlayersList()
     {
         return playersList;
+    }
+
+    public int GetPlayerIndex()
+    {
+        return playersList.Count;
     }
 }
