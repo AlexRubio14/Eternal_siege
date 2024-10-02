@@ -3,54 +3,37 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Archer : MonoBehaviour
+public class Archer : Character
 {
-    [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private GameObject ultimatePrefab;
+    [SerializeField] protected GameObject arrowPrefab;
+    [SerializeField] protected GameObject ultimatePrefab;
 
-    [SerializeField] private Transform firingPoint;
-    [SerializeField] private Transform firingPointLeft;
-    [SerializeField] private Transform firingPointRight;
+    [SerializeField] protected Transform firingPoint;
+    [SerializeField] protected Transform firingPointLeft;
+    [SerializeField] protected Transform firingPointRight;
 
-    [Range(0.1f, 5f)]
-    [SerializeField] private float attackSpeed;
-    private float baseAttackSpeed;
-    private float fireTimer;
+    protected float baseAttackSpeed;
+    [SerializeField] protected float abilityDuration;
+    [SerializeField] protected float attackSpeedAugment;
+    protected bool doubleShooting;
 
-    [SerializeField] private float abilityCooldown;
-    private float abilityTimer;
-    [SerializeField] private float abilityDuration;
-    [SerializeField] private float attackSpeedAugment;
-
-    [SerializeField] private float ultimateCooldown;
-    private float ultimateTimer;
-
-    private bool doubleShooting;
-
-    private void Start()
+    protected void Start()
     {
         baseAttackSpeed = attackSpeed;
     }
 
-    private void Update()
+    protected void Update()
     {
-        UpdateFireTimer();
-        UpdateAbilityTimer();
-        UpdateUltimateTimer();
+        base.Update();
     }
 
-    private void Shoot()
+    #region ATTACKS & ABILITIES
+    protected override void BasicAttack() 
     {
         Instantiate(arrowPrefab, firingPoint.position, Quaternion.identity);
     }
 
-    private void DoubleShoot()
-    {
-        Instantiate(arrowPrefab, firingPointLeft.position, Quaternion.identity);
-        Instantiate(arrowPrefab, firingPointRight.position, Quaternion.identity);
-    }
-
-    public void Ability()
+    protected override void BasicAbility()
     {
         if (abilityTimer <= 0f)
         {
@@ -63,7 +46,7 @@ public class Archer : MonoBehaviour
         }
     }
 
-    public void Ultimate()
+    protected override void UltimateAbility()
     {
         if (ultimateTimer <= 0f)
         {
@@ -71,15 +54,17 @@ public class Archer : MonoBehaviour
             ultimateTimer = ultimateCooldown;
         }
     }
+    #endregion
 
-    private void UpdateFireTimer()
+    #region UPDATE TIMERS
+    protected override void UpdateFireTimer()
     {
         if (fireTimer <= 0f)
         {
             if (doubleShooting)
                 DoubleShoot();
             else
-                Shoot();
+                BasicAttack();
 
             fireTimer = 1 / attackSpeed;
         }
@@ -89,7 +74,7 @@ public class Archer : MonoBehaviour
         }
     }
 
-    private void UpdateAbilityTimer()
+    protected override void UpdateAbilityTimer()
     {
         if (abilityTimer > 0f)
         {
@@ -102,13 +87,18 @@ public class Archer : MonoBehaviour
         }
     }
 
-    private void UpdateUltimateTimer()
+    protected override void UpdateUltimateTimer()
     {
         if (ultimateTimer > 0f)
         {
             ultimateTimer -= Time.deltaTime;
         }
     }
+    #endregion
 
-
+    protected void DoubleShoot()
+    {
+        Instantiate(arrowPrefab, firingPointLeft.position, Quaternion.identity);
+        Instantiate(arrowPrefab, firingPointRight.position, Quaternion.identity);
+    }
 }

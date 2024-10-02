@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: -8590219195370816807}
   - component: {fileID: -5209090732708262816}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Archer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,6 @@ MonoBehaviour:
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
   speed: 1000
   health: 40
-  archer: {fileID: -5209090732708262816}
 --- !u!114 &-5727511496464818337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,8 +185,8 @@ MonoBehaviour:
     m_ActionName: Player/Join[/XInputControllerWindows/start,/DualShock4GamepadHID/start]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7994772659196139191}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: -5209090732708262816}
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
         m_MethodName: BasicAbilityAction
         m_Mode: 0
         m_Arguments:
@@ -202,8 +201,8 @@ MonoBehaviour:
     m_ActionName: Player/Basic Ability[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7994772659196139191}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: -5209090732708262816}
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
         m_MethodName: UltimateAbilityAction
         m_Mode: 0
         m_Arguments:
@@ -295,16 +294,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e3b5fd7f93ae24cad3ddda2b30632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSpeed: 1.5
+  abilityCooldown: 10
+  ultimateCooldown: 5
   arrowPrefab: {fileID: 2762717636433230974, guid: 01657908b817839409462949d37426fa, type: 3}
   ultimatePrefab: {fileID: 2762717636433230974, guid: 5e78462e7ffa9f841a45da0497323833, type: 3}
   firingPoint: {fileID: 3684480250411487961}
   firingPointLeft: {fileID: 500284790301520802}
   firingPointRight: {fileID: 5163518891430103216}
-  attackSpeed: 1.5
-  abilityCooldown: 10
   abilityDuration: 5
   attackSpeedAugment: 0.2
-  ultimateCooldown: 5
 --- !u!1 &7871893491829107646
 GameObject:
   m_ObjectHideFlags: 0
