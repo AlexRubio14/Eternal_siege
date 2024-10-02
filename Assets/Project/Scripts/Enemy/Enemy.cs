@@ -10,15 +10,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int maxHP;
     [SerializeField] private float experience;
     [SerializeField] private GameObject experienceBall;
-    [SerializeField]
-    private float damage;
+    [SerializeField] private float damage;
+    [SerializeField] private float animationDivide;
 
     private List<GameObject> target;
     private GameObject currentTarget;
     private Rigidbody2D rgbd2d;
     private Animator animator;
     private float currentHP;
-    private bool isDead;
     private bool canMove;
     Vector3 direction;
 
@@ -29,18 +28,16 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         currentHP = maxHP;
-        isDead = false;
         canMove = true;
     }
 
     private void Update()
     {
         Seek();
-        Die();
     }
     private void Seek()
     {
-        if (target.Count > 0 && target[0] && !isDead && canMove)
+        if (target.Count > 0 && target[0] && canMove)
         {
             direction = (target[0].transform.localPosition - transform.localPosition).normalized;
             currentTarget = target[0];
@@ -65,20 +62,11 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        if (isDead)
-        {
-            
-
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            if (stateInfo.normalizedTime > 1.0f)
-            {
-                GameObject _experienceBall = Instantiate(experienceBall);
-                _experienceBall.transform.localPosition = transform.localPosition;
-                _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
-                EnemyManager.instance.GetEnemies().Remove(this.gameObject);
-                Destroy(gameObject);
-            }
-        }
+        GameObject _experienceBall = Instantiate(experienceBall);
+        _experienceBall.transform.localPosition = transform.localPosition;
+        _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
+        EnemyManager.instance.GetEnemies().Remove(gameObject);
+        Destroy(gameObject);
     }
 
     private void Rotate()
@@ -96,14 +84,17 @@ public class Enemy : MonoBehaviour
     public void ReceiveDamage(float amount)
     {
         currentHP -= amount;
-        if(currentHP < 0)
+        if(currentHP <= 0)
         {
             animator.SetBool("Die", true);
             currentHP = 0;
+            canMove = false;
             rgbd2d.velocity = Vector3.zero;
-            isDead = true;
+            Invoke("Die", animator.GetCurrentAnimatorStateInfo(0).length / animationDivide);
         }
     }
+
+
 
     public void SetTarget(List<GameObject> _target)
     {
@@ -130,11 +121,8 @@ public class Enemy : MonoBehaviour
         return currentTarget;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public float GetDamage()
     {
-        if(collision.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerController>().ReceiveDamage(damage);
-        }
+        return damage;
     }
 }

@@ -34,7 +34,7 @@ public class EnemyManager : MonoBehaviour
         timer = 0;
         cameraBorder = new Vector2(cam.aspect * cam.orthographicSize, cam.orthographicSize);
 
-        Invoke("SpawnMiniBoss", secondsMiniBoss);
+        Invoke("SpawnMiniBoss", 30);
     }
 
     private void Update()
@@ -43,15 +43,9 @@ public class EnemyManager : MonoBehaviour
 
         if (timer < 0 && PlayersManager.instance.GetPlayersList().Count > 0)
         {
-            SpawnEnemy();
+            GenerateEnemy();
             timer = spawnTimer;
         }
-    }
-
-    private void SpawnEnemy()
-    {
-        GameObject _enemy = GenerateEnemy();
-        CreateEnemy(_enemy);
     }
 
     private Vector3 GenerateRandomPosition(GameObject enemy)
@@ -86,61 +80,40 @@ public class EnemyManager : MonoBehaviour
         return position;
     }
 
-    private GameObject GenerateEnemy()
+    private void GenerateEnemy()
     {
         switch (UnityEngine.Random.Range(0, 2))
         {
             case 0:
-                return typesOfEnemies[0];
+                for(int i = 0; i< UnityEngine.Random.Range(3, 6); i++)
+                {
+                    SpawnEnemy(typesOfEnemies[0]);
+                }
+                break;
             case 1:
-                return typesOfEnemies[1];
+                for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
+                {
+                    SpawnEnemy(typesOfEnemies[1]);
+                }
+                break;
         }
-        return null;
     }
 
-    private void CreateEnemy(GameObject _enemy)
+    private void SpawnEnemy(GameObject _enemy)
     {
         GameObject newEnemy = null;
+        newEnemy = Instantiate(_enemy);
+        newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
-        if (_enemy == typesOfEnemies[0])
-        {
-            for (int i = 0; i < UnityEngine.Random.Range(3, 6); i++)
-            {
-                newEnemy = Instantiate(_enemy);
-                newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
+        Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
 
-                Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
+        spawnPosition += cam.transform.position;
+        spawnPosition.z = 0;
 
-                spawnPosition += cam.transform.position;
-                spawnPosition.z = 0;
+        newEnemy.transform.position = spawnPosition;
+        newEnemy.transform.SetParent(this.gameObject.transform);
 
-                newEnemy.transform.position = spawnPosition;
-                newEnemy.transform.SetParent(this.gameObject.transform);
-
-                enemies.Add(newEnemy);
-
-            }
-        }
-        else if (_enemy == typesOfEnemies[1])
-        {
-            for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
-            {
-                newEnemy = Instantiate(_enemy);
-                newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
-
-                Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
-
-                spawnPosition += cam.transform.position;
-                spawnPosition.z = 0;
-
-                newEnemy.transform.position = spawnPosition;
-                newEnemy.transform.SetParent(this.gameObject.transform);
-
-                enemies.Add(newEnemy);
-
-            }
-        }
-
+        enemies.Add(newEnemy);
     }
 
     private void SpawnMiniBoss()

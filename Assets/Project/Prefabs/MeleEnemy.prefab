@@ -105,6 +105,7 @@ MonoBehaviour:
   experience: 0
   experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   damage: 20
+  animationDivide: 1
 --- !u!61 &4332444893990916982
 BoxCollider2D:
   m_ObjectHideFlags: 0
