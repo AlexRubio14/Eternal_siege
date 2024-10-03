@@ -52,7 +52,8 @@ public class Tank : Character
     protected override void BasicAttack()
     {
         attackCollider.enabled = true;
-        Invoke("DisableAttackCollider", 0.5f);
+        Invoke("DisableAttackCollider", 0.1f);
+        Invoke("BasicAttack", 0.3f);
     }
     protected override void BasicAbility()
     {
