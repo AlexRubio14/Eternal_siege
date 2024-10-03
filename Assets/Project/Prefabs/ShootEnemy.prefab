@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6265724056535281159}
   - component: {fileID: 3259437166949438817}
-  - component: {fileID: 4702097934055740377}
+  - component: {fileID: 6540077973744519328}
   - component: {fileID: 5420591964642457964}
   - component: {fileID: 2540613028456970325}
   - component: {fileID: 5195898985854996593}
-  - component: {fileID: 7709011552301123676}
-  m_Layer: 0
+  - component: {fileID: 7248285219148391735}
+  m_Layer: 7
   m_Name: ShootEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4702097934055740377
+--- !u!114 &6540077973744519328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,15 +98,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3644879491550420163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70bd038140432dc4c9c5e20c77a0998c, type: 3}
+  m_Script: {fileID: 11500000, guid: f70db6724d591a442a8936d3ae13187a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.75
   maxHP: 50
-  experience: 0
-  experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   damage: 20
+  experience: 10
+  experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   animationDivide: 1
+  bullet: {fileID: 3644879491550420163, guid: 1978a1aec8f770b47a46d66c77d6b801, type: 3}
+  bulletSpeed: 200
+  maxTime: 3
 --- !u!50 &5420591964642457964
 Rigidbody2D:
   serializedVersion: 4
@@ -149,7 +152,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -200,18 +203,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7709011552301123676
-MonoBehaviour:
+--- !u!58 &7248285219148391735
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3644879491550420163}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70db6724d591a442a8936d3ae13187a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 3644879491550420163, guid: 1978a1aec8f770b47a46d66c77d6b801, type: 3}
-  maxTime: 2
-  speed: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1920
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2

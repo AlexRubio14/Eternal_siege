@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9020936527073715542}
   - component: {fileID: 3165267786543257417}
   - component: {fileID: 7512443749106236930}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2589492807717754948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 6265724056535281159}
   - component: {fileID: 3259437166949438817}
   - component: {fileID: 6417274595825080361}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0.9245283, g: 0.34451762, b: 0.34451762, a: 1}
   m_FlipX: 0
@@ -221,7 +221,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1697
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

@@ -3,30 +3,46 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class ShotEnemy : MonoBehaviour
+public class ShotEnemy : Enemy
 {
+    [Header("Bullet")]
     [SerializeField] private GameObject bullet;
+    [SerializeField] private float bulletSpeed;
     [SerializeField] private float maxTime;
-    [SerializeField] private float speed;
-
     private float time;
-    private GameObject target;
 
-    private void Start()
+    private void Awake()
     {
+        Initialize();
         time = maxTime;
     }
-    private void Update()
+    protected override void Update()
     {
-        target = GetComponent<Enemy>().GetTarget();
+        base.Update();
         time += Time.deltaTime;
-        if (time > maxTime && target != null) 
+    }
+
+    private void CheckIfCanShoot()
+    {
+        if (time > maxTime && target != null)
         {
-            GameObject _bullet = Instantiate(bullet);
-            _bullet.transform.position = transform.position;
-            _bullet.transform.SetParent(transform);
-            _bullet.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.localPosition).normalized * speed;
-            time = 0;
+            Shoot();
         }
     }
+
+    private void Shoot()
+    {
+        GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.identity);
+        _bullet.GetComponent<Rigidbody2D>().velocity = (currentTarget.transform.position - transform.localPosition).normalized * bulletSpeed * Time.deltaTime;
+        time = 0;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            CheckIfCanShoot();
+        }
+    }
+
 }

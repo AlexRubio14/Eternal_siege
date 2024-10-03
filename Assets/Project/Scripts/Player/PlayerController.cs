@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
-        currentHealth -= damage;
+        //currentHealth -= damage;
 
         Debug.Log(currentHealth);
 
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && collision is BoxCollider2D)
         {
             ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
         }

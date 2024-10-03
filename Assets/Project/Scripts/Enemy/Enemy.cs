@@ -3,70 +3,64 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private int maxHP;
-    [SerializeField] private float experience;
-    [SerializeField] private GameObject experienceBall;
-    [SerializeField] private float damage;
-    [SerializeField] private float animationDivide;
+    [Header("Movement")]
+    [SerializeField] protected float speed;
+    protected Vector2 direction;
+    protected bool canMove;
+    protected Rigidbody2D rgbd2d;
 
-    private List<GameObject> target;
-    private GameObject currentTarget;
-    private Rigidbody2D rgbd2d;
-    private Animator animator;
-    private float currentHP;
-    private bool canMove;
-    Vector3 direction;
+    [Header("Combat")]
+    [SerializeField] protected int maxHP;
+    [SerializeField] protected float damage;
+    [SerializeField] protected float experience;
+    [SerializeField] protected GameObject experienceBall;
+    protected float currentHP;
+    protected List<GameObject> target;
+    protected GameObject currentTarget;
 
+    [Header("Animation")]
+    [SerializeField] protected float animationDivide;
+    protected Animator animator;
 
-    private void Start()
+    protected void Initialize()
     {
-        rgbd2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        rgbd2d = GetComponent<Rigidbody2D>();
 
         currentHP = maxHP;
         canMove = true;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Seek();
     }
     private void Seek()
     {
-        if (target.Count > 0 && target[0] && canMove)
+        if (target.Count > 0 && canMove)
         {
-            direction = (target[0].transform.localPosition - transform.localPosition).normalized;
+            direction = (Vector2)target[0].transform.localPosition - (Vector2)transform.localPosition;
             currentTarget = target[0];
             for (int i = 1; i < target.Count; i++)
             {
-                float distancePostion1 = Vector3.Distance(transform.localPosition, target[i].transform.position);
-                float distancePostion2 = Vector3.Distance(transform.localPosition, target[i - 1].transform.position);
-                if (distancePostion1 < distancePostion2)
+                Vector2 distancePostion1 = (Vector2)target[i].transform.localPosition - (Vector2)transform.localPosition;
+                if (distancePostion1.magnitude < direction.magnitude)
                 {
-                    direction = (target[i].transform.localPosition - transform.localPosition).normalized;
+                    direction = distancePostion1;
                     currentTarget = target[i];
                 }
             }
-            rgbd2d.velocity = direction * speed;
+            rgbd2d.velocity = direction.normalized * speed;
         }
-        if(!canMove)
+        if (!canMove)
         {
             rgbd2d.velocity = Vector3.zero;
         }
         Rotate();
-    }
-
-    private void Die()
-    {
-        GameObject _experienceBall = Instantiate(experienceBall);
-        _experienceBall.transform.localPosition = transform.localPosition;
-        _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
-        EnemyManager.instance.GetEnemies().Remove(gameObject);
-        Destroy(gameObject);
     }
 
     private void Rotate()
@@ -84,7 +78,7 @@ public class Enemy : MonoBehaviour
     public void ReceiveDamage(float amount)
     {
         currentHP -= amount;
-        if(currentHP <= 0)
+        if (currentHP <= 0)
         {
             animator.SetBool("Die", true);
             currentHP = 0;
@@ -93,8 +87,14 @@ public class Enemy : MonoBehaviour
             Invoke("Die", animator.GetCurrentAnimatorStateInfo(0).length / animationDivide);
         }
     }
-
-
+    private void Die()
+    {
+        GameObject _experienceBall = Instantiate(experienceBall, transform.localPosition, Quaternion.identity);
+        _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
+        GetComponent<BoxCollider2D>().isTrigger = true;
+        EnemyManager.instance.GetEnemies().Remove(gameObject);
+        Destroy(gameObject);
+    }
 
     public void SetTarget(List<GameObject> _target)
     {
