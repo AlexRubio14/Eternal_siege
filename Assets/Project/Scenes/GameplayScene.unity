@@ -399,11 +399,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typesOfEnemies:
-  - {fileID: 3644879491550420163, guid: 6d2839eab7a09db4f8598e6d5ce25f8d, type: 3}
-  - {fileID: 3644879491550420163, guid: f0d52e1fab7c742459f0ba20916f52a3, type: 3}
+  - {fileID: 3644879491550420163, guid: 98a7b73f67664784f97ce0ae7d0bfae9, type: 3}
+  - {fileID: 3644879491550420163, guid: 98a7b73f67664784f97ce0ae7d0bfae9, type: 3}
   - {fileID: 3644879491550420163, guid: 4ae3ff2fda23d0849a60577c5420ddd2, type: 3}
   enemies: []
-  spawnTimer: 2
+  spawnTimer: 2.1312311e+17
   secondsMiniBoss: 30
 --- !u!1 &1480484726
 GameObject:

@@ -87,13 +87,13 @@ public class EnemyManager : MonoBehaviour
         switch (UnityEngine.Random.Range(0, 2))
         {
             case 0:
-                for(int i = 0; i< UnityEngine.Random.Range(3, 6); i++)
+                for(int i = 0; i< UnityEngine.Random.Range(1, 1); i++)
                 {
                     SpawnEnemy(typesOfEnemies[0]);
                 }
                 break;
             case 1:
-                for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
+                for (int i = 0; i < UnityEngine.Random.Range(1, 1); i++)
                 {
                     SpawnEnemy(typesOfEnemies[1]);
                 }
