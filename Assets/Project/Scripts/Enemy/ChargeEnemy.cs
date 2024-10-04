@@ -49,6 +49,7 @@ public class ChargeEnemy : Enemy
         {
             EndCharging();
             chargeStarted = false;
+            animator.SetBool("Running", false);
         }
     }
 
@@ -63,6 +64,8 @@ public class ChargeEnemy : Enemy
     }
     private void Charge()
     {
+        animator.SetBool("Screaming", false);
+        animator.SetBool("Running", true);
         speed *= speedMultiplier;
         direction *= 2f;
         startPosition = transform.localPosition;
@@ -73,8 +76,9 @@ public class ChargeEnemy : Enemy
 
     private void PrepareCharging()
     {
+        animator.SetBool("Screaming", true);
         rgbd2d.velocity = Vector3.zero;
-        Invoke("Charge", 2);
+        Invoke("Charge", animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
     private void EndCharging()

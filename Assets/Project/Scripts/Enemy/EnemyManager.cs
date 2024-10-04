@@ -84,18 +84,24 @@ public class EnemyManager : MonoBehaviour
 
     private void GenerateEnemy()
     {
-        switch (UnityEngine.Random.Range(0, 2))
+        switch (UnityEngine.Random.Range(0, 3))
         {
             case 0:
-                for(int i = 0; i< UnityEngine.Random.Range(1, 1); i++)
+                for(int i = 0; i< UnityEngine.Random.Range(2, 4); i++)
                 {
                     SpawnEnemy(typesOfEnemies[0]);
                 }
                 break;
             case 1:
-                for (int i = 0; i < UnityEngine.Random.Range(1, 1); i++)
+                for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
                 {
                     SpawnEnemy(typesOfEnemies[1]);
+                }
+                break;
+            case 2:
+                for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
+                {
+                    SpawnEnemy(typesOfEnemies[2]);
                 }
                 break;
         }
