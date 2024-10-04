@@ -65,14 +65,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void Rotate()
     {
-        if (rgbd2d.velocity.x < 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else if (rgbd2d.velocity.x > 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
+        transform.up = direction;
     }
 
     public void ReceiveDamage(float amount)
@@ -92,6 +85,7 @@ public abstract class Enemy : MonoBehaviour
         GameObject _experienceBall = Instantiate(experienceBall, transform.localPosition, Quaternion.identity);
         _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
         GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<BoxCollider2D>().enabled = false;
         EnemyManager.instance.GetEnemies().Remove(gameObject);
         Destroy(gameObject);
     }

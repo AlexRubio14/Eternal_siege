@@ -54,17 +54,17 @@ public class EnemyManager : MonoBehaviour
     {
         Vector3 position = new Vector2();
 
-        SpriteRenderer enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
+        BoxCollider2D boxCollder2D = enemy.GetComponent<BoxCollider2D>();
 
         float f = UnityEngine.Random.value > 0.5f? -1f : 1f;
         if(UnityEngine.Random.value > 0.5f)
         {
             position.x = UnityEngine.Random.Range(-cameraBorder.x, cameraBorder.x);
             position.y = cameraBorder.y * f;
-            if(f < 0)
-                position.y -= enemySpriteRenderer.bounds.size.y;        
+            if (f < 0)
+                position.y -= boxCollder2D.bounds.size.y;
             else
-                position.y += enemySpriteRenderer.bounds.size.y;
+                position.y += boxCollder2D.bounds.size.y;
 
         }
         else
@@ -72,9 +72,9 @@ public class EnemyManager : MonoBehaviour
             position.y = UnityEngine.Random.Range(-cameraBorder.y, cameraBorder.y);
             position.x = cameraBorder.x * f;
             if (f < 0)
-                position.x -= enemySpriteRenderer.bounds.size.x;
+                position.x -= boxCollder2D.bounds.size.x;
             else
-                position.x += enemySpriteRenderer.bounds.size.x;
+                position.x += boxCollder2D.bounds.size.x;
         }
 
         position.z = 0;
