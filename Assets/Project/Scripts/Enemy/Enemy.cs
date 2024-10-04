@@ -77,15 +77,14 @@ public abstract class Enemy : MonoBehaviour
             currentHP = 0;
             canMove = false;
             rgbd2d.velocity = Vector3.zero;
+            GameObject _experienceBall = Instantiate(experienceBall, new Vector3(transform.localPosition.x, transform.localPosition.y, -2.5f), Quaternion.identity);
+            _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
+            GetComponent<BoxCollider2D>().enabled = false;
             Invoke("Die", animator.GetCurrentAnimatorStateInfo(0).length / animationDivide);
         }
     }
     private void Die()
     {
-        GameObject _experienceBall = Instantiate(experienceBall, transform.localPosition, Quaternion.identity);
-        _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
-        GetComponent<BoxCollider2D>().isTrigger = true;
-        GetComponent<BoxCollider2D>().enabled = false;
         EnemyManager.instance.GetEnemies().Remove(gameObject);
         Destroy(gameObject);
     }
