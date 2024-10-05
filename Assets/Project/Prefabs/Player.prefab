@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
   speed: 1000
-  health: 40
+  health: 600
   archer: {fileID: -5209090732708262816}
 --- !u!114 &-5727511496464818337
 MonoBehaviour:
@@ -341,7 +341,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 5
 --- !u!61 &3511342238380773685
 BoxCollider2D:
   m_ObjectHideFlags: 0

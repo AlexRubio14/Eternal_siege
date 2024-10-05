@@ -35,6 +35,7 @@ public class ExperienceBall : MonoBehaviour
         {
             if(collision is CapsuleCollider2D)
             {
+                ExperienceManager.instance.SetExperience(experience);
                 Destroy(gameObject);
             }
             else if(collision is CircleCollider2D && !follow) 
