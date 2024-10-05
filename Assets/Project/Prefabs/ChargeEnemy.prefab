@@ -50,6 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  separationDistance: {x: 1, y: 1}
+  cohesionWeight: 1
+  separationWeight: 1
+  alligmentWeight: 1
   maxHP: 300
   damage: 100
   experience: 15
