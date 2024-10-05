@@ -43,7 +43,7 @@ public class MiniBoss : Enemy
             animator.SetBool("Attack", true);
             canMove = false;
             startAttack = true;
-            Invoke("Attack", animator.GetCurrentAnimatorStateInfo(0).length);
+            Invoke("Attack", animator.GetCurrentAnimatorStateInfo(0).length * 2);
         }
     }
 
@@ -53,7 +53,7 @@ public class MiniBoss : Enemy
         animator.SetBool("Attack", false);
         canMove = true;
         startAttack = false;
-        Destroy(transform.GetChild(0).gameObject);
+        Destroy(transform.GetChild(1).gameObject);
     }
 
     private void SmashCd()
@@ -63,9 +63,9 @@ public class MiniBoss : Enemy
             timeCd -= Time.deltaTime;
         }
 
-        if(currentHP <= 0 && transform.GetChild(0) != null)
+        if(currentHP <= 0 && transform.GetChild(1) != null)
         {
-            Destroy(transform.GetChild(0));
+            Destroy(transform.GetChild(1));
         }
 
     }
@@ -74,7 +74,7 @@ public class MiniBoss : Enemy
     {
         if (startAttack)
         {
-            transform.GetChild(0).transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            transform.GetChild(1).transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, animator.GetCurrentAnimatorStateInfo(0).normalizedTime * 2);
         }
     }
 }

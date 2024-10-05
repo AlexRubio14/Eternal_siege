@@ -17,6 +17,7 @@ public class ChargeEnemy : Enemy
     private Vector2 startPosition;
     private float targetPosition;
     private float time;
+    private float timeStopCharging;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class ChargeEnemy : Enemy
         canCharge = true;
         chargeStarted = false;
         currentState = enemyState.Seek;
+        timeStopCharging = 0;
     }
     protected override void Update()
     {
@@ -45,10 +47,13 @@ public class ChargeEnemy : Enemy
 
     private void FinishDistance()
     {
-        if (Vector2.Distance(startPosition, transform.localPosition) >= targetPosition && chargeStarted)
+        timeStopCharging += Time.deltaTime;
+        if ((Vector2.Distance(startPosition, transform.localPosition) >= targetPosition || timeStopCharging > 3) && chargeStarted)
         {
             EndCharging();
             chargeStarted = false;
+            animator.SetBool("Running", false);
+            timeStopCharging = 0;
         }
     }
 
@@ -63,6 +68,8 @@ public class ChargeEnemy : Enemy
     }
     private void Charge()
     {
+        animator.SetBool("Screaming", false);
+        animator.SetBool("Running", true);
         speed *= speedMultiplier;
         direction *= 2f;
         startPosition = transform.localPosition;
@@ -73,8 +80,9 @@ public class ChargeEnemy : Enemy
 
     private void PrepareCharging()
     {
+        animator.SetBool("Screaming", true);
         rgbd2d.velocity = Vector3.zero;
-        Invoke("Charge", 2);
+        Invoke("Charge", animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
     private void EndCharging()
