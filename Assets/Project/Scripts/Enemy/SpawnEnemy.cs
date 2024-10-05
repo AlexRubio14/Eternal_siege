@@ -7,8 +7,6 @@ public class SpawnEnemy : MonoBehaviour
 {
     [Header("Time")]
     [SerializeField] private float secondsMiniBoss;
-    [SerializeField] private float spawnTimer; 
-    private float timer;
 
     [Header("Camera")]
     [SerializeField] private bool[] cornerCheck;
@@ -17,7 +15,6 @@ public class SpawnEnemy : MonoBehaviour
 
     private void Start()
     {
-        timer = 0;
         cam = Camera.main;
         cameraBorder = new Vector2(cam.aspect * cam.orthographicSize, cam.orthographicSize);
 
@@ -27,20 +24,10 @@ public class SpawnEnemy : MonoBehaviour
             cornerCheck[i] = false;
         }
     }
-    private void Update()
-    {
-        timer -= Time.deltaTime;
 
-        if (timer < 0 && PlayersManager.instance.GetPlayersList().Count > 0)
-        {
-            CreateEnemy();     
-            timer = spawnTimer;
-        }
-    }
-
-    private void CreateEnemy()
+    public void CreateEnemy(int index)
     {
-        GameObject newEnemy = Instantiate(EnemyManager.instance.GenerateEnemy());
+        GameObject newEnemy = Instantiate(EnemyManager.instance.GenerateEnemy(index));
 
         newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 

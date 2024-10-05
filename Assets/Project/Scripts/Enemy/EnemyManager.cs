@@ -24,31 +24,9 @@ public class EnemyManager : MonoBehaviour
         instance = this;
     }
 
-    public GameObject GenerateEnemy()
+    public GameObject GenerateEnemy(int index)
     {
-        switch (UnityEngine.Random.Range(0, 3))
-        {
-            case 0:
-                for(int i = 0; i< UnityEngine.Random.Range(2, 4); i++)
-                {
-                    return typesOfEnemies[0];
-                }
-                break;
-            case 1:
-                for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
-                {
-                    return typesOfEnemies[1];
-                }
-                break;
-            case 2:
-                for (int i = 0; i < UnityEngine.Random.Range(1, 2); i++)
-                {
-                    return typesOfEnemies[2];
-                }
-                break;
-        }
-
-        return null;
+        return typesOfEnemies[index];
     }
 
     public List<GameObject> GetEnemies()
