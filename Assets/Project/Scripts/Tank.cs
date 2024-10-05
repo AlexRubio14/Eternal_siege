@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank : MonoBehaviour
+public class Tank : Character
 {
     [SerializeField] private CapsuleCollider2D attackCollider;
-    [SerializeField] private float attackSpeed;
-    private float fireTimer;
 
-    [SerializeField] private float abilityCooldown;
-    private float abilityTimer;
     [SerializeField] private float abilityDuration;
     [SerializeField] private CircleCollider2D abilityCollider;
     [SerializeField] private float minRadius;
@@ -17,8 +13,6 @@ public class Tank : MonoBehaviour
     private float interpolationTime;
     private bool isAbiltyActive;
 
-    [SerializeField] private float ultimateCooldown;
-    private float ultimateTimer;
 
     private void Start()
     {
@@ -29,9 +23,7 @@ public class Tank : MonoBehaviour
 
     private void Update()
     {
-        UpdateFireTimer();
-        UpdateAbilityTimer();
-        UpdateUltimateTimer();
+        base.Update();
 
         if (isAbiltyActive)
         {
@@ -50,25 +42,20 @@ public class Tank : MonoBehaviour
             abilityCollider.radius = Mathf.Lerp(maxRadius, minRadius, interpolationTime);
         }
 
-        //Check Inputs
-        if (Input.GetMouseButtonDown(0) && abilityTimer <= 0f)
-            Ability();
-        if (Input.GetMouseButtonDown(1) && ultimateTimer <= 0f)
-            Ultimate();
+        //if (Input.GetMouseButtonDown(0) && abilityTimer <= 0f)
+        //    Ability();
+        //if (Input.GetMouseButtonDown(1) && ultimateTimer <= 0f)
+        //    Ultimate();
     }
 
-    private void Shoot()
+    #region ATTACKS & ABILITIES
+    protected override void BasicAttack()
     {
         attackCollider.enabled = true;
-        Invoke("DisableAttackCollider", 0.5f);
+        Invoke("DisableAttackCollider", 0.1f);
+        Invoke("BasicAttack", 0.3f);
     }
-
-    private void DisableAttackCollider()
-    {
-        attackCollider.enabled = false;
-    }
-
-    private void Ability()
+    protected override void BasicAbility()
     {
         isAbiltyActive = true;
         interpolationTime = 0f;
@@ -76,17 +63,22 @@ public class Tank : MonoBehaviour
         abilityTimer = abilityCooldown + abilityDuration;
     }
 
-    private void Ultimate()
+    protected override void UltimateAbility()
     {
-        //Pensar en algo
+        //aumentar move speed
+        //volverse invulnerable
+        //cancelar BasicAbility
+        //hacer daño al chocar con otros enemigos
         ultimateTimer = ultimateCooldown;
     }
+    #endregion
 
-    private void UpdateFireTimer()
+    #region UPDATE TIMERS
+    protected override void UpdateFireTimer()
     {
         if (fireTimer <= 0f)
         {
-            Shoot();
+            BasicAttack();
 
             fireTimer = 1 / attackSpeed;
         }
@@ -96,7 +88,7 @@ public class Tank : MonoBehaviour
         }
     }
 
-    private void UpdateAbilityTimer()
+    protected override void UpdateAbilityTimer()
     {
         if (abilityTimer > 0f)
         {
@@ -109,7 +101,7 @@ public class Tank : MonoBehaviour
         }
     }
 
-    private void UpdateUltimateTimer()
+    protected override void UpdateUltimateTimer()
     {
         if (ultimateTimer > 0f)
         {
@@ -121,5 +113,11 @@ public class Tank : MonoBehaviour
                 //bloquear activar habilidad
             }
         }
+    }
+    #endregion
+
+    private void DisableAttackCollider()
+    {
+        attackCollider.enabled = false;
     }
 }
