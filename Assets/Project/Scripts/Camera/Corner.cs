@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Corner : MonoBehaviour
 {
+    [SerializeField] private SpawnEnemy spawnEnemy;
     public int index;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("MainCamera"))
         {
-            Debug.Log("entra");
+            spawnEnemy.SetCornerCheck(true, index);
         }
     }
 
@@ -17,7 +18,7 @@ public class Corner : MonoBehaviour
     {
         if (collision.CompareTag("MainCamera"))
         {
-            Debug.Log("fuera");
+            spawnEnemy.SetCornerCheck(false, index);
         }
     }
 

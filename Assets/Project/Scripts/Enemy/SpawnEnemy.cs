@@ -49,7 +49,7 @@ public class SpawnEnemy : MonoBehaviour
         spawnPosition += cam.transform.position;
         spawnPosition.z = 0;
 
-        newEnemy.transform.position = spawnPosition;
+        newEnemy.transform.localPosition = spawnPosition;
         newEnemy.transform.SetParent(this.gameObject.transform);
 
         EnemyManager.instance.GetEnemies().Add(newEnemy);
@@ -64,24 +64,24 @@ public class SpawnEnemy : MonoBehaviour
         if (UnityEngine.Random.value > 0.5f) // random left right
         {
             position.x = SetFirstPosition(0, 1, cameraBorder.x);
-            f = SetSecondPosition(0, 1);
+            f = SetSecondPosition(2, 3);
             position.y = cameraBorder.y * f;
+
+            if (f < 0)
+                position.y -= boxCollder2D.bounds.size.y;
+            else
+                position.y += boxCollder2D.bounds.size.y;
+        }
+        else // random top down
+        {
+            position.y = SetFirstPosition(2, 3, cameraBorder.y);
+            f = SetSecondPosition(0, 1);
+            position.x = cameraBorder.x * f;
 
             if (f < 0)
                 position.x -= boxCollder2D.bounds.size.x;
             else
                 position.x += boxCollder2D.bounds.size.x;
-        }
-        else // random top down
-        {
-            position.y = SetFirstPosition(2, 3, cameraBorder.y);
-            f = SetSecondPosition(2, 3);
-            position.x = cameraBorder.x * f;
-
-            if (f < 0)
-                position.y -= boxCollder2D.bounds.size.x;
-            else
-                position.y += boxCollder2D.bounds.size.x;
         }
 
         position.z = 0;
@@ -91,22 +91,26 @@ public class SpawnEnemy : MonoBehaviour
 
     private float SetFirstPosition(int index1, int index2, float _cameraBorder)
     {
-        if (cornerCheck[0]) //left (0), down(2)
-            return UnityEngine.Random.Range(0, _cameraBorder);
-        else if (cornerCheck[1]) //rigt (1), top(3)
-            return UnityEngine.Random.Range(-_cameraBorder, 0);
+        if (cornerCheck[index1]) //left (0), down(2)
+            return UnityEngine.Random.Range(_cameraBorder / 2, _cameraBorder);
+        else if (cornerCheck[index2]) //rigt (1), top(3)
+            return UnityEngine.Random.Range(-_cameraBorder, -(_cameraBorder / 2));
         else
             return UnityEngine.Random.Range(-_cameraBorder, _cameraBorder);
-
     }
 
     private float SetSecondPosition(int index1, int index2)
     {
-        if (cornerCheck[2]) //left(0), down(2)
+        if (cornerCheck[index1]) //left(0), down(2)
             return 1;
-        else if (cornerCheck[3]) // right(1), top(3)
+        else if (cornerCheck[index2]) // right(1), top(3)
             return -1;
         else
             return UnityEngine.Random.value > 0.5f ? -1f : 1f;
+    }
+
+    public void SetCornerCheck(bool state, int _index)
+    {
+        cornerCheck[_index] = state;
     }
 }

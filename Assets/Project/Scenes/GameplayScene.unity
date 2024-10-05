@@ -1125,7 +1125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87bacc356fd70a49874f0f17f14abbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  spawnEnemy: {fileID: 1400207873}
+  index: 3
 --- !u!50 &63139715
 Rigidbody2D:
   serializedVersion: 4
@@ -6873,6 +6874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87bacc356fd70a49874f0f17f14abbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEnemy: {fileID: 1400207873}
   index: 0
 --- !u!50 &429468440
 Rigidbody2D:
@@ -11261,7 +11263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87bacc356fd70a49874f0f17f14abbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  spawnEnemy: {fileID: 1400207873}
+  index: 1
 --- !u!50 &776384485
 Rigidbody2D:
   serializedVersion: 4
@@ -19462,7 +19465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsMiniBoss: 30
-  spawnTimer: 2
+  spawnTimer: 5
   cornerCheck: 
 --- !u!4 &1401153062 stripped
 Transform:
@@ -21602,7 +21605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87bacc356fd70a49874f0f17f14abbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  spawnEnemy: {fileID: 1400207873}
+  index: 2
 --- !u!50 &1629250320
 Rigidbody2D:
   serializedVersion: 4
