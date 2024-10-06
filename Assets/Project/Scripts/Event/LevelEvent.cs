@@ -1,0 +1,111 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public abstract class LevelEvent : MonoBehaviour
+{
+    [Header("Time")]
+    [SerializeField] private float maxActiveTime;
+    [SerializeField] private float maxDesactiveTime;
+    private float desactiveTime;
+    private float activeTime;
+
+    [Header("Player")]
+    private int currentPlayersIn;
+
+    [Header("UI")]
+    [SerializeField] private string eventMesage;
+    private TextMeshProUGUI _text;
+    protected GameObject arrow;
+
+    private enum eventState { Desactive, Active, Starting };
+    private eventState state;
+    protected void Initialize()
+    {
+        desactiveTime = 0;
+        activeTime = 0;
+        currentPlayersIn = 0;
+        state = eventState.Desactive;
+    }
+
+    protected virtual void Update()
+    {
+        switch (state) 
+        {
+            case eventState.Desactive:
+                DesactiveEvent();
+                break;
+            case eventState.Starting:
+                ActiveEvent();
+                DesactiveEvent();
+                break;
+            case eventState.Active:
+                EventUpdate();
+                break;
+        }
+    }
+
+    private void ActiveEvent()
+    {
+        activeTime += Time.deltaTime;
+        transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, activeTime/maxActiveTime);
+        if (activeTime > maxActiveTime)
+        {
+            state = eventState.Active;
+            this._text.gameObject.SetActive(true);
+            _text.text = eventMesage;
+        }
+    }
+
+    protected virtual void EventUpdate()
+    {
+
+    }
+
+    private void DesactiveEvent()
+    {
+        desactiveTime += Time.deltaTime;
+        if (desactiveTime > maxDesactiveTime)
+        {
+            Destroy(gameObject);
+            this._text.gameObject.SetActive(true);
+            arrow.SetActive(false);
+            _text.text = "The event time has expired";
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player") && collision is CapsuleCollider2D)
+        {
+            state = eventState.Starting;
+            currentPlayersIn++;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && collision is CapsuleCollider2D)
+        {
+            currentPlayersIn--;
+            if(currentPlayersIn <= 0) 
+            {
+                state = eventState.Desactive;
+            }
+        }
+    }
+
+    public void SetText(TextMeshProUGUI _text)
+    {
+        this._text = _text;
+        this._text.gameObject.SetActive(true);
+        this._text.text = "An Event has Appeared";
+    }
+
+    public void SetArrow(GameObject _arrow)
+    {
+        arrow = _arrow;
+    }
+}
