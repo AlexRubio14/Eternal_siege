@@ -6,7 +6,8 @@ public class ExperienceManager : MonoBehaviour
 {
     public static ExperienceManager instance;
 
-    [SerializeField] private List<float> experienceCuantity;
+    [SerializeField] private float initExperience;
+    [SerializeField] private float multiplier;
     private int currentLevel;
     private float experience;
 
@@ -31,9 +32,10 @@ public class ExperienceManager : MonoBehaviour
     {
         experience += _experience;
 
-        if (experienceCuantity[currentLevel] < experience)
+        if (initExperience < experience)
         {
-            experience -= experienceCuantity[currentLevel];
+            experience -= initExperience;
+            initExperience *= multiplier;
             currentLevel++;
             PlayerInformation.instance.SetLevelText(currentLevel);
 
@@ -41,6 +43,6 @@ public class ExperienceManager : MonoBehaviour
 
         }
 
-        PlayerInformation.instance.SetExperienceBar(experience / experienceCuantity[currentLevel]);
+        PlayerInformation.instance.SetExperienceBar(experience / initExperience);
     }
 }
