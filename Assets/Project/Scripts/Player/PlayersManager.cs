@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayersManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> playersList = new List<GameObject>();
+    [SerializeField] private List<GameObject> playersList = new List<GameObject>();
 
     public static PlayersManager instance;
 
@@ -29,6 +28,17 @@ public class PlayersManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            PlayerController player = playersList[0].GetComponent<PlayerController>();
+            player.Die();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayerController player = playersList[1].GetComponent<PlayerController>();
+            player.Die();
+        }
     }
 
     public void AddPlayer(GameObject player)
@@ -39,6 +49,20 @@ public class PlayersManager : MonoBehaviour
     public void ErasePlayer(GameObject player)
     {
         playersList.Remove(player);
+    }
+
+    public bool CheckIfAllPLayersDead()
+    {
+        foreach(GameObject player in playersList)
+        {
+            PlayerController controller = player.GetComponent<PlayerController>();
+
+            if (controller.GetCurrentState() != PlayerController.State.DEAD)
+                return false;
+        }
+
+        Debug.Log("All deads");
+        return true;
     }
 
     public List<GameObject> GetPlayersList()

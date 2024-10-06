@@ -27,6 +27,8 @@ public class Archer : MonoBehaviour
 
     private bool doubleShooting;
 
+    [SerializeField] PlayerController playerController;
+
     private void Start()
     {
         baseAttackSpeed = attackSpeed;
@@ -74,6 +76,9 @@ public class Archer : MonoBehaviour
 
     private void UpdateFireTimer()
     {
+        if (playerController.GetCurrentState() == PlayerController.State.DEAD || playerController.GetCurrentState() == PlayerController.State.KNOCKBACK)
+            return;
+
         if (fireTimer <= 0f)
         {
             if (doubleShooting)

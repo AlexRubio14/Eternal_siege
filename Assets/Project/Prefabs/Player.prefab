@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5597851092650213768
 Transform:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ Transform:
   - {fileID: 500284790301520802}
   - {fileID: 5163518891430103216}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &175989467269620936
 SpriteRenderer:
@@ -137,8 +137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
   speed: 1000
-  health: 40
+  startHealth: 40
   archer: {fileID: -5209090732708262816}
+  invencibilityTime: 1.5
 --- !u!114 &-5727511496464818337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +291,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2949630026446072946}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7e3b5fd7f93ae24cad3ddda2b30632a, type: 3}
   m_Name: 
@@ -305,6 +306,7 @@ MonoBehaviour:
   abilityDuration: 5
   attackSpeedAugment: 0.2
   ultimateCooldown: 5
+  playerController: {fileID: 7994772659196139191}
 --- !u!1 &7871893491829107646
 GameObject:
   m_ObjectHideFlags: 0

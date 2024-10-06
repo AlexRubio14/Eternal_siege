@@ -25,18 +25,20 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
 
     [SerializeField]
-    private float health;
+    private float startHealth;
     private float currentHealth;
 
     [SerializeField]
     private Archer archer;
+
+    [SerializeField] private float invencibilityTime;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
 
-        currentHealth = health;
+        currentHealth = startHealth;
     }
 
     // Start is called before the first frame update
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
+
         switch (currentState)
         {
             case State.IDLE:
@@ -61,6 +65,8 @@ public class PlayerController : MonoBehaviour
             case State.KNOCKBACK:
                 break;
             case State.INVENCIBILITY:
+                Move();
+                Rotate();
                 break;
             case State.DEAD:
                 break;
@@ -138,11 +144,17 @@ public class PlayerController : MonoBehaviour
 
     public void BasicAbilityAction(InputAction.CallbackContext obj)
     {
+        if (currentState == State.KNOCKBACK || currentState == State.DEAD)
+            return;
+
         archer.Ability();
     }
 
     public void UltimateAbilityAction(InputAction.CallbackContext obj)
     {
+        if (currentState == State.KNOCKBACK || currentState == State.DEAD)
+            return;
+
         archer.Ultimate();
     }
 
@@ -150,20 +162,55 @@ public class PlayerController : MonoBehaviour
     public void ReceiveDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log(currentHealth);
 
-        if(currentHealth < 0)
+        if(currentHealth <= 0)
         {
             Die();
         }
     }
 
-    private void Die()
+    public void Die()
     {
         ChangeState(State.DEAD);
+
+        PlayersManager.instance.CheckIfAllPLayersDead();
+
+        Invoke("Revive", 2.0f);
     }
+
+    private void Revive()
+    {
+        currentHealth = startHealth;
+        Debug.Log(currentHealth);
+
+        SetCurrentState(State.INVENCIBILITY);
+        
+        Invoke("EndInvencibility", invencibilityTime);
+    }
+
+    private void EndInvencibility()
+    {
+        Debug.Log("Invencibility time ended");
+        SetCurrentState(State.MOVING);
+    }
+
+    public State GetCurrentState()
+    {
+        return currentState;
+    }
+
+    public void SetCurrentState(State newState)
+    {
+        currentState = newState;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && currentState != State.INVENCIBILITY)
+        if (currentState != State.MOVING)
+            return;
+
+        if (collision.CompareTag("Enemy"))
         {
             ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
         }
