@@ -28,12 +28,17 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float invencibilityTime;
 
+    [SerializeField] private float maxValueToRevive;
+    private float currentvalueToRevive;
+
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
 
         currentHealth = startHealth;
+        currentvalueToRevive = 0.0f;
     }
 
     // Start is called before the first frame update
@@ -92,6 +97,7 @@ public class PlayerController : MonoBehaviour
             case State.KNOCKBACK:
                 break;
             case State.INVENCIBILITY:
+                sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 255); 
                 break;
             case State.DEAD:
                 break;
@@ -99,11 +105,12 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        switch (currentState)
+        switch (state)
         {
             case State.IDLE:
                 break;
             case State.MOVING:
+                
                 break;
             case State.KNOCKBACK:
                 break;
@@ -114,6 +121,7 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
+
         currentState = state;
     }
 
@@ -132,20 +140,39 @@ public class PlayerController : MonoBehaviour
 
     public void MovementAction(InputAction.CallbackContext obj)
     {
+        if (currentState == State.DEAD || currentState == State.KNOCKBACK)
+            return;
+
         movementDirection = obj.action.ReadValue<Vector2>();
     }
 
     public void ReceiveDamage(float damage)
     {
+        if (currentState != State.MOVING && currentState != State.IDLE)
+            return;
+
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
-        if(currentHealth <= 0)
+        PlayerInformation.instance.SetHPBar(currentHealth / startHealth);
+
+        ChangeState(State.INVENCIBILITY);
+
+        if (currentHealth <= 0)
         {
             Die();
+            return;
         }
 
-        PlayerInformation.instance.SetHPBar(currentHealth / startHealth);
+        StartCoroutine(StopInvencibility());
+    }
+
+    private IEnumerator StopInvencibility()
+    {
+        yield return new WaitForSeconds(invencibilityTime);
+
+        Debug.Log("Invencibility time ended");
+        ChangeState(State.MOVING);
     }
 
     public void Die()
@@ -153,24 +180,32 @@ public class PlayerController : MonoBehaviour
         ChangeState(State.DEAD);
 
         PlayersManager.instance.CheckIfAllPLayersDead();
-
-        Invoke("Revive", 2.0f);
     }
 
     private void Revive()
     {
         currentHealth = startHealth;
+
+        PlayerInformation.instance.SetHPBar(currentHealth / startHealth);
+
         Debug.Log(currentHealth);
 
-        SetCurrentState(State.INVENCIBILITY);
+        currentvalueToRevive = 0.0f;
+
+        ChangeState(State.INVENCIBILITY);
         
-        Invoke("EndInvencibility", invencibilityTime);
+        StartCoroutine(StopInvencibility());
     }
 
-    private void EndInvencibility()
+    private void PlayerReviving()
     {
-        Debug.Log("Invencibility time ended");
-        SetCurrentState(State.MOVING);
+        currentvalueToRevive += Time.deltaTime;
+        Debug.Log(currentvalueToRevive);
+
+        if (currentvalueToRevive >= maxValueToRevive)
+        {
+            Revive();
+        }
     }
 
     public State GetCurrentState()
@@ -178,19 +213,16 @@ public class PlayerController : MonoBehaviour
         return currentState;
     }
 
-    public void SetCurrentState(State newState)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        currentState = newState;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (currentState != State.MOVING)
-            return;
-
         if (collision.CompareTag("Enemy"))
         {
             ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
+        }
+
+        if(collision.CompareTag("Player") && currentState == State.DEAD)
+        {
+            PlayerReviving();
         }
     }
 }
