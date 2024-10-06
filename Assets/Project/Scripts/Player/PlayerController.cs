@@ -64,14 +64,14 @@ public class PlayerController : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
-        //currentHealth -= damage;
+        currentHealth -= damage;
 
-        Debug.Log(currentHealth);
-
-        if(currentHealth < 0)
+        if (currentHealth < 0)
         {
             Die();
         }
+
+        PlayerInformation.instance.SetHPBar(currentHealth / health);
     }
 
     private void Die()
