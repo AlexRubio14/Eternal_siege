@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float health;
     private float currentHealth;
+    private bool isInArea;
 
     private void Awake()
     {
@@ -50,10 +51,11 @@ public class PlayerController : MonoBehaviour
 
     private void Rotate()
     {
-        if(movementDirection.x > 0)
-            sprite.flipX = true; 
-        else if(movementDirection.x < 0)
-            sprite.flipX = false;
+        if(movementDirection != Vector2.zero)
+        {
+            transform.up = movementDirection;
+        }
+
     }
 
     public void MovementAction(InputAction.CallbackContext obj)
@@ -85,5 +87,26 @@ public class PlayerController : MonoBehaviour
         {
             ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("AttackArea"))
+        {
+            isInArea = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("AttackArea"))
+        {
+            isInArea = false;
+        }
+    }
+
+    public bool GetIsInArea()
+    {
+        return isInArea;
     }
 }

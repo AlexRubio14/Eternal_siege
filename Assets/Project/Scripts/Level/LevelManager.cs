@@ -38,6 +38,8 @@ public class LevelManager : MonoBehaviour
         quantity[0] = 20;
         spawnTime[0] = 60 / quantity[0];
         spawnEnemyTime[0] = 0;
+
+        enemy.CreateEnemy(3);
     }
 
     private void Update()

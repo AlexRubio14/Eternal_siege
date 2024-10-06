@@ -6,7 +6,10 @@ public class MiniBoss : Enemy
 {
     [Header("SmashAttack")]
     [SerializeField] private float cd;
+    [SerializeField] private float attackCircleDamage;
     [SerializeField] private GameObject attackCircle;
+
+
     private bool startAttack;
     private float timeCd;
 
@@ -43,16 +46,24 @@ public class MiniBoss : Enemy
             animator.SetBool("Attack", true);
             canMove = false;
             startAttack = true;
-            Invoke("Attack", animator.GetCurrentAnimatorStateInfo(0).length * 2);
+            Invoke("Attack", animator.GetCurrentAnimatorStateInfo(0).length * 1.5f);
         }
     }
 
     private void Attack()
     {
+        transform.GetChild(1).gameObject.GetComponent<CircleCollider2D>().enabled = true;
         timeCd = cd;
         animator.SetBool("Attack", false);
         canMove = true;
         startAttack = false;
+        for(int i = 0; i<PlayersManager.instance.GetPlayersList().Count; i++) 
+        {
+            if (PlayersManager.instance.GetPlayersList()[i].GetComponent<PlayerController>().GetIsInArea())
+            {
+                PlayersManager.instance.GetPlayersList()[i].GetComponent<PlayerController>().ReceiveDamage(attackCircleDamage);
+            }
+        }
         Destroy(transform.GetChild(1).gameObject);
     }
 
@@ -74,7 +85,8 @@ public class MiniBoss : Enemy
     {
         if (startAttack)
         {
-            transform.GetChild(1).transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, animator.GetCurrentAnimatorStateInfo(0).normalizedTime * 2);
+            transform.GetChild(1).transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, animator.GetCurrentAnimatorStateInfo(0).normalizedTime * 1.75f);
         }
     }
+
 }
