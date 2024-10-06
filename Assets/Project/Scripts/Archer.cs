@@ -17,7 +17,7 @@ public class Archer : Character
     [SerializeField] protected float attackSpeedAugment;
     protected bool doubleShooting;
 
-    protected void Start()
+    private void Start()
     {
         baseAttackSpeed = attackSpeed;
     }
@@ -35,6 +35,9 @@ public class Archer : Character
 
     protected override void BasicAbility()
     {
+        if (playerController.GetCurrentState() == PlayerController.State.KNOCKBACK || playerController.GetCurrentState() == PlayerController.State.DEAD)
+            return;
+
         if (abilityTimer <= 0f)
         {
             attackSpeed += attackSpeed * attackSpeedAugment;
@@ -59,6 +62,9 @@ public class Archer : Character
     #region UPDATE TIMERS
     protected override void UpdateFireTimer()
     {
+        if (playerController.GetCurrentState() == PlayerController.State.DEAD || playerController.GetCurrentState() == PlayerController.State.KNOCKBACK)
+            return;
+
         if (fireTimer <= 0f)
         {
             if (doubleShooting)

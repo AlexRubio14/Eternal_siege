@@ -14,6 +14,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float ultimateCooldown;
     protected float ultimateTimer;
 
+    [SerializeField] protected PlayerController playerController;
+
     protected abstract void BasicAttack();
     protected abstract void BasicAbility();
     protected abstract void UltimateAbility();
@@ -31,11 +33,17 @@ public abstract class Character : MonoBehaviour
 
     public void BasicAbilityAction(InputAction.CallbackContext obj)
     {
+        if (playerController.GetCurrentState() == PlayerController.State.KNOCKBACK || playerController.GetCurrentState() == PlayerController.State.DEAD)
+            return; 
+
         BasicAbility();
     }
 
     public void UltimateAbilityAction(InputAction.CallbackContext obj)
     {
+        if (playerController.GetCurrentState() == PlayerController.State.KNOCKBACK || playerController.GetCurrentState() == PlayerController.State.DEAD)
+            return;
+
         UltimateAbility();
     }
 

@@ -15858,6 +15858,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9dc5d4e6b5982438c522fda73e7084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minZoomValue: 0
+  maxZoomValue: 10
+  offsetZoomOut: 1
+  offsetZoomIn: 3
+  zoomOutSpeed: 0.02
   camera: {fileID: 133370190}
   maxZoomValue: 10
   offsetZoom: 0
