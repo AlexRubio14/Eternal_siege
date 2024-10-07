@@ -15864,9 +15864,7 @@ MonoBehaviour:
   offsetZoomIn: 3
   zoomOutSpeed: 0.02
   camera: {fileID: 133370190}
-  maxZoomValue: 10
-  offsetZoom: 0
-  zoomOutSpeed: 0.2
+  cameraState: 0
 --- !u!4 &862504171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 18e7a39fb18d0964c8fa188f7397c5a2, type: 3}
@@ -28447,7 +28445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 37.5, y: 37.500015}
+  m_AnchoredPosition: {x: 38, y: 37.5}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1611249482
@@ -36114,7 +36112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -37.5, y: 37}
+  m_AnchoredPosition: {x: -38, y: 37}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2100779888

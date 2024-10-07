@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayersManager : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class PlayersManager : MonoBehaviour
                 return false;
         }
 
-        Debug.Log("All deads");
+        SceneManager.LoadScene("LobbyScene");
         return true;
     }
 
