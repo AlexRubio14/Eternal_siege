@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 9102945670569784652}
   m_Layer: 9
   m_Name: ExperienceBall
-  m_TagString: Untagged
+  m_TagString: ExperienceRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79a59ec1062eb4438c4e3b6100174ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
+  speed: 1500
 --- !u!58 &6417274595825080361
 CircleCollider2D:
   m_ObjectHideFlags: 0

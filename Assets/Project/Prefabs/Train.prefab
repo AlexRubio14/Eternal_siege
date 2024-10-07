@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69c8452932f7e14cb3993bf4bfe3771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeDivier: 0.005
+  timeDivier: 0.01
+  maxDesactiveTime: 180
 --- !u!58 &4410485602290996940
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
