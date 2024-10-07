@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float startHealth;
     private float currentHealth;
+    private bool isInArea;
 
     [SerializeField] private float invencibilityTime;
 
@@ -130,10 +131,11 @@ public class PlayerController : MonoBehaviour
 
     private void Rotate()
     {
-        if(movementDirection.x > 0)
-            sprite.flipX = true; 
-        else if(movementDirection.x < 0)
-            sprite.flipX = false;
+        if(movementDirection != Vector2.zero)
+        {
+            transform.up = movementDirection;
+        }
+
     }
 
     public void MovementAction(InputAction.CallbackContext obj)
@@ -200,11 +202,32 @@ public class PlayerController : MonoBehaviour
         return currentState;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && collision is BoxCollider2D)
         {
             ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("AttackArea"))
+        {
+            isInArea = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("AttackArea"))
+        {
+            isInArea = false;
+        }
+    }
+
+    public bool GetIsInArea()
+    {
+        return isInArea;
     }
 }

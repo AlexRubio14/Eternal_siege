@@ -5,11 +5,8 @@ using UnityEngine.UIElements;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    [Header("Time")]
-    [SerializeField] private float secondsMiniBoss;
-
     [Header("Camera")]
-    [SerializeField] private bool[] cornerCheck;
+    private bool[] cornerCheck;
     Camera cam;
     Vector2 cameraBorder;
 

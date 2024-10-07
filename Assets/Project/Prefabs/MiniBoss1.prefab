@@ -54,12 +54,13 @@ MonoBehaviour:
   cohesionWeight: 1
   separationWeight: 1
   alligmentWeight: 1
-  maxHP: 168511591
+  maxHP: 1000
   damage: 50
-  experience: 20
+  experience: 500
   experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   animationDivide: 1
   cd: 5
+  attackCircleDamage: 50
   attackCircle: {fileID: 3644879491550420163, guid: 1fa3dc14dc6a0a84c9ccd6036e62e392, type: 3}
 --- !u!61 &4332444893990916982
 BoxCollider2D:
@@ -140,7 +141,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!50 &5420591964642457964
 Rigidbody2D:
   serializedVersion: 4

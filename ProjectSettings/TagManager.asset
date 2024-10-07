@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - ExperienceRadius
+  - AttackArea
   layers:
   - Default
   - TransparentFX
