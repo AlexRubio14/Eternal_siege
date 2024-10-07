@@ -28,8 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float invencibilityTime;
 
-    [SerializeField] private float maxValueToRevive;
-    private float currentvalueToRevive;
+    [SerializeField] private GameObject reviveRadius; 
 
 
     private void Awake()
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
 
         currentHealth = startHealth;
-        currentvalueToRevive = 0.0f;
     }
 
     // Start is called before the first frame update
@@ -180,9 +178,11 @@ public class PlayerController : MonoBehaviour
         ChangeState(State.DEAD);
 
         PlayersManager.instance.CheckIfAllPLayersDead();
+
+        reviveRadius.gameObject.SetActive(true);
     }
 
-    private void Revive()
+    public void Revive()
     {
         currentHealth = startHealth;
 
@@ -190,22 +190,9 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log(currentHealth);
 
-        currentvalueToRevive = 0.0f;
-
         ChangeState(State.INVENCIBILITY);
         
         StartCoroutine(StopInvencibility());
-    }
-
-    private void PlayerReviving()
-    {
-        currentvalueToRevive += Time.deltaTime;
-        Debug.Log(currentvalueToRevive);
-
-        if (currentvalueToRevive >= maxValueToRevive)
-        {
-            Revive();
-        }
     }
 
     public State GetCurrentState()
@@ -218,11 +205,6 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
-        }
-
-        if(collision.CompareTag("Player") && currentState == State.DEAD)
-        {
-            PlayerReviving();
         }
     }
 }
