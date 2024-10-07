@@ -29,13 +29,16 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float invencibilityTime;
 
-    [SerializeField] private GameObject reviveRadius; 
+    [SerializeField] private GameObject reviveRadius;
+
+    private Animator anim;
 
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 
         currentHealth = startHealth;
     }
@@ -77,10 +80,12 @@ public class PlayerController : MonoBehaviour
         if(movementDirection == Vector2.zero && currentState == State.MOVING)
         {
             ChangeState(State.IDLE);
+            anim.SetBool("Walking", false);
         }
         else if(movementDirection != Vector2.zero && currentState == State.IDLE)
         {
             ChangeState(State.MOVING);
+            anim.SetBool("Walking", true);
         }
     }
 

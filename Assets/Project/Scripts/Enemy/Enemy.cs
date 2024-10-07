@@ -46,26 +46,47 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         if (target.Count > 0 && canMove)
+        {
             Seek();
+            CalculateForces();
+            Rotate();
+            MoveEnemy();
+        }
         else if(!canMove)
             rgbd2d.velocity = Vector3.zero;
     }
     private void Seek()
     {
-        separationForce = Vector2.zero;
+        for(int i = target.Count - 1; i >= 0 ; i--)
+        {
+            if(target[i].GetComponent<PlayerController>().GetCurrentState() != PlayerController.State.DEAD)
+            {
+                direction = (Vector2)target[i].transform.localPosition - (Vector2)transform.localPosition;
+                currentTarget = target[i];
+            }
+        }
 
-        direction = (Vector2)target[0].transform.localPosition - (Vector2)transform.localPosition;
-        currentTarget = target[0];
-        for (int i = 1; i < target.Count; i++)
+        for (int i = 0; i < target.Count; i++)
         {
             Vector2 distancePostion1 = (Vector2)target[i].transform.localPosition - (Vector2)transform.localPosition;
-            if (distancePostion1.magnitude < direction.magnitude)
+            if (distancePostion1.magnitude < direction.magnitude && target[i].GetComponent<PlayerController>().GetCurrentState() != PlayerController.State.DEAD)
             {
                 direction = distancePostion1;
                 currentTarget = target[i];
             }
         }
+    }
 
+    private void MoveEnemy()
+    {
+        Vector2 combinedDirection = (direction.normalized + separationForce).normalized;
+        Vector2 movement = combinedDirection * speed * Time.deltaTime;
+        transform.position += new Vector3(movement.x, movement.y, 0);
+    }
+
+    private void CalculateForces()
+    {
+        separationForce = Vector2.zero;
         Collider2D[] neighbours = GetNeighbours();
 
         if (neighbours.Length > 0)
@@ -74,17 +95,6 @@ public abstract class Enemy : MonoBehaviour
             ApplyAlligment(neighbours);
             ApplyCohesion(neighbours);
         }
-
-        MoveEnemy();
-
-        Rotate();
-    }
-
-    private void MoveEnemy()
-    {
-        Vector2 combinedDirection = (direction.normalized + separationForce).normalized;
-        Vector2 movement = combinedDirection * speed * Time.deltaTime;
-        transform.position += new Vector3(movement.x, movement.y, 0);
     }
 
     private Collider2D[] GetNeighbours()
@@ -150,12 +160,17 @@ public abstract class Enemy : MonoBehaviour
             animator.SetBool("Die", true);
             canMove = false;
             rgbd2d.velocity = Vector3.zero;
-            GameObject _experienceBall = Instantiate(experienceBall, new Vector3(transform.localPosition.x, transform.localPosition.y, -2.5f), Quaternion.identity);
-            _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
+            GenerateExperienceBall();
             GetComponent<BoxCollider2D>().enabled = false;
             EnemyManager.instance.GetEnemies().Remove(gameObject);
             Invoke("Die", animator.GetCurrentAnimatorStateInfo(0).length / animationDivide);
         }
+    }
+
+    private void GenerateExperienceBall()
+    {
+        GameObject _experienceBall = Instantiate(experienceBall, new Vector3(transform.localPosition.x, transform.localPosition.y, -2.5f), Quaternion.identity);
+        _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
     }
     private void Die()
     {
