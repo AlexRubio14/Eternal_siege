@@ -29418,6 +29418,7 @@ MonoBehaviour:
   eventGeneration:
   - {fileID: 7332674723024336472, guid: 68f1010a98cbab4409d4a5426a945b0f, type: 3}
   - {fileID: 7332674723024336472, guid: fe52ae5f87fc30747839ab2273c86ac1, type: 3}
+  - {fileID: 7332674723024336472, guid: 58e0abbf1d111a044aa3489885520d9b, type: 3}
   corner:
   - {fileID: 438858319}
   - {fileID: 1107472281}
@@ -31722,6 +31723,7 @@ MonoBehaviour:
   eventTime:
   - 3
   - 7
+  - 11
   enemy: {fileID: 1400207873}
   enemyTime:
   - 5

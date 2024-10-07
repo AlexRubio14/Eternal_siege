@@ -38,7 +38,7 @@ public class ExperienceManager : MonoBehaviour
             initExperience *= multiplier;
             currentLevel++;
             PlayerInformation.instance.SetLevelText(currentLevel);
-
+            SetExperience(0);
             //Selecionar cartas y parar tiempo
 
         }

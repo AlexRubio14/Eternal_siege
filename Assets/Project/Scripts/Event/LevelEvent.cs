@@ -20,6 +20,8 @@ public abstract class LevelEvent : MonoBehaviour
     private TextMeshProUGUI _text;
     protected GameObject arrow;
 
+    protected Transform[] corner;
+
     private enum eventState { Desactive, Active, Starting };
     private eventState state;
     protected void Initialize()
@@ -107,5 +109,14 @@ public abstract class LevelEvent : MonoBehaviour
     public void SetArrow(GameObject _arrow)
     {
         arrow = _arrow;
+    }
+
+    public void SetCorner(Transform[] _corner)
+    {
+        corner = new Transform[_corner.Length];
+        for (int i = 0; i < _corner.Length; i++) 
+        {
+            corner[i] = _corner[i];
+        }
     }
 }

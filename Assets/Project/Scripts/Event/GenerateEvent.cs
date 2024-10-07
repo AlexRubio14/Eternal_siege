@@ -49,6 +49,7 @@ public class GenerateEvent : MonoBehaviour
 
         _event.GetComponent<LevelEvent>().SetText(_text);
         _event.GetComponent<LevelEvent>().SetArrow(arrow);
+        _event.GetComponent<LevelEvent>().SetCorner(corner);
 
         arrow.SetActive(true);
         arrow.GetComponent<ArrowDirection>().SetObjective(_event.transform.localPosition);

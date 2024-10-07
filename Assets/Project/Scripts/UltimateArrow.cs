@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UltimateArrow : MonoBehaviour
@@ -9,6 +10,8 @@ public class UltimateArrow : MonoBehaviour
     [SerializeField] private float lifeTime = 3f;
 
     [SerializeField] private float damage;
+
+    [SerializeField] private float distance;
 
     private Vector2 direction;
     private Rigidbody2D rb2d;
@@ -22,7 +25,16 @@ public class UltimateArrow : MonoBehaviour
     {
         Destroy(gameObject, lifeTime);
         if (EnemyManager.instance.GetEnemies().Count > 0)
-            direction = EnemyManager.instance.GetNearestEnemyDirection(transform.position);
+        {
+            Vector2 nearestEnemyDirection;
+            Vector2 nearestEnemyPosition;
+
+            EnemyManager.instance.GetNearestEnemyDirection(transform.position, out nearestEnemyDirection, out nearestEnemyPosition);
+            if ((nearestEnemyPosition - new Vector2(transform.position.x, transform.position.y)).magnitude < distance)
+                direction = nearestEnemyDirection;
+            else
+                direction = Vector2.right;
+        }
         else
             direction = Vector2.right;
 

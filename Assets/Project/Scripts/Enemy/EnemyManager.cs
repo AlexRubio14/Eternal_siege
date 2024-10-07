@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -34,9 +35,10 @@ public class EnemyManager : MonoBehaviour
         return enemies;
     }
 
-    public Vector2 GetNearestEnemyDirection(Vector2 position)
+    public void GetNearestEnemyDirection(Vector2 position, out Vector2 _direction, out Vector2 _enemy)
     {
         Vector2 direction = ((Vector2)enemies[0].transform.localPosition - position);
+        Vector2 enemyPosition = enemies[0].transform.localPosition;
 
         for (int i = 1; i < enemies.Count; i++)
         {
@@ -45,10 +47,10 @@ public class EnemyManager : MonoBehaviour
             if(distancePosition1.magnitude < direction.magnitude)
             {
                 direction = distancePosition1;
+                enemyPosition = enemies[i].transform.localPosition;
             }
         }
-
-        return direction.normalized;
-
+        _direction = direction.normalized;
+        _enemy = enemyPosition;
     }
 }
