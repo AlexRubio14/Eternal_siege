@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public abstract class Character : MonoBehaviour
 {
     [SerializeField] protected float attackSpeed;
+    protected float baseAttackSpeed;
     protected float fireTimer;
 
     [SerializeField] protected float abilityCooldown;
@@ -13,6 +14,9 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField] protected float ultimateCooldown;
     protected float ultimateTimer;
+
+    [SerializeField] protected float movementSpeed;
+    protected float baseMovementSpeed;
 
     [SerializeField] protected PlayerController playerController;
 
@@ -23,6 +27,13 @@ public abstract class Character : MonoBehaviour
     protected abstract void UpdateFireTimer();
     protected abstract void UpdateAbilityTimer();
     protected abstract void UpdateUltimateTimer();
+
+    protected void Start()
+    {
+        baseAttackSpeed = attackSpeed;
+        baseMovementSpeed = movementSpeed;
+        playerController.SetSpeed(movementSpeed);
+    }
 
     protected void Update()
     {

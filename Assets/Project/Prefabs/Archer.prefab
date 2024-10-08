@@ -249,7 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
-  speed: 1000
   startHealth: 600
   invencibilityTime: 1.5
   reviveRadius: {fileID: 5742334290024206505}
@@ -447,12 +446,14 @@ MonoBehaviour:
   attackSpeed: 1.5
   abilityCooldown: 10
   ultimateCooldown: 5
+  movementSpeed: 1000
   playerController: {fileID: 7994772659196139191}
   arrowPrefab: {fileID: 2762717636433230974, guid: 01657908b817839409462949d37426fa, type: 3}
   ultimatePrefab: {fileID: 2762717636433230974, guid: 5e78462e7ffa9f841a45da0497323833, type: 3}
   firingPoint: {fileID: 3684480250411487961}
   firingPointLeft: {fileID: 500284790301520802}
   firingPointRight: {fileID: 5163518891430103216}
+  abilitySpeedMultiplier: 2
   abilityDuration: 5
   attackSpeedAugment: 0.2
 --- !u!95 &3740264485353147621

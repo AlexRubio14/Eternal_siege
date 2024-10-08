@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private State currentState;
 
-    [SerializeField] private float speed;
+    private float speed;
 
     private Vector2 movementDirection;
 
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
+        speed = 0f;
         currentHealth = startHealth;
     }
 
@@ -132,7 +133,8 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rb2d.AddForce(movementDirection * speed * Time.deltaTime, ForceMode2D.Force);
+        //rb2d.AddForce(movementDirection * speed * Time.deltaTime, ForceMode2D.Force);
+        rb2d.velocity = movementDirection * speed;
     }
 
     private void Rotate()
@@ -235,6 +237,11 @@ public class PlayerController : MonoBehaviour
     public bool GetIsInArea()
     {
         return isInArea;
+    }
+
+    public void SetSpeed(float _speed)
+    {
+        speed = _speed;
     }
 
     public void SetPlayerInformation(PlayerInformation _playerInformation)

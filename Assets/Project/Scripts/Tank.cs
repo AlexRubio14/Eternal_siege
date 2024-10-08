@@ -10,23 +10,30 @@ public class Tank : Character
     [SerializeField] private CircleCollider2D abilityCollider;
     [SerializeField] private float minRadius;
     [SerializeField] private float maxRadius;
+    [SerializeField] private float abilitySpeedMultiplier;
+    [SerializeField] private float ultimateSpeedMultiplier;
     private float interpolationTime;
     private bool isAbiltyActive;
+
+    [SerializeField] private float ultimateDamage;
+    private bool isUltimateActive;
 
 
     private void Start()
     {
+        base.Start();
         DisableAttackCollider();
         interpolationTime = 0f;
         isAbiltyActive = false;
+        isUltimateActive = false;
     }
 
     private void Update()
     {
         base.Update();
-
         if (isAbiltyActive)
         {
+
             if (interpolationTime < 1f) 
             {
                 interpolationTime += Time.deltaTime;
@@ -41,11 +48,6 @@ public class Tank : Character
             }
             abilityCollider.radius = Mathf.Lerp(maxRadius, minRadius, interpolationTime);
         }
-
-        //if (Input.GetMouseButtonDown(0) && abilityTimer <= 0f)
-        //    Ability();
-        //if (Input.GetMouseButtonDown(1) && ultimateTimer <= 0f)
-        //    Ultimate();
     }
 
     #region ATTACKS & ABILITIES
@@ -55,20 +57,25 @@ public class Tank : Character
         Invoke("DisableAttackCollider", 0.1f);
         Invoke("BasicAttack", 0.3f);
     }
+
     protected override void BasicAbility()
     {
-        isAbiltyActive = true;
-        interpolationTime = 0f;
-        //Falta decrecer movementSpeed
-        abilityTimer = abilityCooldown + abilityDuration;
+        if (!isUltimateActive) 
+        {
+            isAbiltyActive = true;
+            interpolationTime = 0f;
+            movementSpeed *= abilitySpeedMultiplier;
+            playerController.SetSpeed(movementSpeed);
+            abilityTimer = abilityCooldown + abilityDuration;
+        }
     }
 
     protected override void UltimateAbility()
     {
-        //aumentar move speed
-        //volverse invulnerable
-        //cancelar BasicAbility
-        //hacer daño al chocar con otros enemigos
+        movementSpeed *= abilitySpeedMultiplier;
+        playerController.SetSpeed(movementSpeed);
+        playerController.ChangeState(PlayerController.State.INVENCIBILITY);
+        abilityTimer = abilityCooldown; //cancelar BasicAbility
         ultimateTimer = ultimateCooldown;
     }
     #endregion
@@ -96,6 +103,8 @@ public class Tank : Character
             if (abilityTimer < abilityCooldown)
             {
                 isAbiltyActive = false;
+                movementSpeed = baseMovementSpeed;
+                playerController.SetSpeed(movementSpeed);
                 interpolationTime = 0f;
             }
         }
@@ -108,9 +117,8 @@ public class Tank : Character
             ultimateTimer -= Time.deltaTime;
             if (ultimateTimer < ultimateCooldown)
             {
-                //activar invulnerabilidad
-                //incrementar movement speed
-                //bloquear activar habilidad
+                movementSpeed = baseMovementSpeed;
+                playerController.SetSpeed(movementSpeed);
             }
         }
     }
@@ -119,5 +127,14 @@ public class Tank : Character
     private void DisableAttackCollider()
     {
         attackCollider.enabled = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && isUltimateActive)
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.ReceiveDamage(ultimateDamage);
+        }
     }
 }

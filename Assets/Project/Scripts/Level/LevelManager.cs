@@ -14,10 +14,10 @@ public class LevelManager : MonoBehaviour
     [Header("Enemies")]
     [SerializeField] private SpawnEnemy enemy;
     [SerializeField] private List<float> enemyTime;
-    [SerializeField] private List<int> cuantity;
-    [SerializeField] private int initCuantity;
+    [SerializeField] private List<int> quantity;
+    [SerializeField] private int initQuantity;
 
-    private float[] quantity;
+    private float[] totalOfEnemies;
     private float[] spawnTime;
     private float[] spawnEnemyTime;
     private int currentTime;
@@ -39,12 +39,12 @@ public class LevelManager : MonoBehaviour
         time = 0;
         currentTime = 0;
 
-        quantity = new float[cuantity.Count];
-        spawnTime = new float[cuantity.Count];
-        spawnEnemyTime = new float[cuantity.Count];
+        totalOfEnemies = new float[quantity.Count];
+        spawnTime = new float[quantity.Count];
+        spawnEnemyTime = new float[quantity.Count];
 
-        quantity[0] = initCuantity;
-        spawnTime[0] = 60 / quantity[0];
+        totalOfEnemies[0] = initQuantity;
+        spawnTime[0] = 60 / totalOfEnemies[0];
         spawnEnemyTime[0] = 0;
     }
 
@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
 
     private void ManageEnemy(int index)
     {
-        if (quantity[index] > 0 && spawnEnemyTime[index] < 0)
+        if (totalOfEnemies[index] > 0 && spawnEnemyTime[index] < 0)
         {
             enemy.CreateEnemy(index);
             spawnEnemyTime[index] = spawnTime[index];
@@ -94,23 +94,23 @@ public class LevelManager : MonoBehaviour
             currentTime++;
             if(currentTime < enemyTime[0])
             {
-                SetTimes(0, cuantity[0]);
+                SetTimes(0, quantity[0]);
             }
             else if (currentTime < enemyTime[1])
             {
-                SetTimes(1, cuantity[1]);
+                SetTimes(1, quantity[1]);
             }
             else if(currentTime < enemyTime[2])
             {
-                SetTimes(2, cuantity[2]);
+                SetTimes(2, quantity[2]);
             }
         }
     }
 
     private void SetTimes(int index, int _quantity)
     {
-        quantity[index] += _quantity;
-        spawnTime[index] = 60 / quantity[index];
+        totalOfEnemies[index] += _quantity;
+        spawnTime[index] = 60 / totalOfEnemies[index];
         spawnEnemyTime[index] = 0;
     }
     public void SpawnMiniBoss()
