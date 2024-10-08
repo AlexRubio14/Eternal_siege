@@ -346,8 +346,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 5
+  m_Mass: 1000
+  m_LinearDrag: 1000
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -446,7 +446,7 @@ MonoBehaviour:
   attackSpeed: 1.5
   abilityCooldown: 10
   ultimateCooldown: 5
-  movementSpeed: 1000
+  movementSpeed: 100
   playerController: {fileID: 7994772659196139191}
   arrowPrefab: {fileID: 2762717636433230974, guid: 01657908b817839409462949d37426fa, type: 3}
   ultimatePrefab: {fileID: 2762717636433230974, guid: 5e78462e7ffa9f841a45da0497323833, type: 3}

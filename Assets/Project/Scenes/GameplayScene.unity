@@ -16084,11 +16084,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minZoomValue: 0
   maxZoomValue: 10
-  offsetZoomOut: 1
-  offsetZoomIn: 3
+  offsetZoomOut: 0.1
+  offsetZoomIn: 0.15
   zoomOutSpeed: 0.02
-  camera: {fileID: 133370190}
-  cameraState: 0
 --- !u!4 &862504171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 18e7a39fb18d0964c8fa188f7397c5a2, type: 3}
@@ -26588,7 +26586,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -946874307089786539, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
-  m_PlayerPrefab: {fileID: 2949630026446072946, guid: 489fe0c01e7a7e94d9375a620fb55c9a, type: 3}
+  m_PlayerPrefab: {fileID: 2949630026446072946, guid: 83d3bf2e340c8884187824e18580e0bf, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
