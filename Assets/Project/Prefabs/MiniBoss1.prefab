@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5885b362434fa4390d1575a07138b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  separationDistance: {x: 1, y: 1}
+  speed: 1.5
+  separationDistance: {x: 2, y: 2}
   cohesionWeight: 1
   separationWeight: 1
   alligmentWeight: 1
