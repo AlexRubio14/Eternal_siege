@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ChargeEnemy : Enemy
 {
     [Header("Charge")]
     [SerializeField] private float speedMultiplier;
-    [SerializeField] private float distanceSeparation;
+    [SerializeField] private float maxTimeCharging;
     [SerializeField] private float maxTime;
-    private enum enemyState { Charging, Recovery, Seek };
+    private enum enemyState { Charging, Recovery, Seek, Screaming };
     private enemyState currentState;
     private bool canCharge;
     private bool chargeStarted;
 
-    private Vector2 startPosition;
-    private float targetPosition;
     private float time;
     private float timeStopCharging;
 
@@ -42,18 +41,20 @@ public class ChargeEnemy : Enemy
                 base.Update();
                 Recovery();
                 break;
+            case enemyState.Screaming:
+                break;
         }
     }
 
     private void FinishDistance()
     {
         timeStopCharging += Time.deltaTime;
-        if ((Vector2.Distance(startPosition, transform.localPosition) >= targetPosition || timeStopCharging > 3) && chargeStarted)
+        if (timeStopCharging > maxTimeCharging && chargeStarted)
         {
-            EndCharging();
             chargeStarted = false;
             animator.SetBool("Running", false);
             timeStopCharging = 0;
+            EndCharging();
         }
     }
 
@@ -64,18 +65,18 @@ public class ChargeEnemy : Enemy
         {
             canCharge = true;
             currentState = enemyState.Seek;
+            time = 0;
         }
     }
     private void Charge()
-    {
+    {  
         animator.SetBool("Screaming", false);
         animator.SetBool("Running", true);
         speed *= speedMultiplier;
         direction *= 2f;
-        startPosition = transform.localPosition;
-        targetPosition = Vector2.Distance(currentTarget.transform.localPosition, transform.localPosition) * distanceSeparation;
         rgbd2d.velocity = speed * direction;
         chargeStarted = true;
+        currentState = enemyState.Charging;
     }
 
     private void PrepareCharging()
@@ -87,6 +88,7 @@ public class ChargeEnemy : Enemy
 
     private void EndCharging()
     {
+        rgbd2d.velocity = Vector3.zero;
         speed /= speedMultiplier;
         currentState = enemyState.Recovery;
     }
@@ -96,8 +98,17 @@ public class ChargeEnemy : Enemy
         if (collision.CompareTag("Player") && canCharge)
         {
             canCharge = false;
-            currentState = enemyState.Charging;
+            currentState = enemyState.Screaming;
             PrepareCharging();
         }
+        if(collision.CompareTag("Player") && currentState == enemyState.Charging && collision is BoxCollider2D)
+        {
+            rgbd2d.velocity = Vector3.zero;
+            chargeStarted = false;
+            animator.SetBool("Running", false);
+            timeStopCharging = 0;
+            EndCharging();
+        }
+
     }
 }

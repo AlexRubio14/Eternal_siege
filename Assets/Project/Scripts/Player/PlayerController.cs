@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
             case State.KNOCKBACK:
                 break;
             case State.INVENCIBILITY:
-                sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 255); 
+                //sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 255); 
                 break;
             case State.DEAD:
                 break;
