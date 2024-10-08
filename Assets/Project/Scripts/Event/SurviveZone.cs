@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SurviveZone : MonoBehaviour
 {
     [SerializeField] private float maxTimeComplete;
     [SerializeField] private float maxTimeLose;
+    [SerializeField] private GameObject timer = null;
     private float timeComplete;
     private float timeLose;
 
@@ -18,40 +20,56 @@ public class SurviveZone : MonoBehaviour
     {
         currentPlayersIn = 0;
         timeComplete = 0;
-        timeLose = 0;
+        timeLose = maxTimeLose;
         state = surviveState.Out;
     }
 
     private void Update()
     {
-        switch (state) 
+        if(timer != null)
         {
-            case surviveState.In:
-                Surviving();
-                Losing();
-                break;
-            case surviveState.Out:
-                Losing();
-                break;
+            switch (state)
+            {
+                case surviveState.In:
+                    Surviving();
+                    Losing();
+                    break;
+                case surviveState.Out:
+                    Losing();
+                    break;
+            }
         }
+        else
+        {
+            GameObject canvas = GameObject.Find("Canvas");
+            timer = canvas.transform.GetChild(5).gameObject;
+            timer.SetActive(true);
+        }
+
     }
 
     private void Surviving()
     {
         timeComplete += Time.deltaTime;
+        transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, timeComplete / maxTimeComplete);
         if(timeComplete > maxTimeComplete) 
-        { 
+        {
             //Victoria
+            timer.SetActive(false);
             Destroy(gameObject);
         }
     }
 
     private void Losing()
     {
-        timeLose += Time.deltaTime;
-        if (timeLose > maxTimeLose)
+        timeLose -= Time.deltaTime;
+        int minutes = (int)timeLose / 60;
+        int seconds = (int)timeLose - (minutes * 60);
+        timer.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "The event ends in: " +  minutes.ToString("00") + ":" + seconds.ToString("00");
+        if (timeLose < 0)
         {
             //Derrota
+            timer.SetActive(false);
             Destroy(gameObject);
         }
     }

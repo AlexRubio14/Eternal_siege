@@ -15,9 +15,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SpawnEnemy enemy;
     [SerializeField] private List<float> enemyTime;
     [SerializeField] private List<int> cuantity;
+    [SerializeField] private int initCuantity;
 
-    private int[] quantity;
-    private int[] spawnTime;
+    private float[] quantity;
+    private float[] spawnTime;
     private float[] spawnEnemyTime;
     private int currentTime;
     private float time;
@@ -36,13 +37,13 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         time = 0;
-        currentTime = 1;
+        currentTime = 0;
 
-        quantity = new int[cuantity.Count];
-        spawnTime = new int[cuantity.Count];
+        quantity = new float[cuantity.Count];
+        spawnTime = new float[cuantity.Count];
         spawnEnemyTime = new float[cuantity.Count];
 
-        quantity[0] = 20;
+        quantity[0] = initCuantity;
         spawnTime[0] = 60 / quantity[0];
         spawnEnemyTime[0] = 0;
     }
@@ -69,7 +70,7 @@ public class LevelManager : MonoBehaviour
 
     private void ManageEnemy(int index)
     {
-        if (quantity[index] > 0 && spawnEnemyTime[index] <= 0)
+        if (quantity[index] > 0 && spawnEnemyTime[index] < 0)
         {
             enemy.CreateEnemy(index);
             spawnEnemyTime[index] = spawnTime[index];
@@ -78,7 +79,7 @@ public class LevelManager : MonoBehaviour
 
     private void ActiveEvent(int index)
     {
-        if (currentTime > eventTime[index] && !GenerateEvent.instance.eventActive[index])
+        if (currentTime >= eventTime[index] && !GenerateEvent.instance.eventActive[index])
         {
             GenerateEvent.instance.SpawnEvent(index);
             GenerateEvent.instance.eventActive[index] = true;
@@ -88,7 +89,7 @@ public class LevelManager : MonoBehaviour
 
     private void MinuteChange()
     {
-        if (time / 60 > currentTime)
+        if ((int)(time / 60) > currentTime)
         {
             currentTime++;
             if(currentTime < enemyTime[0])
