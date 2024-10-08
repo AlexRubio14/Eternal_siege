@@ -32,7 +32,6 @@ public class Tank : Character
     private void Update()
     {
         base.Update();
-
         if (isAbiltyActive)
         {
             if (interpolationTime < 1f) 
@@ -61,6 +60,7 @@ public class Tank : Character
 
     protected override void BasicAbility()
     {
+        Debug.Log(isAbiltyActive);
         if (!isUltimateActive) 
         {
             isAbiltyActive = true;
