@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class TankAttack : MonoBehaviour
 {
-    [SerializeField] private float offset;
+    [SerializeField] private Tank tank;
 
+    [SerializeField] private float damage;
+
+    [SerializeField] private float offset;
     [SerializeField] private float distance;
 
     private void OnEnable()
@@ -31,9 +34,10 @@ public class TankAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && collision is BoxCollider2D)
         {
-            //Do damage
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.ReceiveDamage(damage);
         }
     }
 }

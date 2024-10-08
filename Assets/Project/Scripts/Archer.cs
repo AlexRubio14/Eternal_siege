@@ -12,14 +12,15 @@ public class Archer : Character
     [SerializeField] protected Transform firingPointLeft;
     [SerializeField] protected Transform firingPointRight;
 
-    protected float baseAttackSpeed;
+    [SerializeField] private float abilitySpeedMultiplier;
     [SerializeField] protected float abilityDuration;
     [SerializeField] protected float attackSpeedAugment;
     protected bool doubleShooting;
 
     private void Start()
     {
-        baseAttackSpeed = attackSpeed;
+        base.Start();
+        playerController.SetSpeed(movementSpeed);
     }
 
     protected void Update()
@@ -43,7 +44,8 @@ public class Archer : Character
             attackSpeed += attackSpeed * attackSpeedAugment;
 
             doubleShooting = true;
-            //Falta movementSpeed
+            movementSpeed *= abilitySpeedMultiplier;
+            playerController.SetSpeed(movementSpeed);
 
             abilityTimer = abilityCooldown + abilityDuration;
         }
@@ -89,6 +91,8 @@ public class Archer : Character
             {
                 attackSpeed = baseAttackSpeed;
                 doubleShooting = false;
+                movementSpeed = baseMovementSpeed;
+                playerController.SetSpeed(movementSpeed);
             }
         }
     }

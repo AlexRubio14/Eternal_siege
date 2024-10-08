@@ -104,8 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
-  speed: 1000
-  health: 0
+  startHealth: 0
+  invencibilityTime: 0
+  reviveRadius: {fileID: 0}
 --- !u!114 &-5727511496464818337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,11 +266,16 @@ MonoBehaviour:
   attackSpeed: 1
   abilityCooldown: 12
   ultimateCooldown: 60
+  movementSpeed: 1000
+  playerController: {fileID: 0}
   attackCollider: {fileID: 8004170633097243876}
   abilityDuration: 8
   abilityCollider: {fileID: 7738595615279517595}
   minRadius: 0.3
   maxRadius: 2
+  abilitySpeedMultiplier: 0.8
+  ultimateSpeedMultiplier: 1.2
+  ultimateDamage: 15
 --- !u!1 &6213505084916504806
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466c73dcc12c268428efeb8d3f16b74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tank: {fileID: 0}
+  damage: 0
   offset: 2
+  distance: 0
 --- !u!1 &7047433560325716842
 GameObject:
   m_ObjectHideFlags: 0

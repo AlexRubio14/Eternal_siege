@@ -282,7 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479453894}
   - component: {fileID: 479453893}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AbilityCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,6 +415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466c73dcc12c268428efeb8d3f16b74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tank: {fileID: 0}
+  damage: 0
+  offset: 0
+  distance: 0
 --- !u!70 &716281589
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -667,8 +671,6 @@ MonoBehaviour:
   - {fileID: 3644879491550420163, guid: f0d52e1fab7c742459f0ba20916f52a3, type: 3}
   - {fileID: 3644879491550420163, guid: 4ae3ff2fda23d0849a60577c5420ddd2, type: 3}
   enemies: []
-  spawnTimer: 2
-  secondsMiniBoss: 15
 --- !u!4 &1597974853
 Transform:
   m_ObjectHideFlags: 0
@@ -846,16 +848,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e3b5fd7f93ae24cad3ddda2b30632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSpeed: 1.5
+  abilityCooldown: 10
+  ultimateCooldown: 45
+  playerController: {fileID: 0}
   arrowPrefab: {fileID: 2762717636433230974, guid: 01657908b817839409462949d37426fa, type: 3}
   ultimatePrefab: {fileID: 2762717636433230974, guid: 5e78462e7ffa9f841a45da0497323833, type: 3}
   firingPoint: {fileID: 692074018}
   firingPointLeft: {fileID: 188515285}
   firingPointRight: {fileID: 397202627}
-  attackSpeed: 1.5
-  abilityCooldown: 10
   abilityDuration: 5
   attackSpeedAugment: 1
-  ultimateCooldown: 45
 --- !u!1 &1828614547
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,14 +987,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce91c983cd18c944a864491d277c552d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 716281589}
   attackSpeed: 1
   abilityCooldown: 10
+  ultimateCooldown: 60
+  playerController: {fileID: 0}
+  attackCollider: {fileID: 716281589}
   abilityDuration: 8
   abilityCollider: {fileID: 479453893}
   minRadius: 0.3
   maxRadius: 2
-  ultimateCooldown: 60
 --- !u!58 &1828614554
 CircleCollider2D:
   m_ObjectHideFlags: 0
