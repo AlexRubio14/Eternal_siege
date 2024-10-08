@@ -8,6 +8,7 @@ public class ExperienceManager : MonoBehaviour
 
     [SerializeField] private float initExperience;
     [SerializeField] private float multiplier;
+    [SerializeField] private List<PlayerInformation> playerInformation;
     private int currentLevel;
     private float experience;
 
@@ -37,12 +38,18 @@ public class ExperienceManager : MonoBehaviour
             experience -= initExperience;
             initExperience *= multiplier;
             currentLevel++;
-            PlayerInformation.instance.SetLevelText(currentLevel);
+            for(int i = 0; i < playerInformation.Count; i++) 
+            {
+                playerInformation[i].SetLevelText(currentLevel);
+            }
+
             SetExperience(0);
             //Selecionar cartas y parar tiempo
 
         }
-
-        PlayerInformation.instance.SetExperienceBar(experience / initExperience);
+        for (int i = 0; i < playerInformation.Count; i++)
+        {
+            playerInformation[i].SetExperienceBar(experience / initExperience);
+        }
     }
 }

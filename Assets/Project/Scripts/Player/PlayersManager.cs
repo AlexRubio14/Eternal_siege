@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayersManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> playersList = new List<GameObject>();
+    [SerializeField] private List<PlayerInformation> playerInformation;
 
     public static PlayersManager instance;
 
@@ -45,6 +46,8 @@ public class PlayersManager : MonoBehaviour
     public void AddPlayer(GameObject player)
     {
         playersList.Add(player);
+        playerInformation[playersList.Count - 1].gameObject.SetActive(true);
+        playersList[playersList.Count - 1].GetComponent<PlayerController>().SetPlayerInformation(playerInformation[playersList.Count - 1]);
     }
 
     public void ErasePlayer(GameObject player)

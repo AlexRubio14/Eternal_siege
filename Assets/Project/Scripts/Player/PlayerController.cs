@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject reviveRadius;
 
     private Animator anim;
+    private PlayerInformation playerInformation;
 
 
     private void Awake()
@@ -159,7 +160,7 @@ public class PlayerController : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
-        PlayerInformation.instance.SetHPBar(currentHealth / startHealth);
+        playerInformation.SetHPBar(currentHealth / startHealth);
 
         ChangeState(State.INVENCIBILITY);
 
@@ -193,7 +194,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = startHealth;
 
-        PlayerInformation.instance.SetHPBar(currentHealth / startHealth);
+        playerInformation.SetHPBar(currentHealth / startHealth);
 
         Debug.Log(currentHealth);
 
@@ -234,5 +235,10 @@ public class PlayerController : MonoBehaviour
     public bool GetIsInArea()
     {
         return isInArea;
+    }
+
+    public void SetPlayerInformation(PlayerInformation _playerInformation)
+    {
+        playerInformation = _playerInformation;
     }
 }

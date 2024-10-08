@@ -6,21 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerInformation : MonoBehaviour
 {
-    public static PlayerInformation instance;
-
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Slider HpSlider;
     [SerializeField] Slider ExpSlider;
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-            return;
-        }
-
-        instance = this;
-    }
 
     private void Start()
     {
