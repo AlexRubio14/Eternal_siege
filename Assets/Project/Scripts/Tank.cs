@@ -26,7 +26,6 @@ public class Tank : Character
         interpolationTime = 0f;
         isAbiltyActive = false;
         isUltimateActive = false;
-        playerController.SetSpeed(movementSpeed);
     }
 
     private void Update()

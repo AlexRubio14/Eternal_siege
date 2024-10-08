@@ -32,6 +32,7 @@ public abstract class Character : MonoBehaviour
     {
         baseAttackSpeed = attackSpeed;
         baseMovementSpeed = movementSpeed;
+        playerController.SetSpeed(movementSpeed);
     }
 
     protected void Update()

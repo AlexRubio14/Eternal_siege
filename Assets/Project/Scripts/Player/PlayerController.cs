@@ -132,7 +132,8 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rb2d.AddForce(movementDirection * speed * Time.deltaTime, ForceMode2D.Force);
+        //rb2d.AddForce(movementDirection * speed * Time.deltaTime, ForceMode2D.Force);
+        rb2d.velocity = movementDirection * speed;
     }
 
     private void Rotate()

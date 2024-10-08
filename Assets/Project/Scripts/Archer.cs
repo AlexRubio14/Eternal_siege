@@ -20,7 +20,6 @@ public class Archer : Character
     private void Start()
     {
         base.Start();
-        playerController.SetSpeed(movementSpeed);
     }
 
     protected void Update()

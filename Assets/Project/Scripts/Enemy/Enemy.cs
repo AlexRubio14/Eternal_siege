@@ -80,8 +80,8 @@ public abstract class Enemy : MonoBehaviour
     private void MoveEnemy()
     {
         Vector2 combinedDirection = (direction.normalized + separationForce).normalized;
-        Vector2 movement = combinedDirection * speed * Time.deltaTime;
-        transform.position += new Vector3(movement.x, movement.y, 0);
+        Vector2 movement = combinedDirection * speed;
+        rgbd2d.AddForce(movement * Time.deltaTime, ForceMode2D.Force);
     }
 
     private void CalculateForces()
