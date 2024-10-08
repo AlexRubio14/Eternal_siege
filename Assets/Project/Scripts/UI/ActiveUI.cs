@@ -9,11 +9,6 @@ public class ActiveUI : MonoBehaviour
         if(PlayersManager.instance.GetPlayersList().Count > 0)
         {
             ActiveChild(0);
-            ActiveChild(1);
-        }
-        if (PlayersManager.instance.GetPlayersList().Count > 1)
-        {
-            ActiveChild(1);
         }
     }
 

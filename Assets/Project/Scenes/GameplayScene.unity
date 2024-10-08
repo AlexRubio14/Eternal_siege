@@ -5659,6 +5659,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initExperience: 100
   multiplier: 1.25
+  playerInformation:
+  - {fileID: 1611249482}
+  - {fileID: 2099282506}
 --- !u!1001 &262283881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31022,6 +31025,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersList: []
+  playerInformation:
+  - {fileID: 1611249482}
+  - {fileID: 2099282506}
 --- !u!4 &1731484326
 Transform:
   m_ObjectHideFlags: 0
@@ -36662,7 +36668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -37.5, y: 0}
+  m_AnchoredPosition: {x: -37.5, y: 37.5}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099282506
