@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float speed;
 
-    private Vector2 movementDirection;
+    private Vector2 inputMovementDirection;
+    private Vector3 movementDirection;
 
     private Rigidbody2D rb2d;
 
@@ -77,12 +78,12 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIdleOrMovingState()
     {
-        if(movementDirection == Vector2.zero && currentState == State.MOVING)
+        if(inputMovementDirection == Vector2.zero && currentState == State.MOVING)
         {
             ChangeState(State.IDLE);
             anim.SetBool("Walking", false);
         }
-        else if(movementDirection != Vector2.zero && currentState == State.IDLE)
+        else if(inputMovementDirection != Vector2.zero && currentState == State.IDLE)
         {
             ChangeState(State.MOVING);
             anim.SetBool("Walking", true);
@@ -101,7 +102,6 @@ public class PlayerController : MonoBehaviour
             case State.KNOCKBACK:
                 break;
             case State.INVENCIBILITY:
-                sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 255); 
                 break;
             case State.DEAD:
                 break;
@@ -131,14 +131,16 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        movementDirection = new Vector3(inputMovementDirection.x, 0, inputMovementDirection.y);
+        Debug.Log(movementDirection);
         rb2d.AddForce(movementDirection * speed * Time.deltaTime, ForceMode2D.Force);
     }
 
     private void Rotate()
     {
-        if(movementDirection != Vector2.zero)
+        if(inputMovementDirection != Vector2.zero)
         {
-            transform.up = movementDirection;
+            transform.forward = inputMovementDirection;
         }
 
     }
@@ -148,7 +150,7 @@ public class PlayerController : MonoBehaviour
         if (currentState == State.DEAD || currentState == State.KNOCKBACK)
             return;
 
-        movementDirection = obj.action.ReadValue<Vector2>();
+        inputMovementDirection = obj.action.ReadValue<Vector2>();
     }
 
     public void ReceiveDamage(float damage)
@@ -157,7 +159,6 @@ public class PlayerController : MonoBehaviour
             return;
 
         currentHealth -= damage;
-        Debug.Log(currentHealth);
 
         PlayerInformation.instance.SetHPBar(currentHealth / startHealth);
 
