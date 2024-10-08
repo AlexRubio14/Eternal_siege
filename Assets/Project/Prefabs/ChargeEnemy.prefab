@@ -49,18 +49,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cc8b2743ff4a04694068cc9381cc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3.5
   separationDistance: {x: 1, y: 1}
   cohesionWeight: 1
   separationWeight: 1
   alligmentWeight: 1
-  maxHP: 300
+  maxHP: 3000
   damage: 35
   experience: 300
   experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   animationDivide: 1
   speedMultiplier: 1.3
-  distanceSeparation: 2.5
+  maxTimeCharging: 0.5
   maxTime: 5
 --- !u!50 &5420591964642457964
 Rigidbody2D:
