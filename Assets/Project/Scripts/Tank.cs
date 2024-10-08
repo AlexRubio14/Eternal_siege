@@ -34,6 +34,7 @@ public class Tank : Character
         base.Update();
         if (isAbiltyActive)
         {
+
             if (interpolationTime < 1f) 
             {
                 interpolationTime += Time.deltaTime;
@@ -60,7 +61,6 @@ public class Tank : Character
 
     protected override void BasicAbility()
     {
-        Debug.Log(isAbiltyActive);
         if (!isUltimateActive) 
         {
             isAbiltyActive = true;
