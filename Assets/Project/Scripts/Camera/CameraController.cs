@@ -98,7 +98,6 @@ public class CameraController : MonoBehaviour
         if (viewportPos.x <= 0 + offsetZoomOut || viewportPos.x >= 1 - offsetZoomOut
             || viewportPos.y <= 0 + offsetZoomOut && viewportPos.y >= 1 - offsetZoomOut)
         {
-            Debug.Log("Time to zoomOut");
             return true;
         }
         return false;
@@ -110,7 +109,6 @@ public class CameraController : MonoBehaviour
         if (viewportPos.x >= 0 + offsetZoomOut || viewportPos.x <= 1 - offsetZoomOut
                 || viewportPos.y >= 0 + offsetZoomOut && viewportPos.y <= 1 - offsetZoomOut)
         {
-            Debug.Log("Time to zoom in");
             return true;
         }
 
@@ -125,7 +123,6 @@ public class CameraController : MonoBehaviour
             Vector3 viewportPos = camera.WorldToViewportPoint(player.transform.position);
             if(CheckIfStopZoom(viewportPos))
             {
-                Debug.Log("Stop zoom");
                 return;
             }
             else if(CheckIfZoomOut(viewportPos))

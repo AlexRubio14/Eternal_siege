@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 inputMovementDirection;
     private Vector3 movementDirection;
 
-    private Rigidbody2D rb2d;
+    private Rigidbody rb;
 
     private SpriteRenderer sprite;
 
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
     {
         movementDirection = new Vector3(inputMovementDirection.x, 0, inputMovementDirection.y);
         Debug.Log(movementDirection);
-        rb2d.AddForce(movementDirection * speed * Time.deltaTime, ForceMode2D.Force);
+        rb.AddForce(movementDirection * speed * Time.deltaTime, ForceMode.Force);
     }
 
     private void Rotate()
@@ -216,17 +216,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider other)
     {
-        if (collision.CompareTag("AttackArea"))
+        if (other.gameObject.CompareTag("AttackArea"))
         {
             isInArea = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.CompareTag("AttackArea"))
+        if (other.gameObject.CompareTag("AttackArea"))
         {
             isInArea = false;
         }
