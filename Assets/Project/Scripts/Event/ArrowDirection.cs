@@ -12,14 +12,11 @@ public class ArrowDirection : MonoBehaviour
         {
             Vector2 direction = (objective - (Vector2)PlayersManager.instance.GetPlayersList()[0].transform.localPosition).normalized;
 
-            Vector2 screenPosition = Camera.main.WorldToScreenPoint(PlayersManager.instance.GetPlayersList()[0].transform.localPosition + (Vector3)direction * 20f);
-
-            screenPosition.x = Mathf.Clamp(screenPosition.x, corner, Screen.width - corner);
-            screenPosition.y = Mathf.Clamp(screenPosition.y, corner, Screen.height - corner);
+            Vector3 _position = (Vector2)PlayersManager.instance.GetPlayersList()[0].transform.localPosition + (direction * corner);
 
             transform.up = -direction;
 
-            transform.position = screenPosition;
+            transform.position = _position;
         }
     }
 
