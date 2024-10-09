@@ -94,9 +94,63 @@
             "id": "c842ea8f-30f4-4250-b423-ed6253b5c317",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "MoveRightLobby",
                     "type": "Button",
                     "id": "2869b6bf-7bd1-47e1-9351-b6c684b4dfa4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveLeftLobby",
+                    "type": "Button",
+                    "id": "ace39fe4-b635-4950-979e-4f07b4c08f68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartGame",
+                    "type": "Button",
+                    "id": "b833be4d-0002-4428-b7d4-cd8833c84a3a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChosePlayer",
+                    "type": "Button",
+                    "id": "31dcea81-ee1e-4fd5-ba45-076c99c13f09",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Join",
+                    "type": "Button",
+                    "id": "773e0475-78f8-4409-b542-af6d17b34e16",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JoysitckRight",
+                    "type": "Button",
+                    "id": "bdc505d0-ed14-40e2-bb98-3db5bcd8d7e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JoysitckLeft",
+                    "type": "Button",
+                    "id": "5d92dd55-4a4a-4b47-86b0-8191f0b7386d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -107,11 +161,77 @@
                 {
                     "name": "",
                     "id": "bb421061-81ad-42d9-ac88-6c74756c1a64",
-                    "path": "",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MoveRightLobby",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03bd9fdd-d0ef-47a6-8c78-286e07142d81",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLeftLobby",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "400b5010-1f77-41f5-9294-e207f00899db",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2a5edfa-450b-4b6c-8672-398c9b2fc466",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChosePlayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8616c1d0-f72e-4e42-aa84-9e17af2e64fa",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40055c93-897d-4c69-bba7-8f6b341a0993",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoysitckRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f537ab91-0154-43c9-9e89-ab95344d0906",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoysitckLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
