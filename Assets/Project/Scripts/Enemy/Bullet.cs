@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private float damage;
+    [SerializeField] private float damage;
+    [SerializeField] private float lifeTime;
 
     private void Start()
     {
-        Destroy(gameObject, 4);
+        Destroy(gameObject, lifeTime);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -31949,7 +31949,7 @@ MonoBehaviour:
   - 3
   - 5
   quantity: 0f0000000500000001000000
-  initQuantity: 1
+  initQuantity: 70
 --- !u!4 &1799426655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 423422, guid: 6878c12c9d7e9d9438adbbffd421590d, type: 3}
