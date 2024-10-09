@@ -17,7 +17,7 @@ public class Arrow : MonoBehaviour
 
     private void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>()  ;
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
