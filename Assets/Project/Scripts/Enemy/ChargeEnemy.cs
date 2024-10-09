@@ -7,7 +7,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class ChargeEnemy : Enemy
 {
     [Header("Charge")]
-    [SerializeField] private float speedMultiplier;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private float maxTimeCharging;
     [SerializeField] private float maxTime;
     private enum enemyState { Charging, Recovery, Seek, Screaming };
@@ -34,6 +34,7 @@ public class ChargeEnemy : Enemy
                 base.Update();
                 break;
             case enemyState.Charging:
+                rgbd2d.AddForce(direction * speed * Time.deltaTime, ForceMode2D.Force);
                 FinishDistance();
                 break;
 
@@ -72,9 +73,8 @@ public class ChargeEnemy : Enemy
     {  
         animator.SetBool("Screaming", false);
         animator.SetBool("Running", true);
-        speed *= speedMultiplier;
-        direction *= 2f;
-        rgbd2d.velocity = speed * direction;
+        direction *= 2.0f;
+        speed *= maxSpeed;
         chargeStarted = true;
         currentState = enemyState.Charging;
     }
@@ -89,7 +89,7 @@ public class ChargeEnemy : Enemy
     private void EndCharging()
     {
         rgbd2d.velocity = Vector3.zero;
-        speed /= speedMultiplier;
+        speed /= maxSpeed;
         currentState = enemyState.Recovery;
     }
 
@@ -103,7 +103,6 @@ public class ChargeEnemy : Enemy
         }
         if(collision.CompareTag("Player") && currentState == enemyState.Charging && collision is BoxCollider2D)
         {
-            rgbd2d.velocity = Vector3.zero;
             chargeStarted = false;
             animator.SetBool("Running", false);
             timeStopCharging = 0;
