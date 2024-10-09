@@ -6,6 +6,7 @@ using UnityEngine;
 public class Archer : Character
 {
     [SerializeField] protected GameObject arrowPrefab;
+    [SerializeField] protected GameObject abilityPrefab;
     [SerializeField] protected GameObject ultimatePrefab;
 
     [SerializeField] protected Transform firingPoint;
@@ -40,13 +41,8 @@ public class Archer : Character
 
         if (abilityTimer <= 0f)
         {
-            attackSpeed += attackSpeed * attackSpeedAugment;
-
-            doubleShooting = true;
-            movementSpeed *= abilitySpeedMultiplier;
-            playerController.SetSpeed(movementSpeed);
-
-            abilityTimer = abilityCooldown + abilityDuration;
+            Instantiate(abilityPrefab, transform);            
+            abilityTimer = abilityCooldown;
         }
     }
 
