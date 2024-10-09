@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer sprite;
 
-    [SerializeField] private float startHealth;
+    [SerializeField] private float maxHealth;
     private float currentHealth;
     private bool isInArea;
 
@@ -41,17 +41,15 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
-        speed = 0f;
-        currentHealth = startHealth;
+        //speed = -1f;
+        //currentHealth = -1f;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         PlayersManager.instance.AddPlayer(gameObject);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         switch (currentState)
@@ -162,7 +160,7 @@ public class PlayerController : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
-        playerInformation.SetHPBar(currentHealth / startHealth);
+        playerInformation.SetHPBar(currentHealth / maxHealth);
 
         ChangeState(State.INVENCIBILITY);
 
@@ -194,9 +192,9 @@ public class PlayerController : MonoBehaviour
 
     public void Revive()
     {
-        currentHealth = startHealth;
+        currentHealth = maxHealth;
 
-        playerInformation.SetHPBar(currentHealth / startHealth);
+        playerInformation.SetHPBar(currentHealth / maxHealth);
 
         Debug.Log(currentHealth);
 
@@ -242,6 +240,12 @@ public class PlayerController : MonoBehaviour
     public void SetSpeed(float _speed)
     {
         speed = _speed;
+    }
+
+    public void SetMaxHealth(float _health)
+    {
+        currentHealth += (_health - maxHealth);
+        maxHealth = _health;
     }
 
     public void SetPlayerInformation(PlayerInformation _playerInformation)
