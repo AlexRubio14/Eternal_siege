@@ -58,7 +58,7 @@ public class LobbyController : MonoBehaviour
     }
     public void MoveRight(InputAction.CallbackContext obj)
     {
-        if (information.GetCurrentBackGround() != backGrounds.Count - 1)
+        if (obj.started && information.GetCurrentBackGround() != backGrounds.Count - 1)
         {
             MoveBackGround(1);
         }
@@ -66,7 +66,7 @@ public class LobbyController : MonoBehaviour
 
     public void MoveLeft(InputAction.CallbackContext obj)
     {
-        if (information.GetCurrentBackGround() != 0)
+        if (obj.started && information.GetCurrentBackGround() != 0)
         {
             MoveBackGround(-1);
         }
@@ -74,7 +74,7 @@ public class LobbyController : MonoBehaviour
 
     public void StartGame(InputAction.CallbackContext obj)
     {
-        if(information.GetCurrentBackGround() == 0)
+        if(obj.started && information.GetCurrentBackGround() == 0)
         {
             if(!playActive)
             {
@@ -103,7 +103,7 @@ public class LobbyController : MonoBehaviour
 
     public void JoystickLeft(InputAction.CallbackContext obj)
     {
-        if (currentChamp != 0 && information.GetCurrentBackGround() == 1)
+        if (obj.started && currentChamp != 0 && information.GetCurrentBackGround() == 1)
         {
             playerCharacterSelection.transform.localPosition = new Vector3(playerCharacterSelection.transform.localPosition.x - 200, playerCharacterSelection.transform.localPosition.y,0);
             currentChamp--;
@@ -113,18 +113,22 @@ public class LobbyController : MonoBehaviour
 
     public void SelectPlayer(InputAction.CallbackContext obj)
     {
-        if(currentChamp == 1 && playerSelected == 0)
+        if(obj.started)
         {
-            playerSelected = 1;
-            sprite.transform.GetChild(0).gameObject.SetActive(false);
-            sprite.transform.GetChild(1).gameObject.SetActive(true);
+            if (currentChamp == 1 && playerSelected == 0)
+            {
+                playerSelected = 1;
+                sprite.transform.GetChild(0).gameObject.SetActive(false);
+                sprite.transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else if (currentChamp == 0 && playerSelected == 1)
+            {
+                playerSelected = 0;
+                sprite.transform.GetChild(0).gameObject.SetActive(true);
+                sprite.transform.GetChild(1).gameObject.SetActive(false);
+            }
         }
-        else if(currentChamp == 0 && playerSelected == 1)
-        {
-            playerSelected = 0;
-            sprite.transform.GetChild(0).gameObject.SetActive(true);
-            sprite.transform.GetChild(1).gameObject.SetActive(false);
-        }
+
     }
 
 }
