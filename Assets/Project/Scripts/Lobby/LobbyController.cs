@@ -18,13 +18,11 @@ public class LobbyController : MonoBehaviour
 
     private bool playActive;
 
-    private int currentBackGround;
     private int currentChamp;
     private int playerSelected;
 
     private void Start()
     {
-        currentBackGround = 0;
         playerSelected = 0;
         currentChamp = 0;
         information = GameObject.Find("Information").GetComponent<SetInformation>();
@@ -47,54 +45,55 @@ public class LobbyController : MonoBehaviour
 
         playActive = false;
     }
+
+    private void MoveBackGround(int index)
+    {
+        backGrounds[information.GetCurrentBackGround()].SetActive(false);
+        backGroundSquares[information.GetCurrentBackGround()].GetComponent<Image>().color = colors[0];
+        backGroundSquares[information.GetCurrentBackGround()].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+        information.SetCurrentBackGround(index);
+        backGrounds[information.GetCurrentBackGround()].SetActive(true);
+        backGroundSquares[information.GetCurrentBackGround()].GetComponent<Image>().color = colors[1];
+        backGroundSquares[information.GetCurrentBackGround()].GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
+    }
     public void MoveRight(InputAction.CallbackContext obj)
     {
-        if (currentBackGround != backGrounds.Count - 1)
+        if (information.GetCurrentBackGround() != backGrounds.Count - 1)
         {
-            backGrounds[currentBackGround].SetActive(false);
-            backGroundSquares[currentBackGround].GetComponent<Image>().color = colors[0];
-            backGroundSquares[currentBackGround].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
-            currentBackGround++;
-            backGrounds[currentBackGround].SetActive(true);
-            backGroundSquares[currentBackGround].GetComponent<Image>().color = colors[1];
-            backGroundSquares[currentBackGround].GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
+            MoveBackGround(1);
         }
     }
 
     public void MoveLeft(InputAction.CallbackContext obj)
     {
-        if (currentBackGround != 0)
+        if (information.GetCurrentBackGround() != 0)
         {
-            backGrounds[currentBackGround].SetActive(false);
-            backGroundSquares[currentBackGround].GetComponent<Image>().color = colors[0];
-            backGroundSquares[currentBackGround].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
-            currentBackGround--;
-            backGrounds[currentBackGround].SetActive(true);
-            backGroundSquares[currentBackGround].GetComponent<Image>().color = colors[1];
-            backGroundSquares[currentBackGround].GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
+            MoveBackGround(-1);
         }
     }
 
     public void StartGame(InputAction.CallbackContext obj)
     {
-        if(currentBackGround == 0)
+        if(information.GetCurrentBackGround() == 0)
         {
             if(!playActive)
             {
                 playActive = true;
                 information.SetCurrentPlayersReady(1);
+                information.SetText();
             }
             else
             {
                 playActive = false;
                 information.SetCurrentPlayersReady(-1);
+                information.SetText();
             }
         }
     }
 
     public void JoystickRight(InputAction.CallbackContext obj)
     {
-        if(currentChamp != 1 && currentBackGround == 1)
+        if(currentChamp != 1 && information.GetCurrentBackGround() == 1)
         {
             playerCharacterSelection.transform.localPosition = new Vector3(playerCharacterSelection.transform.localPosition.x + 200, playerCharacterSelection.transform.localPosition.y,0);
             currentChamp++;
@@ -104,7 +103,7 @@ public class LobbyController : MonoBehaviour
 
     public void JoystickLeft(InputAction.CallbackContext obj)
     {
-        if (currentChamp != 0 && currentBackGround == 1)
+        if (currentChamp != 0 && information.GetCurrentBackGround() == 1)
         {
             playerCharacterSelection.transform.localPosition = new Vector3(playerCharacterSelection.transform.localPosition.x - 200, playerCharacterSelection.transform.localPosition.y,0);
             currentChamp--;

@@ -18,21 +18,25 @@ public class SetInformation : MonoBehaviour
 
     private List<GameObject> players;
     private int currentPlayersReady;
+    private int currentBackGround;
     private float time;
+    private bool startTime;
 
     private void Start()
     {
         players = new List<GameObject>(2);
         currentPlayersReady = 0;
+        currentBackGround = 0;
         time = maxTime;
         secondPlayerCharacter.SetActive(false);
     }
 
     private void Update()
     {
-        if(players.Count > 0)
+        if(startTime)
         {
-            SetText();
+            time -= Time.deltaTime;
+            playGame.text = "The game starts in " + Mathf.FloorToInt(time).ToString();
         }
         if(players.Count > 1)
         {
@@ -45,12 +49,12 @@ public class SetInformation : MonoBehaviour
         if (currentPlayersReady != players.Count)
         {
             playGame.text = "Prepared players " + currentPlayersReady.ToString() + "/" + players.Count.ToString();
-            time = maxTime;
+            startTime = false;
         }
         else
         {
-            time -= Time.deltaTime;
-            playGame.text = "The game starts in " + Mathf.FloorToInt(time).ToString(); 
+            time = maxTime;
+            startTime = true;
         }
     }
 
@@ -106,6 +110,11 @@ public class SetInformation : MonoBehaviour
         return null;
     }
 
+    public int GetCurrentBackGround()
+    {
+        return currentBackGround;
+    }
+
     public void AddPlayer(GameObject _player)
     {
         players.Add(_player);
@@ -116,5 +125,9 @@ public class SetInformation : MonoBehaviour
         currentPlayersReady += state;
     }
 
+    public void SetCurrentBackGround(int state)
+    {
+        currentBackGround += state;
+    }
 
 }
