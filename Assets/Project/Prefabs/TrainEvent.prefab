@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e7b1aeb42492744a0add3c4acb85a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxActiveTime: 5
+  maxActiveTime: 3
   maxDesactiveTime: 120
   eventMesage: Escort the goods
   train: {fileID: 7332674723024336472, guid: 9e081d24b5a08b241b4db67f616ce0bb, type: 3}

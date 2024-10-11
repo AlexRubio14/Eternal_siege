@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b320e25ed5e642149a25f8762640666c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxActiveTime: 5
+  maxActiveTime: 3
   maxDesactiveTime: 120
   eventMesage: Survive 30 seconds in the circle
   surviveZone: {fileID: 7332674723024336472, guid: c559c2e61a251b544862c064a9cf535e, type: 3}

@@ -65,6 +65,8 @@ public class LobbyController : MonoBehaviour
         playerCharacterSelection.SetActive(true);
         playerUpgrade.SetActive(true);
 
+        information.SetText();
+
         playActive = false;
     }
     private void SetPlayerSelected()
