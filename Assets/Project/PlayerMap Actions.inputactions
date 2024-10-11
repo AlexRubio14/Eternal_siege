@@ -155,6 +155,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "JoysitckUp",
+                    "type": "Button",
+                    "id": "8716cbe6-00cd-46b4-9161-be9cee767d75",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JoysitckDown",
+                    "type": "Button",
+                    "id": "ab8f63bc-93ef-4729-89ab-16e20187647d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -232,6 +250,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "JoysitckLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea01c433-a342-4048-920a-e2e5e72a86ea",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoysitckUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afaa1f54-1b8b-4b97-a76b-d6ffb6b676aa",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoysitckDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

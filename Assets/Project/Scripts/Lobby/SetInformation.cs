@@ -10,13 +10,15 @@ public class SetInformation : MonoBehaviour
     [SerializeField] private List<GameObject> backGroundSquares;
     [SerializeField] private List<GameObject> playerSprites;
     [SerializeField] private List<GameObject> playerCharcterSelection;
+    [SerializeField] private List<GameObject> playerUpgrades;
 
     [SerializeField] private TextMeshProUGUI playGame;
     [SerializeField] private float maxTime;
     [SerializeField] private GameObject secondPlayerCharacter;
+    [SerializeField] private GameObject upgrades;
     [SerializeField] private List<GameObject> texts;
 
-    private List<GameObject> players;
+    private List<LobbyController> players;
     private int currentPlayersReady;
     private int currentBackGround;
     private float time;
@@ -24,7 +26,7 @@ public class SetInformation : MonoBehaviour
 
     private void Start()
     {
-        players = new List<GameObject>(2);
+        players = new List<LobbyController>(2);
         currentPlayersReady = 0;
         currentBackGround = 0;
         time = maxTime;
@@ -37,6 +39,14 @@ public class SetInformation : MonoBehaviour
         {
             time -= Time.deltaTime;
             playGame.text = "The game starts in " + Mathf.FloorToInt(time).ToString();
+            if(time < 0)
+            {
+                Debug.Log(players.Count);
+                for(int i = 0; i<players.Count; i++)
+                {
+                    Debug.Log(players[i].GetPlayerSelected());
+                }
+            }
         }
         if(players.Count > 1)
         {
@@ -98,6 +108,18 @@ public class SetInformation : MonoBehaviour
         return null;
     }
 
+    public GameObject GetPlayerUpgrades()
+    {
+        for (int i = 0; i < playerUpgrades.Count; i++)
+        {
+            if (!playerUpgrades[i].activeSelf)
+            {
+                return playerUpgrades[i];
+            }
+        }
+        return null;
+    }
+
     public GameObject GetTexts()
     {
         for (int i = 0; i < texts.Count; i++)
@@ -115,7 +137,12 @@ public class SetInformation : MonoBehaviour
         return currentBackGround;
     }
 
-    public void AddPlayer(GameObject _player)
+    public GameObject GetUpgrades()
+    {
+        return upgrades;
+    }
+
+    public void AddPlayer(LobbyController _player)
     {
         players.Add(_player);
     }
