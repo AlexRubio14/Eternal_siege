@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
 
-    private SpriteRenderer sprite;
-
     [SerializeField] private float startHealth;
     private float currentHealth;
     private bool isInArea;
@@ -35,13 +33,15 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
         currentHealth = startHealth;
+
+        transform.position = PlayersManager.instance.posToSpawnList[0].position;
     }
 
     // Start is called before the first frame update
@@ -132,7 +132,6 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         movementDirection = new Vector3(inputMovementDirection.x, 0, inputMovementDirection.y);
-        Debug.Log(movementDirection);
         rb.AddForce(movementDirection * speed * Time.deltaTime, ForceMode.Force);
     }
 
@@ -140,7 +139,8 @@ public class PlayerController : MonoBehaviour
     {
         if(inputMovementDirection != Vector2.zero)
         {
-            transform.forward = inputMovementDirection;
+            Vector3 movementDirection = new Vector3(inputMovementDirection.x, 0, inputMovementDirection.y);
+            transform.forward = movementDirection;
         }
 
     }
@@ -208,11 +208,11 @@ public class PlayerController : MonoBehaviour
         return currentState;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.CompareTag("Enemy") && collision is BoxCollider2D)
+        if(other.gameObject.CompareTag("Enemy") && other is BoxCollider)
         {
-            ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
+            ReceiveDamage(other.gameObject.GetComponent<Enemy>().GetDamage());
         }
     }
 

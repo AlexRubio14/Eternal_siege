@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8127565136728721538}
-  - component: {fileID: 1955585216474236736}
+  - component: {fileID: 7202149914659717806}
   m_Layer: 6
   m_Name: WallCollision
   m_TagString: Untagged
@@ -140,15 +140,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2749691018255186985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.183, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5597851092650213768}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1955585216474236736
-BoxCollider:
+--- !u!136 &7202149914659717806
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -165,9 +165,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.53233385, y: 2.422899, z: 0.39496267}
-  m_Center: {x: -0.01492548, y: 0.71144986, z: -0.030831568}
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 2.3619223
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: -0.03}
 --- !u!1 &2949630026446072946
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,11 +428,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &5742334290024206505
 GameObject:
   m_ObjectHideFlags: 0

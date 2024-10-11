@@ -8,21 +8,21 @@ public class CameraController : MonoBehaviour
 {
 
     [Header("Zoom Values")]
-    [SerializeField] private float minZoomValue;
+    [SerializeField] private float zoomFactor;
     [SerializeField] private float maxZoomValue;
-
+    private float minZoomValue;
+    private float currentZoom;
+    private Vector3 zoomOutDirection;
 
     [Header("Offsets")]
     [SerializeField, Range(0, 1)] private float offsetZoomOut;
     [SerializeField, Range(0,1)] private float offsetZoomIn;
     [SerializeField] private float zoomOutSpeed;
 
+    [Header("MidPoint")]
+    [SerializeField] private Transform midPointTransform;
 
     private Camera camera;
-
-    private float width = 0f;
-    private float height = 0f;
-
 
     public enum CameraState {  ZOOM_OUT, ZOOM_IN, STOP  }
 
@@ -34,6 +34,11 @@ public class CameraController : MonoBehaviour
         camera = Camera.main;
         minZoomValue = camera.orthographicSize;
         cameraState = CameraState.STOP;
+
+        zoomOutDirection = -camera.transform.forward;
+        minZoomValue = 0;
+        currentZoom = minZoomValue;
+        
     }
 
     // Update is called once per frame
@@ -43,42 +48,47 @@ public class CameraController : MonoBehaviour
             return;
 
         CheckIfCharactersAreOutOfCameraView();
-        //CheckCameraState();
 
-        //switch (cameraState)
-        //{
-        //    case CameraState.ZOOM_OUT:
-        //        ZoomOut();
-        //        break;
-        //    case CameraState.ZOOM_IN:
-        //        ZoomIn();
-        //        break;
-        //    case CameraState.STOP:
-        //        break;
-        //    default:
-        //        break;
-        //}
+        switch (cameraState)
+        {
+            case CameraState.ZOOM_OUT:
+                ZoomOut();
+                break;
+            case CameraState.ZOOM_IN:
+                ZoomIn();
+                break;
+            case CameraState.STOP:
+                break;
+            default:
+                break;
+        }
     }
 
+    void CheckIfCharactersAreOutOfCameraView()
+    {
+        foreach (GameObject player in PlayersManager.instance.GetPlayersList())
+        {
+            // Convert the character's world position to viewport position
+            Vector3 viewportPos = camera.WorldToViewportPoint(player.transform.position);
+            if (CheckIfStopZoom(viewportPos))
+            {
+                cameraState = CameraState.STOP;
+                Debug.Log("Zoom Stop");
+                return;
+            }
+            else if (CheckIfZoomOut(viewportPos))
+            {
+                Debug.Log("Zoom out");
+                cameraState = CameraState.ZOOM_OUT;
+            }
+            else if (CheckIfZoomIn(viewportPos))
+            {
+                Debug.Log("Zoom in");
+                cameraState = CameraState.ZOOM_IN;
+            }
+        }
+    }
 
-    //private void CheckCameraState()
-    //{
-    //    foreach (GameObject player in PlayersManager.instance.GetPlayersList())
-    //    {
-    //        if (CheckStopZoom(player))
-    //        {
-    //            cameraState = CameraState.STOP;
-    //        }
-    //        else if (CheckZoomOut(player))
-    //        {
-    //            cameraState = CameraState.ZOOM_OUT;
-    //        }
-    //        else if (CheckZoomIn(player))
-    //        {
-    //            cameraState = CameraState.ZOOM_IN;
-    //        }
-    //    }
-    //}
     private bool CheckIfStopZoom(Vector3 viewportPos)
     {
         if(viewportPos.x >= 0 + offsetZoomOut && viewportPos.x <= 0 + offsetZoomIn
@@ -115,42 +125,19 @@ public class CameraController : MonoBehaviour
         return false;
     }
 
-    void CheckIfCharactersAreOutOfCameraView()
-    {
-        foreach(GameObject player in PlayersManager.instance.GetPlayersList())
-        {
-            // Convert the character's world position to viewport position
-            Vector3 viewportPos = camera.WorldToViewportPoint(player.transform.position);
-            if(CheckIfStopZoom(viewportPos))
-            {
-                return;
-            }
-            else if(CheckIfZoomOut(viewportPos))
-            {
-                //Falta implementar bien el zoom Out
-                //ZoomOut();
-            }
-            else if(CheckIfZoomIn(viewportPos))
-            {
-                 //Falta implementar bien el zoom In
-                 //ZoomIn();
-            }
-        }
-    }
-
     private void ZoomOut()
     {
-        if(camera.orthographicSize <= maxZoomValue) 
+        if(currentZoom <= maxZoomValue) 
         {
-            camera.orthographicSize += zoomOutSpeed;
+            camera.transform.position += zoomOutDirection.normalized * zoomFactor * Time.deltaTime;
         }
     }
 
     private void ZoomIn()
     {
-        if(camera.orthographicSize >= minZoomValue) 
+        if (currentZoom <= minZoomValue)
         {
-            camera.orthographicSize -= zoomOutSpeed;
+            camera.transform.position += -zoomOutDirection.normalized * zoomFactor * Time.deltaTime;
         }
     }
 }

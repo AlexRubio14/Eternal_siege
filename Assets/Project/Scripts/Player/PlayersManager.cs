@@ -9,6 +9,9 @@ public class PlayersManager : MonoBehaviour
 
     public static PlayersManager instance;
 
+    [SerializeField] public List<Transform> posToSpawnList;
+
+
     private void Awake()
     {
         if (instance != null && instance != this)
