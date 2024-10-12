@@ -18,6 +18,14 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float movementSpeed;
     protected float baseMovementSpeed;
 
+    [SerializeField] protected float cooldown;
+    [SerializeField] protected float health;
+    [SerializeField] protected float healthRegen;
+    [SerializeField] protected float armor;
+    [SerializeField] protected float pickUpRadius;
+    protected float damageMultiplier;
+
+
     [SerializeField] protected PlayerController playerController;
 
     protected abstract void BasicAttack();
@@ -32,7 +40,10 @@ public abstract class Character : MonoBehaviour
     {
         baseAttackSpeed = attackSpeed;
         baseMovementSpeed = movementSpeed;
+        damageMultiplier = 1f;
+
         playerController.SetSpeed(movementSpeed);
+        playerController.SetMaxHealth(health);
     }
 
     protected void Update()

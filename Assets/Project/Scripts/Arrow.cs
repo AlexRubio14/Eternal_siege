@@ -13,11 +13,11 @@ public class Arrow : MonoBehaviour
     [SerializeField] private float distance;
 
     private Vector2 direction;
-    private Rigidbody2D rb2d;
+    private Rigidbody rb;
 
     private void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>()  ;
+        rb = GetComponent<Rigidbody>()  ;
     }
 
     private void Start()
@@ -43,8 +43,7 @@ public class Arrow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //transform.Rotate(0, 0, direction.z);
-        rb2d.velocity = direction * speed * Time.deltaTime;
+        rb.velocity = direction * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
