@@ -51,9 +51,9 @@ public abstract class LevelEvent : MonoBehaviour
 
     private void ActiveEvent()
     {
-        activeTime += Time.deltaTime;
-        transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, (activeTime * currentPlayersIn)/maxActiveTime);
-        if ((activeTime * currentPlayersIn) > maxActiveTime)
+        activeTime += Time.deltaTime * (currentPlayersIn / PlayersManager.instance.GetPlayersList().Count);
+        transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, activeTime/maxActiveTime);
+        if (activeTime > maxActiveTime)
         {
             state = eventState.Active;
             this._text.gameObject.SetActive(true);

@@ -31940,16 +31940,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventTime:
-  - 0
-  - 3
-  - 11
+  - 1
+  - 4
+  - 8
   enemy: {fileID: 1400207873}
   enemyTime:
   - 1
   - 3
-  - 5
+  - 7
   quantity: 0f0000000500000001000000
-  initQuantity: 70
+  initQuantity: 50
 --- !u!4 &1799426655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 423422, guid: 6878c12c9d7e9d9438adbbffd421590d, type: 3}
