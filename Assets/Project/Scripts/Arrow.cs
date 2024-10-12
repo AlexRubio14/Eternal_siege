@@ -51,6 +51,7 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && collision is BoxCollider2D)
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            damage *= RogueliteManager.instance.GetDamageMultiplier();
             enemy.ReceiveDamage(damage);
             Destroy(gameObject);
         }

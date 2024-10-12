@@ -5,25 +5,24 @@ using UnityEngine.InputSystem;
 
 public abstract class Character : MonoBehaviour
 {
+    [SerializeField] protected float armor;
+    [SerializeField] protected float health;
+    protected float healthRegen;
+    protected float damageMultiplier;
+    protected float cooldown;
     [SerializeField] protected float attackSpeed;
+    [SerializeField] protected float movementSpeed;
+    [SerializeField] protected float pickUpRadius;
+
     protected float baseAttackSpeed;
     protected float fireTimer;
 
-    [SerializeField] protected float abilityCooldown;
-    protected float abilityTimer;
-
-    [SerializeField] protected float ultimateCooldown;
-    protected float ultimateTimer;
-
-    [SerializeField] protected float movementSpeed;
     protected float baseMovementSpeed;
 
-    [SerializeField] protected float cooldown;
-    [SerializeField] protected float health;
-    [SerializeField] protected float healthRegen;
-    [SerializeField] protected float armor;
-    [SerializeField] protected float pickUpRadius;
-    protected float damageMultiplier;
+    [SerializeField] protected float abilityCooldown;
+    protected float abilityTimer;
+    [SerializeField] protected float ultimateCooldown;
+    protected float ultimateTimer;
 
 
     [SerializeField] protected PlayerController playerController;
@@ -38,6 +37,23 @@ public abstract class Character : MonoBehaviour
 
     protected void Start()
     {
+        InitStats();
+    }
+
+    private void InitStats()
+    {
+        armor += RogueliteManager.instance.GetArmorSum();
+        health *= RogueliteManager.instance.GetHpMultiplier();
+        healthRegen += RogueliteManager.instance.GetHpRegenSum();
+        damageMultiplier = RogueliteManager.instance.GetDamageMultiplier();
+        cooldown = RogueliteManager.instance.GetCooldownMultiplier();
+        attackSpeed *= RogueliteManager.instance.GetAttackSpeedMultiplier();
+        movementSpeed *= RogueliteManager.instance.GetMovementSpeedMultiplier();
+        pickUpRadius *= RogueliteManager.instance.GetPickUpRadiusMultiplier();
+
+        abilityCooldown -= abilityCooldown * cooldown - abilityCooldown;
+        ultimateCooldown -= ultimateCooldown * cooldown - ultimateCooldown;
+
         baseAttackSpeed = attackSpeed;
         baseMovementSpeed = movementSpeed;
         damageMultiplier = 1f;
@@ -68,6 +84,4 @@ public abstract class Character : MonoBehaviour
 
         UltimateAbility();
     }
-
-
 }
