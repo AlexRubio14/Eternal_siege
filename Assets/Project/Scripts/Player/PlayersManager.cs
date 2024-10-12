@@ -11,6 +11,8 @@ public class PlayersManager : MonoBehaviour
 
     [SerializeField] public List<Transform> posToSpawnList;
 
+    [SerializeField] CameraController cameraController;
+
 
     private void Awake()
     {
@@ -48,6 +50,8 @@ public class PlayersManager : MonoBehaviour
     public void AddPlayer(GameObject player)
     {
         playersList.Add(player);
+        Collider collider = player.GetComponent<Collider>();
+        cameraController.AddPlayerIntoList(collider);
     }
 
     public void ErasePlayer(GameObject player)

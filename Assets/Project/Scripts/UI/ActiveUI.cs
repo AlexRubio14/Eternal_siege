@@ -6,6 +6,9 @@ public class ActiveUI : MonoBehaviour
 {
     private void Update()
     {
+        if (PlayersManager.instance.GetPlayersList().Count == 0)
+            return;
+
         if(PlayersManager.instance.GetPlayersList().Count > 0)
         {
             ActiveChild(0);

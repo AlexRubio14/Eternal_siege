@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
-  speed: 1000
+  speed: 15000
   startHealth: 600
   invencibilityTime: 1.5
   reviveRadius: {fileID: 5742334290024206505}
@@ -415,8 +415,8 @@ Rigidbody:
   m_GameObject: {fileID: 2949630026446072946}
   serializedVersion: 4
   m_Mass: 5
-  m_Drag: 1
-  m_AngularDrag: 0.05
+  m_Drag: 14
+  m_AngularDrag: 25
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

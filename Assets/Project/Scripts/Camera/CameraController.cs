@@ -1,143 +1,181 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class CameraController : MonoBehaviour
 {
+    private enum CameraMovement { NONE, ZOOM_IN, ZOOM_OUT };
 
-    [Header("Zoom Values")]
-    [SerializeField] private float zoomFactor;
-    [SerializeField] private float maxZoomValue;
-    private float minZoomValue;
-    private float currentZoom;
-    private Vector3 zoomOutDirection;
+    [SerializeField] private CameraMovement camState = CameraMovement.NONE;
 
-    [Header("Offsets")]
-    [SerializeField, Range(0, 1)] private float offsetZoomOut;
-    [SerializeField, Range(0,1)] private float offsetZoomIn;
+
+    [Header("Players"), SerializeField] private List<Collider> players;
+
+    [Space, Header("Cameras"), SerializeField] private Camera insideCamera;
+    [SerializeField] private Camera externalCamera;
+
+    [Header("Cameras Variables"), SerializeField, Range(0, 1)] private float movementSpeed;
     [SerializeField] private float zoomOutSpeed;
+    [SerializeField] private float zoomInSpeed;
+    [SerializeField] private float XZSpeed;
 
-    [Header("MidPoint")]
+    [Header("Zoom"), SerializeField] private float maxZoomValue;
+    private float minZoomValue = 0.0f;
+    private float currentZoomValue;
+    [SerializeField] private float zoomValueSpeed;
+
     [SerializeField] private Transform midPointTransform;
-
-    private Camera camera;
-
-    public enum CameraState {  ZOOM_OUT, ZOOM_IN, STOP  }
-
-    [SerializeField] private CameraState cameraState;
-
+    private Vector3 distanceFromMidPointToCamera;
 
     private void Awake()
     {
-        camera = Camera.main;
-        minZoomValue = camera.orthographicSize;
-        cameraState = CameraState.STOP;
+        //Cuando los players se spawneen antes se hara asi
 
-        zoomOutDirection = -camera.transform.forward;
-        minZoomValue = 0;
-        currentZoom = minZoomValue;
-        
+        //foreach(GameObject player in PlayersManager.instance.GetPlayersList())
+        //{
+        //    Collider collider = player.GetComponent<Collider>();
+        //    players.Add(collider);
+        //}
+        distanceFromMidPointToCamera = transform.position - midPointTransform.position;
+        currentZoomValue = minZoomValue;
     }
 
+    public void AddPlayer(GameObject _newPlayer)
+    {
+        players.Add(_newPlayer.GetComponent<CapsuleCollider>());
+    }
+    public void RemovePlayer(GameObject _removablePlayer)
+    {
+        players.Remove(_removablePlayer.GetComponent<CapsuleCollider>());
+    }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (PlayersManager.instance.GetPlayersList().Count == 0)
             return;
 
-        CheckIfCharactersAreOutOfCameraView();
 
-        switch (cameraState)
-        {
-            case CameraState.ZOOM_OUT:
-                ZoomOut();
-                break;
-            case CameraState.ZOOM_IN:
-                ZoomIn();
-                break;
-            case CameraState.STOP:
-                break;
-            default:
-                break;
-        }
+        CheckCamState();
+        MoveFromMidPoint();
+        MoveCamera();
     }
 
-    void CheckIfCharactersAreOutOfCameraView()
+    private void CheckCamState()
     {
-        foreach (GameObject player in PlayersManager.instance.GetPlayersList())
+        bool zoomIn = true;
+        bool zoomOut = false;
+        foreach (Collider item in players)
         {
-            // Convert the character's world position to viewport position
-            Vector3 viewportPos = camera.WorldToViewportPoint(player.transform.position);
-            if (CheckIfStopZoom(viewportPos))
+            Plane[] camFrustrum = GeometryUtility.CalculateFrustumPlanes(externalCamera);
+            if (!GeometryUtility.TestPlanesAABB(camFrustrum, item.bounds))
             {
-                cameraState = CameraState.STOP;
-                Debug.Log("Zoom Stop");
-                return;
+                //Si esta fuera de la camara exterior alejamos la cam
+                zoomOut = true;
             }
-            else if (CheckIfZoomOut(viewportPos))
+            else
             {
-                Debug.Log("Zoom out");
-                cameraState = CameraState.ZOOM_OUT;
-            }
-            else if (CheckIfZoomIn(viewportPos))
-            {
-                Debug.Log("Zoom in");
-                cameraState = CameraState.ZOOM_IN;
+                //Si esta dentro de la camara
+                camFrustrum = GeometryUtility.CalculateFrustumPlanes(insideCamera);
+
+                //Comprueba que no haya ningun player en algun borde
+                //(lo miramos comprobando que esten dentro del frustrum de la camara interior)
+                if (!GeometryUtility.TestPlanesAABB(camFrustrum, item.bounds))
+                {
+                    //Si no hay ningun player fuera de la camara interna hacer ZOOM_IN 
+                    zoomIn = false;
+                }
             }
         }
-    }
 
-    private bool CheckIfStopZoom(Vector3 viewportPos)
-    {
-        if(viewportPos.x >= 0 + offsetZoomOut && viewportPos.x <= 0 + offsetZoomIn
-            || viewportPos.x <= 1 - offsetZoomOut && viewportPos.x >= 1 - offsetZoomIn
-            || viewportPos.y >= 0 + offsetZoomOut && viewportPos.y <= 0 + offsetZoomIn
-            || viewportPos.y <= 1 - offsetZoomOut && viewportPos.y >= 1 - offsetZoomIn
-            )
+
+        if (zoomOut)
         {
-            return true;
+            camState = CameraMovement.ZOOM_OUT;
         }
-        return false;
-    }
-
-    private bool CheckIfZoomOut(Vector3 viewportPos)
-    {
-        // Check if the character is within the camera's view horizontally and vertically
-        if (viewportPos.x <= 0 + offsetZoomOut || viewportPos.x >= 1 - offsetZoomOut
-            || viewportPos.y <= 0 + offsetZoomOut && viewportPos.y >= 1 - offsetZoomOut)
+        else if(zoomIn)
         {
-            return true;
+            camState = CameraMovement.ZOOM_IN;
         }
-        return false;
-    }
-
-    private bool CheckIfZoomIn(Vector3 viewportPos)
-    {
-
-        if (viewportPos.x >= 0 + offsetZoomOut || viewportPos.x <= 1 - offsetZoomOut
-                || viewportPos.y >= 0 + offsetZoomOut && viewportPos.y <= 1 - offsetZoomOut)
+        else
         {
-            return true;
-        }
-
-        return false;
-    }
-
-    private void ZoomOut()
-    {
-        if(currentZoom <= maxZoomValue) 
-        {
-            camera.transform.position += zoomOutDirection.normalized * zoomFactor * Time.deltaTime;
+            camState = CameraMovement.NONE;
         }
     }
 
-    private void ZoomIn()
+    private void MoveCamera() 
     {
-        if (currentZoom <= minZoomValue)
+        Vector3 destinyPos = transform.position;
+        if (camState != CameraMovement.NONE)
         {
-            camera.transform.position += -zoomOutDirection.normalized * zoomFactor * Time.deltaTime;
+            float zoomSpeed;
+            switch (camState)
+            {
+                case CameraMovement.ZOOM_IN:
+                    if (currentZoomValue > minZoomValue)
+                    {
+
+                        currentZoomValue -= zoomValueSpeed;
+                        zoomSpeed = -zoomInSpeed;
+                        distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
+                        destinyPos = midPointTransform.position + distanceFromMidPointToCamera; 
+
+                        Vector3 finalPos = Vector3.Lerp
+                        (
+                        transform.position,
+                        destinyPos,
+                        movementSpeed * Time.fixedDeltaTime
+                        );
+
+                        transform.position = finalPos;
+                    }
+                    break;
+
+                case CameraMovement.ZOOM_OUT:
+                    if (currentZoomValue < maxZoomValue)
+                    {
+                        currentZoomValue += zoomValueSpeed;
+                        zoomSpeed = zoomOutSpeed;
+                        distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
+                        destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
+
+                        Vector3 finalPos = Vector3.Lerp
+                        (
+                        transform.position,
+                        destinyPos,
+                        movementSpeed * Time.fixedDeltaTime
+                        );
+
+                        transform.position = finalPos;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
+
+    private void MoveFromMidPoint()
+    {
+        Vector3 destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
+
+        Vector3 finalPos = Vector3.Lerp(
+            transform.position,
+            destinyPos,
+            2 * Time.deltaTime
+            );
+
+        transform.position = finalPos;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+    }
+
+    public void AddPlayerIntoList(Collider collider)
+    {
+        players.Add(collider);
+    }
+    
 }
