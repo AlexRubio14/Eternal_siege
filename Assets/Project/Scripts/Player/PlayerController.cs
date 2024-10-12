@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
 
-        currentHealth = startHealth;
+        currentHealth = maxHealth;
+
 
         transform.position = PlayersManager.instance.posToSpawnList[0].position;
     }

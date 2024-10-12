@@ -227,8 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
-  speed: 15000
-  startHealth: 600
+  maxHealth: 0
   invencibilityTime: 1.5
   reviveRadius: {fileID: 5742334290024206505}
 --- !u!114 &-5727511496464818337
@@ -308,6 +307,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c3eea1f6-e676-4b67-9650-4824d5099218
     m_ActionName: Player/Ultimate Ability[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2869b6bf-7bd1-47e1-9351-b6c684b4dfa4
+    m_ActionName: Lobby/MoveRightLobby[/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ace39fe4-b635-4950-979e-4f07b4c08f68
+    m_ActionName: Lobby/MoveLeftLobby[/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b833be4d-0002-4428-b7d4-cd8833c84a3a
+    m_ActionName: Lobby/StartGame[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 31dcea81-ee1e-4fd5-ba45-076c99c13f09
+    m_ActionName: Lobby/ChosePlayer[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 773e0475-78f8-4409-b542-af6d17b34e16
+    m_ActionName: Lobby/Join[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bdc505d0-ed14-40e2-bb98-3db5bcd8d7e8
+    m_ActionName: Lobby/JoysitckRight[/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d92dd55-4a4a-4b47-86b0-8191f0b7386d
+    m_ActionName: Lobby/JoysitckLeft[/XInputControllerWindows/leftStick/left]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8716cbe6-00cd-46b4-9161-be9cee767d75
+    m_ActionName: Lobby/JoysitckUp[/XInputControllerWindows/leftStick/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab8f63bc-93ef-4729-89ab-16e20187647d
+    m_ActionName: Lobby/JoysitckDown[/XInputControllerWindows/leftStick/down]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -325,15 +360,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e3b5fd7f93ae24cad3ddda2b30632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armor: 0
+  health: 0
   attackSpeed: 1.5
+  movementSpeed: 14000
+  pickUpRadius: 0
   abilityCooldown: 10
   ultimateCooldown: 5
   playerController: {fileID: 7994772659196139191}
-  arrowPrefab: {fileID: 2762717636433230974, guid: 01657908b817839409462949d37426fa, type: 3}
-  ultimatePrefab: {fileID: 2762717636433230974, guid: 5e78462e7ffa9f841a45da0497323833, type: 3}
+  arrowPrefab: {fileID: 3982872609392757027, guid: 85a04dbe215530d4396a8ffd9aa5c219, type: 3}
+  abilityPrefab: {fileID: 5932198598772518333, guid: 8714ac134e517b2449f62f9e9eea570b, type: 3}
+  ultimatePrefab: {fileID: 3982872609392757027, guid: a2c34ec0dfe43b945921feefc808731c, type: 3}
   firingPoint: {fileID: 3684480250411487961}
   firingPointLeft: {fileID: 500284790301520802}
   firingPointRight: {fileID: 5163518891430103216}
+  abilitySpeedMultiplier: 0
   abilityDuration: 5
   attackSpeedAugment: 0.2
 --- !u!95 &3740264485353147621
