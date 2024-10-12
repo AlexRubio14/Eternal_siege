@@ -17,12 +17,12 @@ public class Upgrade : MonoBehaviour
     }
     public void UpgradeAbility()
     {
-        if (MoneyManager.instance.GetCurrentMoney() > cost && !maxed) 
+        if (MoneyManager.instance.GetCurrentMoney() > cost && !maxed)
         {
             Buy();
             ActiveAbility();
+            UpgradeStats();
         }
-
     }
 
     private void Buy()
@@ -51,5 +51,27 @@ public class Upgrade : MonoBehaviour
                     return;
             }
         }
+    }
+
+    private void UpgradeStats()
+    {
+        if(_text.text == "Armor:")
+            RogueliteManager.instance.IncreaseArmorSum();
+        else if(_text.text == "HP:")
+            RogueliteManager.instance.IncreaseHpMultiplier();
+        else if(_text.text == "HP Regen:")
+            RogueliteManager.instance.IncreaseHpRegenSum();
+        else if(_text.text == "Damage:")
+            RogueliteManager.instance.IncreaseDamageMultiplier();
+        else if(_text.text == "Cooldown:")
+            RogueliteManager.instance.IncreaseCooldownMultiplier();
+        else if(_text.text == "Attack Speed:")
+            RogueliteManager.instance.IncreaseAttackSpeedMultiplier();
+        else if(_text.text == "Move Speed:")
+            RogueliteManager.instance.IncreaseMovementSpeedMultiplier();
+        else if(_text.text == "Experience:")
+            RogueliteManager.instance.IncreaseExperienceMultiplier();
+        else
+            RogueliteManager.instance.IncreasePickUpRadiusMultiplier();
     }
 }
