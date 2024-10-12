@@ -10,6 +10,11 @@ public class PlayersManager : MonoBehaviour
 
     public static PlayersManager instance;
 
+    [SerializeField] public List<Transform> posToSpawnList;
+
+    [SerializeField] CameraController cameraController;
+
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -46,6 +51,8 @@ public class PlayersManager : MonoBehaviour
     public void AddPlayer(GameObject player)
     {
         playersList.Add(player);
+        Collider collider = player.GetComponent<Collider>();
+        cameraController.AddPlayerIntoList(collider);
         playerInformation[playersList.Count - 1].gameObject.SetActive(true);
         playersList[playersList.Count - 1].GetComponent<PlayerController>().SetPlayerInformation(playerInformation[playersList.Count - 1]);
     }

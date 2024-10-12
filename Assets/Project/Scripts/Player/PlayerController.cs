@@ -17,9 +17,10 @@ public class PlayerController : MonoBehaviour
 
     private float speed;
 
-    private Vector2 movementDirection;
+    private Vector2 inputMovementDirection;
+    private Vector3 movementDirection;
 
-    private Rigidbody2D rb2d;
+    private Rigidbody rb;
 
     private SpriteRenderer sprite;
 
@@ -35,14 +36,15 @@ public class PlayerController : MonoBehaviour
     private PlayerInformation playerInformation;
 
 
+
     private void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
 
-        //speed = -1f;
-        //currentHealth = -1f;
+        currentHealth = startHealth;
+
+        transform.position = PlayersManager.instance.posToSpawnList[0].position;
     }
 
     void Start()
@@ -77,12 +79,12 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIdleOrMovingState()
     {
-        if(movementDirection == Vector2.zero && currentState == State.MOVING)
+        if(inputMovementDirection == Vector2.zero && currentState == State.MOVING)
         {
             ChangeState(State.IDLE);
             anim.SetBool("Walking", false);
         }
-        else if(movementDirection != Vector2.zero && currentState == State.IDLE)
+        else if(inputMovementDirection != Vector2.zero && currentState == State.IDLE)
         {
             ChangeState(State.MOVING);
             anim.SetBool("Walking", true);
@@ -101,7 +103,6 @@ public class PlayerController : MonoBehaviour
             case State.KNOCKBACK:
                 break;
             case State.INVENCIBILITY:
-                //sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 255); 
                 break;
             case State.DEAD:
                 break;
@@ -131,15 +132,16 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        //rb2d.AddForce(movementDirection * speed * Time.deltaTime, ForceMode2D.Force);
-        rb2d.velocity = movementDirection * speed;
+        movementDirection = new Vector3(inputMovementDirection.x, 0, inputMovementDirection.y);
+        rb.AddForce(movementDirection * speed * Time.deltaTime, ForceMode.Force);
     }
 
     private void Rotate()
     {
-        if(movementDirection != Vector2.zero)
+        if(inputMovementDirection != Vector2.zero)
         {
-            transform.up = movementDirection;
+            Vector3 movementDirection = new Vector3(inputMovementDirection.x, 0, inputMovementDirection.y);
+            transform.forward = movementDirection;
         }
 
     }
@@ -149,7 +151,7 @@ public class PlayerController : MonoBehaviour
         if (currentState == State.DEAD || currentState == State.KNOCKBACK)
             return;
 
-        movementDirection = obj.action.ReadValue<Vector2>();
+        inputMovementDirection = obj.action.ReadValue<Vector2>();
     }
 
     public void ReceiveDamage(float damage)
@@ -158,7 +160,6 @@ public class PlayerController : MonoBehaviour
             return;
 
         currentHealth -= damage;
-        Debug.Log(currentHealth);
 
         playerInformation.SetHPBar(currentHealth / maxHealth);
 
@@ -208,25 +209,25 @@ public class PlayerController : MonoBehaviour
         return currentState;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.CompareTag("Enemy") && collision is BoxCollider2D)
+        if(other.gameObject.CompareTag("Enemy") && other is BoxCollider)
         {
-            ReceiveDamage(collision.GetComponent<Enemy>().GetDamage());
+            ReceiveDamage(other.gameObject.GetComponent<Enemy>().GetDamage());
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider other)
     {
-        if (collision.CompareTag("AttackArea"))
+        if (other.gameObject.CompareTag("AttackArea"))
         {
             isInArea = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.CompareTag("AttackArea"))
+        if (other.gameObject.CompareTag("AttackArea"))
         {
             isInArea = false;
         }
