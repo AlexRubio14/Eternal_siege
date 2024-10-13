@@ -92,7 +92,7 @@ public class CameraController : MonoBehaviour
         {
             camState = CameraMovement.ZOOM_OUT;
         }
-        else if(zoomIn)
+        else if (zoomIn)
         {
             camState = CameraMovement.ZOOM_IN;
         }
@@ -102,7 +102,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void MoveCamera() 
+    private void MoveCamera()
     {
         Vector3 destinyPos = transform.position;
         if (camState != CameraMovement.NONE)
@@ -117,7 +117,7 @@ public class CameraController : MonoBehaviour
                         currentZoomValue -= zoomValueSpeed;
                         zoomSpeed = -zoomInSpeed;
                         distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
-                        destinyPos = midPointTransform.position + distanceFromMidPointToCamera; 
+                        destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
 
                         Vector3 finalPos = Vector3.Lerp
                         (
@@ -177,5 +177,5 @@ public class CameraController : MonoBehaviour
     {
         players.Add(collider);
     }
-    
+
 }
