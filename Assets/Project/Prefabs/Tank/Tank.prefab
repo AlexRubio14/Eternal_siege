@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5597851092650213768}
   - component: {fileID: 7994772659196139191}
   - component: {fileID: -5727511496464818337}
-  - component: {fileID: 4765459189451826443}
-  - component: {fileID: -8590219195370816807}
+  - component: {fileID: 7497851023985238319}
+  - component: {fileID: 4198851602604787379}
   - component: {fileID: -5250862933451906686}
   - component: {fileID: 5091407598519454938}
   m_Layer: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
-  startHealth: 600
+  maxHealth: 0
   invencibilityTime: 1.5
   reviveRadius: {fileID: 7076851400334614439}
 --- !u!114 &-5727511496464818337
@@ -135,47 +135,81 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c3eea1f6-e676-4b67-9650-4824d5099218
     m_ActionName: Player/Ultimate Ability[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2869b6bf-7bd1-47e1-9351-b6c684b4dfa4
+    m_ActionName: Lobby/MoveRightLobby[/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ace39fe4-b635-4950-979e-4f07b4c08f68
+    m_ActionName: Lobby/MoveLeftLobby[/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b833be4d-0002-4428-b7d4-cd8833c84a3a
+    m_ActionName: Lobby/StartGame[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 31dcea81-ee1e-4fd5-ba45-076c99c13f09
+    m_ActionName: Lobby/ChosePlayer[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 773e0475-78f8-4409-b542-af6d17b34e16
+    m_ActionName: Lobby/Join[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bdc505d0-ed14-40e2-bb98-3db5bcd8d7e8
+    m_ActionName: Lobby/JoysitckRight[/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d92dd55-4a4a-4b47-86b0-8191f0b7386d
+    m_ActionName: Lobby/JoysitckLeft[/XInputControllerWindows/leftStick/left]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8716cbe6-00cd-46b4-9161-be9cee767d75
+    m_ActionName: Lobby/JoysitckUp[/XInputControllerWindows/leftStick/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab8f63bc-93ef-4729-89ab-16e20187647d
+    m_ActionName: Lobby/JoysitckDown[/XInputControllerWindows/leftStick/down]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!50 &4765459189451826443
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!54 &7497851023985238319
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2949630026446072946}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1000
-  m_LinearDrag: 1000
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
+  serializedVersion: 4
+  m_Mass: 5
+  m_Drag: 14
+  m_AngularDrag: 25
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &-8590219195370816807
-CapsuleCollider2D:
+  m_Constraints: 84
+  m_CollisionDetection: 1
+--- !u!136 &4198851602604787379
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2949630026446072946}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -184,24 +218,14 @@ CapsuleCollider2D:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.015874207, y: 0.034923017}
-  m_Size: {x: 0.9701235, y: 0.9701235}
-  m_Direction: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!114 &-5250862933451906686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,12 +238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce91c983cd18c944a864491d277c552d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armor: 0
+  health: 0
   attackSpeed: 1
+  movementSpeed: 100
+  pickUpRadius: 0
   abilityCooldown: 12
   ultimateCooldown: 60
-  movementSpeed: 100
   playerController: {fileID: 7994772659196139191}
-  attackCollider: {fileID: 8004170633097243876}
+  attackCollider: {fileID: 0}
   abilityDuration: 8
   abilityCollider: {fileID: 7738595615279517595}
   minRadius: 0.3
@@ -243,12 +270,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'IndexFinger_02'\n\tTransform 'Toes_L'\n\tTransform
-    'Elbow_R'\n\tTransform 'Finger_02'\n\tTransform 'Finger_03'\n\tTransform 'Eyebrows'\n\tTransform
-    'Ball_L'\n\tTransform 'Thumb_02'\n\tTransform 'Ball_R'\n\tTransform 'Clavicle_L'\n\tand
-    more ...\n\tFrom animation clip 'Take 001'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -262,8 +284,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6358919073975346089}
-  - component: {fileID: 8004170633097243876}
   - component: {fileID: 5195549166899851825}
+  - component: {fileID: 4055461696465607008}
   m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
@@ -279,48 +301,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6213505084916504806}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5597851092650213768}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &8004170633097243876
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6213505084916504806}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 3}
-  m_Direction: 0
 --- !u!114 &5195549166899851825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,10 +320,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466c73dcc12c268428efeb8d3f16b74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tank: {fileID: 0}
+  tank: {fileID: -5250862933451906686}
   damage: 0
   offset: 2
   distance: 0
+--- !u!136 &4055461696465607008
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213505084916504806}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 4
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6781124127548957586
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,11 +745,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422474, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 422474, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 422474, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
       propertyPath: m_LocalRotation.y
@@ -751,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422474, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 422474, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

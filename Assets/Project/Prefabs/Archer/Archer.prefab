@@ -361,10 +361,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armor: 0
-  health: 0
+  health: 100
   attackSpeed: 1.5
   movementSpeed: 14000
-  pickUpRadius: 0
+  pickUpRadius: 50
   abilityCooldown: 10
   ultimateCooldown: 5
   playerController: {fileID: 7994772659196139191}
@@ -417,10 +417,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.25
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!135 &4067104631799637342
 SphereCollider:
   m_ObjectHideFlags: 0
