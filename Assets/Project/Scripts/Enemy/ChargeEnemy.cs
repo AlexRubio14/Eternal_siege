@@ -34,7 +34,7 @@ public class ChargeEnemy : Enemy
                 base.Update();
                 break;
             case enemyState.Charging:
-                rgbd2d.AddForce(direction * speed * Time.deltaTime, ForceMode2D.Force);
+                rgbd.AddForce(direction * speed * Time.deltaTime, ForceMode.Force);
                 FinishDistance();
                 break;
 
@@ -82,18 +82,18 @@ public class ChargeEnemy : Enemy
     private void PrepareCharging()
     {
         animator.SetBool("Screaming", true);
-        rgbd2d.velocity = Vector3.zero;
+        rgbd.velocity = Vector3.zero;
         Invoke("Charge", animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
     private void EndCharging()
     {
-        rgbd2d.velocity = Vector3.zero;
+        rgbd.velocity = Vector3.zero;
         speed /= maxSpeed;
         currentState = enemyState.Recovery;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.CompareTag("Player") && canCharge)
         {
@@ -101,7 +101,7 @@ public class ChargeEnemy : Enemy
             currentState = enemyState.Screaming;
             PrepareCharging();
         }
-        if(collision.CompareTag("Player") && currentState == enemyState.Charging && collision is BoxCollider2D)
+        if(collision.CompareTag("Player") && currentState == enemyState.Charging && collision is BoxCollider)
         {
             chargeStarted = false;
             animator.SetBool("Running", false);

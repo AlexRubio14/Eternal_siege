@@ -177,5 +177,10 @@ public class CameraController : MonoBehaviour
     {
         players.Add(collider);
     }
+
+    public Transform GetMidPoint()
+    {
+        return midPointTransform;
+    }
     
 }

@@ -24,21 +24,21 @@ public class ExperienceBall : MonoBehaviour
     {
         if (follow)
         {
-            Vector2 direction = target.transform.localPosition - transform.localPosition;
-            GetComponent<Rigidbody2D>().velocity = direction * speed * Time.deltaTime;
+            Vector3 direction = target.transform.localPosition - transform.localPosition;
+            GetComponent<Rigidbody>().velocity = direction * speed * Time.deltaTime;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if(collision.CompareTag("Player"))
         {
-            if(collision is CapsuleCollider2D)
+            if(collision is CapsuleCollider)
             {
                 ExperienceManager.instance.SetExperience(experience);
                 Destroy(gameObject);
             }
-            else if(collision is CircleCollider2D && !follow) 
+            else if(collision is SphereCollider && !follow) 
             {
                 follow = true;
                 target = collision.gameObject;

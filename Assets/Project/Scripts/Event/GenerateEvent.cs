@@ -39,12 +39,12 @@ public class GenerateEvent : MonoBehaviour
         _event.transform.SetParent(transform, true);
 
         radius.x = _event.GetComponent<SpriteRenderer>().bounds.size.x;
-        radius.y = _event.GetComponent<SpriteRenderer>().bounds.size.y;
+        radius.y = _event.GetComponent<SpriteRenderer>().bounds.size.z;
 
         _event.transform.localPosition = new Vector3(
             UnityEngine.Random.Range(corner[0].position.x + radius.x, corner[1].position.x - radius.x),
-            UnityEngine.Random.Range(corner[0].position.y + radius.y, corner[1].position.y - radius.y),
-            0
+            -2.5f,
+            UnityEngine.Random.Range(corner[0].position.y + radius.y, corner[1].position.y - radius.y)
             );
 
         _event.GetComponent<LevelEvent>().SetText(_text);
@@ -52,6 +52,6 @@ public class GenerateEvent : MonoBehaviour
         _event.GetComponent<LevelEvent>().SetCorner(corner);
 
         arrow.SetActive(true);
-        arrow.GetComponent<ArrowDirection>().SetObjective(_event.transform.localPosition);
+        arrow.GetComponent<ArrowDirection>().SetObjective(_event.transform.position);
     }
 }
