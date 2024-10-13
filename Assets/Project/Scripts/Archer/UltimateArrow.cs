@@ -14,11 +14,11 @@ public class UltimateArrow : MonoBehaviour
     [SerializeField] private float distance;
 
     private Vector2 direction;
-    private Rigidbody2D rb2d;
+    private Rigidbody rb;
 
     private void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -26,24 +26,24 @@ public class UltimateArrow : MonoBehaviour
         Destroy(gameObject, lifeTime);
         if (EnemyManager.instance.GetEnemies().Count > 0)
         {
-            Vector2 nearestEnemyDirection;
-            Vector2 nearestEnemyPosition;
+            Vector3 nearestEnemyDirection;
+            Vector3 nearestEnemyPosition;
 
             EnemyManager.instance.GetNearestEnemyDirection(transform.position, out nearestEnemyDirection, out nearestEnemyPosition);
-            if ((nearestEnemyPosition - new Vector2(transform.position.x, transform.position.y)).magnitude < distance)
+            if ((nearestEnemyPosition - new Vector3(transform.position.x, 0, transform.position.z)).magnitude < distance)
                 direction = nearestEnemyDirection;
             else
-                direction = Vector2.right;
+                direction = Vector3.right;
         }
         else
-            direction = Vector2.right;
+            direction = Vector3.right;
 
         transform.up = direction;
     }
 
     private void FixedUpdate()
     {
-        rb2d.velocity = direction * speed * Time.deltaTime;
+        rb.velocity = direction * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
