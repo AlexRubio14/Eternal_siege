@@ -7,6 +7,7 @@ public class PlayersManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> playersList = new List<GameObject>();
     [SerializeField] private List<PlayerInformation> playerInformation;
+    [SerializeField] private List<GameObject> characters;
 
     public static PlayersManager instance;
 
@@ -29,7 +30,10 @@ public class PlayersManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for(int i = 0; i < PlayerLobbyManager.instance.GetTypeCharacter().Count; i++)
+        {
+            AddPlayer(i);
+        }
     }
 
     // Update is called once per frame
@@ -48,8 +52,10 @@ public class PlayersManager : MonoBehaviour
         }
     }
 
-    public void AddPlayer(GameObject player)
+    private void AddPlayer(int index)
     {
+        GameObject player = Instantiate(characters[PlayerLobbyManager.instance.GetTypeCharacter()[index]]);
+        player.transform.position = posToSpawnList[index].position;
         playersList.Add(player);
         Collider collider = player.GetComponent<Collider>();
         cameraController.AddPlayerIntoList(collider);

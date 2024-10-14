@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        PlayersManager.instance.AddPlayer(gameObject);
+
     }
 
     void FixedUpdate()
