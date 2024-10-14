@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
-using UnityEngine.InputSystem.XInput;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,8 +30,6 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
     private PlayerInformation playerInformation;
-
-
 
     private void Awake()
     {

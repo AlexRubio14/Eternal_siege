@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TankAttack : MonoBehaviour
@@ -32,9 +33,9 @@ public class TankAttack : MonoBehaviour
         transform.up = direction;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && collision is BoxCollider2D)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.ReceiveDamage(damage);

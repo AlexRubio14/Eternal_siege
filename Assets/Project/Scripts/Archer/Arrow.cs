@@ -27,7 +27,7 @@ public class Arrow : MonoBehaviour
             AimToEnemy();
         }
     }
-
+    
     private void FixedUpdate()
     {
         if(isAbility)

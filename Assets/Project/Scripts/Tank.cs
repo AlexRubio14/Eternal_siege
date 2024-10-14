@@ -1,29 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tank : Character
 {
-    [SerializeField] private CapsuleCollider2D attackCollider;
+    [SerializeField] private CapsuleCollider attackCollider;
+    [SerializeField] private MeshRenderer attackMeshRenderer;
 
     [SerializeField] private float abilityDuration;
-    [SerializeField] private CircleCollider2D abilityCollider;
-    [SerializeField] private float minRadius;
-    [SerializeField] private float maxRadius;
+    [SerializeField] private GameObject abilityCollider;
+    [SerializeField] private float minScale;
+    [SerializeField] private float maxScale;
     [SerializeField] private float abilitySpeedMultiplier;
-    [SerializeField] private float ultimateSpeedMultiplier;
     private float interpolationTime;
     private bool isAbiltyActive;
 
+    [SerializeField] private float ultimateDuration;
+    [SerializeField] private float ultimateSpeedMultiplier;
     [SerializeField] private float ultimateDamage;
     private bool isUltimateActive;
-
 
     private void Start()
     {
         base.Start();
         DisableAttackCollider();
-        interpolationTime = 0f;
+        interpolationTime = 1f;
         isAbiltyActive = false;
         isUltimateActive = false;
     }
@@ -31,22 +30,15 @@ public class Tank : Character
     private void Update()
     {
         base.Update();
-        if (isAbiltyActive)
+        if (isAbiltyActive && interpolationTime < 1f)
         {
-
-            if (interpolationTime < 1f) 
-            {
-                interpolationTime += Time.deltaTime;
-            }
-            abilityCollider.radius = Mathf.Lerp(minRadius, maxRadius, interpolationTime);
+            interpolationTime += Time.deltaTime;
+            abilityCollider.transform.localScale = new Vector3(Mathf.Lerp(minScale, maxScale, interpolationTime), Mathf.Lerp(minScale, maxScale, interpolationTime), Mathf.Lerp(minScale, maxScale, interpolationTime));
         }
-        else
+        else if(interpolationTime < 1f)
         {
-            if (interpolationTime < 1f)
-            {
-                interpolationTime += Time.deltaTime;
-            }
-            abilityCollider.radius = Mathf.Lerp(maxRadius, minRadius, interpolationTime);
+            interpolationTime += Time.deltaTime;
+            abilityCollider.transform.localScale = new Vector3(Mathf.Lerp(maxScale, minScale, interpolationTime), Mathf.Lerp(maxScale, minScale, interpolationTime), Mathf.Lerp(maxScale, minScale, interpolationTime));
         }
     }
 
@@ -54,13 +46,13 @@ public class Tank : Character
     protected override void BasicAttack()
     {
         attackCollider.enabled = true;
-        Invoke("DisableAttackCollider", 0.1f);
-        Invoke("BasicAttack", 0.3f);
+        attackMeshRenderer.enabled = true;
+        Invoke("DisableAttackCollider", 0.2f);
     }
 
     protected override void BasicAbility()
     {
-        if (!isUltimateActive) 
+        if (abilityTimer <= 0f && !isUltimateActive)
         {
             isAbiltyActive = true;
             interpolationTime = 0f;
@@ -72,11 +64,15 @@ public class Tank : Character
 
     protected override void UltimateAbility()
     {
-        movementSpeed *= abilitySpeedMultiplier;
-        playerController.SetSpeed(movementSpeed);
-        playerController.ChangeState(PlayerController.State.INVENCIBILITY);
-        abilityTimer = abilityCooldown; //cancelar BasicAbility
-        ultimateTimer = ultimateCooldown;
+        if (ultimateTimer <= 0f)
+        {
+            isUltimateActive = true;
+            movementSpeed *= ultimateSpeedMultiplier;
+            playerController.SetSpeed(movementSpeed);
+            playerController.ChangeState(PlayerController.State.INVENCIBILITY);
+            abilityTimer = abilityCooldown; //cancelar BasicAbility
+            ultimateTimer = ultimateCooldown + ultimateDuration;
+        }
     }
     #endregion
 
@@ -86,7 +82,6 @@ public class Tank : Character
         if (fireTimer <= 0f)
         {
             BasicAttack();
-
             fireTimer = 1 / attackSpeed;
         }
         else
@@ -100,7 +95,7 @@ public class Tank : Character
         if (abilityTimer > 0f)
         {
             abilityTimer -= Time.deltaTime;
-            if (abilityTimer < abilityCooldown)
+            if (abilityTimer < abilityCooldown && isAbiltyActive)
             {
                 isAbiltyActive = false;
                 movementSpeed = baseMovementSpeed;
@@ -117,6 +112,7 @@ public class Tank : Character
             ultimateTimer -= Time.deltaTime;
             if (ultimateTimer < ultimateCooldown)
             {
+                isUltimateActive = false;
                 movementSpeed = baseMovementSpeed;
                 playerController.SetSpeed(movementSpeed);
             }
@@ -127,9 +123,10 @@ public class Tank : Character
     private void DisableAttackCollider()
     {
         attackCollider.enabled = false;
+        attackMeshRenderer.enabled = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && isUltimateActive)
         {
