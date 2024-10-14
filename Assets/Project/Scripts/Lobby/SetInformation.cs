@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SetInformation : MonoBehaviour
 {
@@ -41,11 +42,7 @@ public class SetInformation : MonoBehaviour
             playGame.text = "The game starts in " + Mathf.FloorToInt(time).ToString();
             if(time < 0)
             {
-                Debug.Log(players.Count);
-                for(int i = 0; i<players.Count; i++)
-                {
-                    Debug.Log(players[i].GetPlayerSelected());
-                }
+                SceneManager.LoadScene("AlexScene");
             }
         }
         if(players.Count > 1)

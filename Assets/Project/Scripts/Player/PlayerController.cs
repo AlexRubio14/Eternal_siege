@@ -208,13 +208,13 @@ public class PlayerController : MonoBehaviour
         return currentState;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Enemy") && collision.collider is BoxCollider)
-    //    {
-    //        ReceiveDamage(collision.gameObject.GetComponent<Enemy>().GetDamage());
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && collision.collider is BoxCollider)
+        {
+            ReceiveDamage(collision.gameObject.GetComponent<Enemy>().GetDamage());
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {

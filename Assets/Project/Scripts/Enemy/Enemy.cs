@@ -177,7 +177,7 @@ public abstract class Enemy : MonoBehaviour
         GameObject _experienceBall = Instantiate(experienceBall, new Vector3(transform.localPosition.x, transform.localPosition.y, -2.5f), Quaternion.identity);
         _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
     }
-    private void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }

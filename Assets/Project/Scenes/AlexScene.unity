@@ -25201,10 +25201,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typesOfEnemies:
-  - {fileID: 3644879491550420163, guid: 4ae3ff2fda23d0849a60577c5420ddd2, type: 3}
   - {fileID: 3644879491550420163, guid: 6d2839eab7a09db4f8598e6d5ce25f8d, type: 3}
   - {fileID: 3644879491550420163, guid: f0d52e1fab7c742459f0ba20916f52a3, type: 3}
   - {fileID: 3644879491550420163, guid: 98a7b73f67664784f97ce0ae7d0bfae9, type: 3}
+  - {fileID: 3644879491550420163, guid: 159c6eb45c4751c4d8fb8ddf7e5f1ea1, type: 3}
+  - {fileID: 3644879491550420163, guid: 4ae3ff2fda23d0849a60577c5420ddd2, type: 3}
   enemies: []
 --- !u!114 &1400207873
 MonoBehaviour:
@@ -31650,7 +31651,8 @@ MonoBehaviour:
   - 3
   - 5
   quantity: 0f0000000500000001000000
-  initQuantity: 2
+  initQuantity: 70
+  bossSpawnTime: 10
 --- !u!4 &1799426655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 423422, guid: 6878c12c9d7e9d9438adbbffd421590d, type: 3}

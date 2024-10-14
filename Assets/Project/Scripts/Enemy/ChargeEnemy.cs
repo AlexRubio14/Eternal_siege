@@ -47,6 +47,11 @@ public class ChargeEnemy : Enemy
         }
     }
 
+    protected override void Die()
+    {
+        base.Die();
+    }
+
     private void FinishDistance()
     {
         timeStopCharging += Time.deltaTime;

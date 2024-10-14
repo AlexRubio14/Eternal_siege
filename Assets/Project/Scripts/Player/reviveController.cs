@@ -33,7 +33,7 @@ public class reviveController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.CompareTag("Player"))
         {

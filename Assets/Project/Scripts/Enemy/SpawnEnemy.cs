@@ -33,7 +33,7 @@ public class SpawnEnemy : MonoBehaviour
 
         Vector3 spawnPosition = GenerateRandomPosition();
 
-        spawnPosition.y = -2.16f;
+        spawnPosition.y = -2.5f;
 
         newEnemy.transform.localPosition = spawnPosition;
         newEnemy.transform.SetParent(this.gameObject.transform);
@@ -49,6 +49,9 @@ public class SpawnEnemy : MonoBehaviour
         float zOffset = Mathf.Sin(radians) * spawnDistance;
 
         Vector3 spawnPosition = new Vector3(midPoint.GetMidPoint().position.x + xOffset, midPoint.GetMidPoint().position.y, midPoint.GetMidPoint().position.z + zOffset);
+
+        if (spawnPosition.z < -26 || spawnPosition.z > 25 || spawnPosition.x < -50 || spawnPosition.x > 50)
+            spawnPosition = Vector3.zero;
         return spawnPosition;
     }
 

@@ -22,6 +22,11 @@ public class ShotEnemy : Enemy
         time += Time.deltaTime;
     }
 
+    protected override void Die()
+    {
+        base.Die();
+    }
+
     private void CheckIfCanShoot()
     {
         if (time > maxTime && target != null)

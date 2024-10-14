@@ -30,6 +30,11 @@ public class MiniBoss : Enemy
         CircleLerp();
     }
 
+    protected override void Die()
+    {
+        base.Die();
+    }
+
     private void OnTriggerStay(Collider collision)
     {
         if (collision.CompareTag("Player") && collision.gameObject == currentTarget)
