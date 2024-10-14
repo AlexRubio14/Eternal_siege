@@ -6,20 +6,23 @@ public class Corner : MonoBehaviour
 {
     [SerializeField] private SpawnEnemy spawnEnemy;
     public int index;
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void Update()
     {
-        if (collision.CompareTag("MainCamera"))
+        if (IsInFrustum(Camera.main, transform.position))
         {
             spawnEnemy.SetCornerCheck(true, index);
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("MainCamera"))
+        else
         {
             spawnEnemy.SetCornerCheck(false, index);
         }
+    }
+
+    private bool IsInFrustum(Camera cam, Vector3 position)
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cam);
+        return GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds);
     }
 
 }

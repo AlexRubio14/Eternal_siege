@@ -30,7 +30,12 @@ public class MiniBoss : Enemy
         CircleLerp();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    protected override void Die()
+    {
+        base.Die();
+    }
+
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.CompareTag("Player") && collision.gameObject == currentTarget)
         {
@@ -42,7 +47,8 @@ public class MiniBoss : Enemy
     {
         if (timeCd <= 0 && !startAttack)
         {
-            Instantiate(attackCircle, transform);
+            GameObject attackArea = Instantiate(attackCircle, transform);
+            attackArea.transform.position = new Vector3(transform.position.x, -2.5f, transform.position.z);
             animator.SetBool("Attack", true);
             canMove = false;
             startAttack = true;
@@ -52,7 +58,7 @@ public class MiniBoss : Enemy
 
     private void Attack()
     {
-        transform.GetChild(1).gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        transform.GetChild(1).gameObject.GetComponent<SphereCollider>().enabled = true;
         timeCd = cd;
         animator.SetBool("Attack", false);
         canMove = true;

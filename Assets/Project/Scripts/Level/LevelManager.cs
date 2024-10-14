@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<int> quantity;
     [SerializeField] private int initQuantity;
 
+    [SerializeField] private int bossSpawnTime;
+
     private float[] totalOfEnemies;
     private float[] spawnTime;
     private float[] spawnEnemyTime;
@@ -65,6 +67,11 @@ public class LevelManager : MonoBehaviour
                 ActiveEvent(i);
             }
             MinuteChange();
+
+            if(time > bossSpawnTime * 60)
+            {
+                SpawnBoss();
+            }
         }
     }
 
@@ -116,6 +123,11 @@ public class LevelManager : MonoBehaviour
     public void SpawnMiniBoss()
     {
         enemy.CreateEnemy(3);
+    }
+
+    public void SpawnBoss()
+    {
+        enemy.CreateEnemy(4);
     }
 
     public int GetTime()

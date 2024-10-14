@@ -22,6 +22,11 @@ public class ShotEnemy : Enemy
         time += Time.deltaTime;
     }
 
+    protected override void Die()
+    {
+        base.Die();
+    }
+
     private void CheckIfCanShoot()
     {
         if (time > maxTime && target != null)
@@ -33,11 +38,11 @@ public class ShotEnemy : Enemy
     private void Shoot()
     {
         GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.identity);
-        _bullet.GetComponent<Rigidbody2D>().velocity = (currentTarget.transform.position - transform.localPosition).normalized * bulletSpeed * Time.deltaTime;
+        _bullet.GetComponent<Rigidbody>().velocity = (currentTarget.transform.position - transform.localPosition).normalized * bulletSpeed * Time.deltaTime;
         time = 0;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider collision)
     {
         if(collision.CompareTag("Player") && canMove)
         {

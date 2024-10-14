@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    [SerializeField] private float spawnDistance;
+    [SerializeField] private CameraController midPoint;
+
     [Header("Camera")]
     private bool[] cornerCheck;
     Camera cam;
-    Vector2 cameraBorder;
 
     private void Start()
     {
         cam = Camera.main;
-        cameraBorder = new Vector2(cam.aspect * cam.orthographicSize, cam.orthographicSize);
 
         cornerCheck = new bool[4];
         for (int i = 0; i < cornerCheck.Length; i++)
@@ -28,10 +31,9 @@ public class SpawnEnemy : MonoBehaviour
 
         newEnemy.GetComponent<Enemy>().SetTarget(PlayersManager.instance.GetPlayersList());
 
-        Vector3 spawnPosition = GenerateRandomPosition(newEnemy);
+        Vector3 spawnPosition = GenerateRandomPosition();
 
-        spawnPosition += cam.transform.position;
-        spawnPosition.z = 0;
+        spawnPosition.y = -2.5f;
 
         newEnemy.transform.localPosition = spawnPosition;
         newEnemy.transform.SetParent(this.gameObject.transform);
@@ -39,58 +41,57 @@ public class SpawnEnemy : MonoBehaviour
         EnemyManager.instance.GetEnemies().Add(newEnemy);
     }
 
-    private Vector3 GenerateRandomPosition(GameObject enemy)
+    private Vector3 GenerateRandomPosition()
     {
-        Vector3 position = new Vector3();
-        float f = 0;
-        BoxCollider2D boxCollder2D = enemy.GetComponent<BoxCollider2D>();
+        float radians = SetAngle() * Mathf.Deg2Rad;
 
-        if (UnityEngine.Random.value > 0.5f) // random left right
-        {
-            position.x = SetFirstPosition(0, 1, cameraBorder.x);
-            f = SetSecondPosition(2, 3);
-            position.y = cameraBorder.y * f;
+        float xOffset = Mathf.Cos(radians) * spawnDistance;
+        float zOffset = Mathf.Sin(radians) * spawnDistance;
 
-            if (f < 0)
-                position.y -= boxCollder2D.bounds.size.y;
-            else
-                position.y += boxCollder2D.bounds.size.y;
-        }
-        else // random top down
-        {
-            position.y = SetFirstPosition(2, 3, cameraBorder.y);
-            f = SetSecondPosition(0, 1);
-            position.x = cameraBorder.x * f;
+        Vector3 spawnPosition = new Vector3(midPoint.GetMidPoint().position.x + xOffset, midPoint.GetMidPoint().position.y, midPoint.GetMidPoint().position.z + zOffset);
 
-            if (f < 0)
-                position.x -= boxCollder2D.bounds.size.x;
-            else
-                position.x += boxCollder2D.bounds.size.x;
-        }
-
-        position.z = 0;
-
-        return position;
+        if (spawnPosition.z < -26 || spawnPosition.z > 25 || spawnPosition.x < -50 || spawnPosition.x > 50)
+            spawnPosition = Vector3.zero;
+        return spawnPosition;
     }
 
-    private float SetFirstPosition(int index1, int index2, float _cameraBorder)
+    private float SetAngle()
     {
-        if (cornerCheck[index1]) //left (0), down(2)
-            return UnityEngine.Random.Range(_cameraBorder / 2, _cameraBorder);
-        else if (cornerCheck[index2]) //rigt (1), top(3)
-            return UnityEngine.Random.Range(-_cameraBorder, -(_cameraBorder / 2));
-        else
-            return UnityEngine.Random.Range(-_cameraBorder, _cameraBorder);
-    }
+        // 0 = left, 1 = right, 2 = down, 3 = top
+        if (cornerCheck[0])
+        {
+            if(cornerCheck[2])
+            {
+                return Random.Range(90f, 0f);
+            }
+            else if(cornerCheck[3])
+            {
+                return Random.Range(0f, -90f);
+            }
+            return Random.Range(90f, -90f);
+        }
+        else if (cornerCheck[1])
+        {
+            if (cornerCheck[2])
+            {
+                return Random.Range(90f, 180f);
+            }
+            else if (cornerCheck[3])
+            {
+                return Random.Range(180f, 270f);
+            }
+            return Random.Range(90f, 270f);
+        }
+        else if (cornerCheck[2])
+        {
+            return Random.Range(0f, 180f);
+        }
+        else if (cornerCheck[3])
+        {
+            return Random.Range(0f, -180f);
+        }
 
-    private float SetSecondPosition(int index1, int index2)
-    {
-        if (cornerCheck[index1]) //left(0), down(2)
-            return 1;
-        else if (cornerCheck[index2]) // right(1), top(3)
-            return -1;
-        else
-            return UnityEngine.Random.value > 0.5f ? -1f : 1f;
+        return Random.Range(0f, 360f);
     }
 
     public void SetCornerCheck(bool state, int _index)

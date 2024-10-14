@@ -5,23 +5,27 @@ using UnityEngine;
 public class ArrowDirection : MonoBehaviour
 {
     [SerializeField] private float corner;
-    private Vector2 objective;
+    private Vector3 objective;
     private void Update()
     {
         if(gameObject.activeSelf && PlayersManager.instance.GetPlayersList().Count > 0)
         {
-            Vector2 direction = (objective - (Vector2)PlayersManager.instance.GetPlayersList()[0].transform.localPosition).normalized;
+            Vector3 playerPosition = new Vector3(PlayersManager.instance.GetPlayersList()[0].transform.position.x, 0,
+                PlayersManager.instance.GetPlayersList()[0].transform.position.z);
 
-            Vector3 _position = (Vector2)PlayersManager.instance.GetPlayersList()[0].transform.localPosition + (direction * corner);
+            Vector3 direction = (objective - playerPosition).normalized;
+
+            Vector3 _position = playerPosition + (direction * corner);
 
             transform.up = -direction;
 
-            transform.position = _position;
+            transform.position = new Vector3(_position.x, 0, _position.z);
         }
     }
 
-    public void SetObjective(Vector2 _objective)
+    public void SetObjective(Vector3 _objective)
     {
         objective = _objective;
+        objective.y = 0;
     }
 }

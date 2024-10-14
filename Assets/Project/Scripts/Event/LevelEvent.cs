@@ -78,18 +78,18 @@ public abstract class LevelEvent : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider othern)
     {
-        if(collision.CompareTag("Player") && collision is CapsuleCollider2D)
+        if(othern.CompareTag("Player") && othern is CapsuleCollider)
         {
             state = eventState.Starting;
             currentPlayersIn++;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.CompareTag("Player") && collision is CapsuleCollider2D)
+        if (other.CompareTag("Player") && other is CapsuleCollider)
         {
             currentPlayersIn--;
             if(currentPlayersIn <= 0) 

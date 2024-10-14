@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
 
         currentHealth = maxHealth;
 
-
         transform.position = PlayersManager.instance.posToSpawnList[0].position;
     }
 
@@ -162,6 +161,7 @@ public class PlayerController : MonoBehaviour
 
         currentHealth -= damage;
 
+
         playerInformation.SetHPBar(currentHealth / maxHealth);
 
         ChangeState(State.INVENCIBILITY);
@@ -198,8 +198,6 @@ public class PlayerController : MonoBehaviour
 
         playerInformation.SetHPBar(currentHealth / maxHealth);
 
-        Debug.Log(currentHealth);
-
         ChangeState(State.INVENCIBILITY);
         
         StartCoroutine(StopInvencibility());
@@ -210,11 +208,11 @@ public class PlayerController : MonoBehaviour
         return currentState;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject.CompareTag("Enemy") && other is BoxCollider)
+        if (collision.gameObject.CompareTag("Enemy") && collision.collider is BoxCollider)
         {
-            ReceiveDamage(other.gameObject.GetComponent<Enemy>().GetDamage());
+            ReceiveDamage(collision.gameObject.GetComponent<Enemy>().GetDamage());
         }
     }
 

@@ -68,24 +68,23 @@ public class SurviveZone : MonoBehaviour
         timer.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "The event ends in: " +  minutes.ToString("00") + ":" + seconds.ToString("00");
         if (timeLose < 0)
         {
-            //Derrota
             timer.SetActive(false);
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider othern)
     {
-        if (collision.CompareTag("Player") && collision is CapsuleCollider2D)
+        if (othern.CompareTag("Player") && othern is CapsuleCollider)
         {
             currentPlayersIn++;
             state = surviveState.In;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.CompareTag("Player") && collision is CapsuleCollider2D)
+        if (other.CompareTag("Player") && other is CapsuleCollider)
         {
             currentPlayersIn--;
             if (currentPlayersIn <= 0)
