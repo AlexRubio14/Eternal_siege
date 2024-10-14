@@ -8,6 +8,7 @@ public class Upgrade : MonoBehaviour
     [SerializeField] private int cost;
     [SerializeField] private int costSum;
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private MoneyMesage moneyMesage;
     private bool maxed;
 
     private void Start()
@@ -40,7 +41,7 @@ public class Upgrade : MonoBehaviour
             if(!bar.transform.GetChild(i).gameObject.activeSelf)
             {
                 bar.transform.GetChild(i).gameObject.SetActive(true);
-                MoneyManager.instance.SetText();
+                moneyMesage.SetText();
                 if (bar.transform.GetChild(bar.transform.childCount - 1).gameObject.activeSelf)
                 {
                     maxed = true;

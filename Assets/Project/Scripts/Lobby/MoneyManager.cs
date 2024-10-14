@@ -8,27 +8,18 @@ public class MoneyManager : MonoBehaviour
     public static MoneyManager instance;
 
     [SerializeField] private int currentMoney;
-    [SerializeField] private TextMeshProUGUI moneyText;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (instance == null)
         {
-            Destroy(this);
-            return;
+            instance = this;
+            DontDestroyOnLoad(gameObject);  
         }
-
-        instance = this;
-    }
-
-    private void Start()
-    {
-        SetText();
-    }
-
-    public void SetText()
-    {
-        moneyText.text = currentMoney.ToString();
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public int GetCurrentMoney()

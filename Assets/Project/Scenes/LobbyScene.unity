@@ -1086,6 +1086,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 880315700}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &102964599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,6 +2253,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 1016970022}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &268312552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,6 +2675,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 1422628059}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &341576882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,6 +2975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371905055}
   - component: {fileID: 371905057}
+  - component: {fileID: 371905058}
   - component: {fileID: 371905056}
   m_Layer: 5
   m_Name: MoneyText
@@ -3097,6 +3101,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371905054}
   m_CullTransparentMesh: 1
+--- !u!114 &371905058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371905054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4e52bb2afa7b34da65e4cde2f59f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &413622493 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 131680, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
@@ -4205,6 +4221,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 1448352045}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &581235031
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,6 +4317,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 69540456}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &591738850
 GameObject:
   m_ObjectHideFlags: 0
@@ -5484,6 +5502,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 1905829268}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &758505235
 GameObject:
   m_ObjectHideFlags: 0
@@ -9433,6 +9452,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311008477}
   m_CullTransparentMesh: 1
+--- !u!1 &1317006264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1317006266}
+  - component: {fileID: 1317006265}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1317006265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317006264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6386c952ffc318446b4be3be5a04a7ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1317006266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317006264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5339868, y: 1.4058971, z: 5.7724466}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1326832207
 GameObject:
   m_ObjectHideFlags: 0
@@ -9540,7 +9603,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMoney: 10000
-  moneyText: {fileID: 371905056}
 --- !u!4 &1334105326
 Transform:
   m_ObjectHideFlags: 0
@@ -10320,6 +10382,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 1152565807}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &1432082748
 GameObject:
   m_ObjectHideFlags: 0
@@ -13374,6 +13437,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 1615530361}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &1865273132
 GameObject:
   m_ObjectHideFlags: 0
@@ -15396,6 +15460,7 @@ MonoBehaviour:
   cost: 100
   costSum: 50
   _text: {fileID: 1443529443}
+  moneyMesage: {fileID: 371905058}
 --- !u!1 &2125176767
 GameObject:
   m_ObjectHideFlags: 0

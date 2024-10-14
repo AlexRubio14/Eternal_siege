@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class SetInformation : MonoBehaviour
 {
@@ -40,9 +41,13 @@ public class SetInformation : MonoBehaviour
         {
             time -= Time.deltaTime;
             playGame.text = "The game starts in " + Mathf.FloorToInt(time).ToString();
-            if(time < 0)
+            if(time <= 0)
             {
-                SceneManager.LoadScene("AlexScene");
+                for(int i = 0; i < players.Count; i++) 
+                {
+                    PlayerLobbyManager.instance.SetController(players[i].GetPlayerSelected());
+                }
+                SceneManager.LoadScene("GamePlay3DScene");
             }
         }
         if(players.Count > 1)
