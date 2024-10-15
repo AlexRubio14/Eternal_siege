@@ -20,12 +20,15 @@ public class RoguelikeCanvas : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void FadeIn()
+    public void LevelUp()
     {
+        InputController.Instance.ChangeActionMap("RoguelikeMenu");
         animator.Play("FadeIn");
+
+
     }
 
-    public void FadeOut()
+    public void ReturnToGameplay()
     {
         animator.Play("FadeOut");
     }
