@@ -230,6 +230,7 @@ MonoBehaviour:
   maxHealth: 0
   invencibilityTime: 1.5
   reviveRadius: {fileID: 5742334290024206505}
+  isShielding: 0
 --- !u!114 &-5727511496464818337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +344,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ab8f63bc-93ef-4729-89ab-16e20187647d
     m_ActionName: Lobby/JoysitckDown[/XInputControllerWindows/leftStick/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78e6694d-4986-4350-a18a-51bd78a6d478
+    m_ActionName: RoguelikeMenu/New action
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -360,9 +365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e3b5fd7f93ae24cad3ddda2b30632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armor: 0
-  health: 100
-  attackSpeed: 1.5
+  armor: 5
+  health: 500
+  attackSpeed: 2
   movementSpeed: 14000
   pickUpRadius: 50
   abilityCooldown: 10
@@ -730,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 13717432, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -9200170044008703519, guid: d399ace02a564fc4aaeb28815aad7625, type: 3}
+      objectReference: {fileID: -6916952600793823775, guid: d399ace02a564fc4aaeb28815aad7625, type: 3}
     - target: {fileID: 13717432, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

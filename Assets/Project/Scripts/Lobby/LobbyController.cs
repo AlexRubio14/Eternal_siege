@@ -30,6 +30,7 @@ public class LobbyController : MonoBehaviour
         SetInitValues();
         SetInformationValues();
         ActiveValues();
+        textInformation.GetComponent<SetCharacterText>().SetText(currentChamp);
     }
 
     private void SetInitValues()
