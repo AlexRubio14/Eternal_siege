@@ -10,7 +10,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] private float distance;
     [SerializeField] private bool isAbility;
 
-    private Vector2 direction;
+    private Vector3 direction;
     private Rigidbody rb;
 
     private void Awake()
@@ -36,9 +36,9 @@ public class Arrow : MonoBehaviour
             rb.velocity = direction * speed * Time.deltaTime * TimeManager.instance.GetPaused();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && collision is BoxCollider2D)
+        if (collision.gameObject.CompareTag("Enemy") && collision is BoxCollider)
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             damage *= RogueliteManager.instance.GetDamageMultiplier();
@@ -51,12 +51,14 @@ public class Arrow : MonoBehaviour
     {
         if (EnemyManager.instance.GetEnemies().Count > 0)
         {
-            Vector3 nearestEnemyDirection;
-            Vector3 nearestEnemyPosition;
+            Vector2 nearestEnemyDirection;
+            Vector2 nearestEnemyPosition;
 
-            EnemyManager.instance.GetNearestEnemyDirection(transform.position, out nearestEnemyDirection, out nearestEnemyPosition);
-            if ((nearestEnemyPosition - new Vector3(transform.position.x, 0, transform.position.z)).magnitude < distance)
-                direction = nearestEnemyDirection;
+            Vector2 arrowPosition = new Vector2(transform.localPosition.x, transform.localPosition.z);
+
+            EnemyManager.instance.GetNearestEnemyDirection(arrowPosition, out nearestEnemyDirection, out nearestEnemyPosition);
+            if ((nearestEnemyPosition - arrowPosition).magnitude < distance)
+                direction = new Vector3(nearestEnemyDirection.x, 0, nearestEnemyDirection.y);
             else
                 direction = Vector3.right;
         }

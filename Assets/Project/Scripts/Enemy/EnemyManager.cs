@@ -35,19 +35,19 @@ public class EnemyManager : MonoBehaviour
         return enemies;
     }
 
-    public void GetNearestEnemyDirection(Vector3 position, out Vector3 _direction, out Vector3 _enemy)
+    public void GetNearestEnemyDirection(Vector2 position, out Vector2 _direction, out Vector2 _enemy)
     {
-        Vector3 direction = (enemies[0].transform.localPosition - position);
-        Vector3 enemyPosition = enemies[0].transform.localPosition;
+        Vector2 direction = new Vector2(enemies[0].transform.localPosition.x - position.x, enemies[0].transform.localPosition.z - position.y);
+        Vector2 enemyPosition = new Vector2(enemies[0].transform.localPosition.x, enemies[0].transform.localPosition.z);
 
         for (int i = 1; i < enemies.Count; i++)
         {
-            Vector3 distancePosition1 = enemies[i].transform.localPosition - position;
+            Vector2 distancePosition1 = new Vector2(enemies[i].transform.localPosition.x - position.x, enemies[i].transform.localPosition.z - position.y);
 
             if(distancePosition1.magnitude < direction.magnitude)
             {
                 direction = distancePosition1;
-                enemyPosition = enemies[i].transform.localPosition;
+                enemyPosition = new Vector2(enemies[0].transform.localPosition.x, enemies[0].transform.localPosition.z);
             }
         }
         _direction = direction.normalized;
