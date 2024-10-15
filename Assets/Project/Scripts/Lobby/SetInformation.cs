@@ -42,7 +42,7 @@ public class SetInformation : MonoBehaviour
         {
             time -= Time.deltaTime;
             playGame.text = "The game starts in " + Mathf.FloorToInt(time).ToString();
-            if(time <= 0)
+            if(time <= 1)
             {
                 for(int i = 0; i < players.Count; i++) 
                 {

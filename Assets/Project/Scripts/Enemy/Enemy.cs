@@ -174,7 +174,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void GenerateExperienceBall()
     {
-        GameObject _experienceBall = Instantiate(experienceBall, new Vector3(transform.localPosition.x, transform.localPosition.y, -2.5f), Quaternion.identity);
+        GameObject _experienceBall = Instantiate(experienceBall, new Vector3(transform.localPosition.x, -2.5f, transform.localPosition.z), Quaternion.identity);
         _experienceBall.GetComponent<ExperienceBall>().SetExperience(experience);
     }
     protected virtual void Die()
