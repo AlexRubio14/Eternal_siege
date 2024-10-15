@@ -38,7 +38,7 @@ public class Archer : Character
     {
         if (abilityTimer <= 0f)
         {
-            Instantiate(abilityPrefab, transform);            
+            Instantiate(abilityPrefab, firingPoint.position, Quaternion.identity);            
             abilityTimer = abilityCooldown;
         }
     }
