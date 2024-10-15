@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class AbilityArrow : MonoBehaviour
 {
     [SerializeField] private float speed;
-
     [SerializeField] private float lifeTime;
-
     [SerializeField] private float damage;
-
     [SerializeField] private float distance;
 
     private Vector2 direction;
@@ -17,26 +14,12 @@ public class Arrow : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>()  ;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
         Destroy(gameObject, lifeTime);
-
-        if (EnemyManager.instance.GetEnemies().Count > 0)
-        {
-            Vector2 nearestEnemyDirection;
-            Vector2 nearestEnemyPosition;
-
-            EnemyManager.instance.GetNearestEnemyDirection(transform.position, out nearestEnemyDirection, out nearestEnemyPosition);
-            if ((nearestEnemyPosition - new Vector2(transform.position.x, transform.position.y)).magnitude < distance)
-                direction = nearestEnemyDirection;
-            else
-                direction = Vector2.right;
-        }
-        else
-            direction = Vector2.right;
 
         transform.up = direction;
     }

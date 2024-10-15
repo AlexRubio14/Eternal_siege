@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TankAttack : MonoBehaviour
@@ -16,25 +17,25 @@ public class TankAttack : MonoBehaviour
         Vector3 direction;
         if (EnemyManager.instance.GetEnemies().Count > 0)
         {
-            Vector2 nearestEnemyDirection;
-            Vector2 nearestEnemyPosition;
+            Vector3 nearestEnemyDirection;
+            Vector3 nearestEnemyPosition;
 
             EnemyManager.instance.GetNearestEnemyDirection(transform.position, out nearestEnemyDirection, out nearestEnemyPosition);
-            if ((nearestEnemyPosition - new Vector2(transform.position.x, transform.position.y)).magnitude < distance)
+            if ((nearestEnemyPosition - new Vector3(transform.position.x, 0, transform.position.z)).magnitude < distance)
                 direction = nearestEnemyDirection;
             else
-                direction = Vector2.right;
+                direction = Vector3.right;
         }
         else
-            direction = Vector2.right;
+            direction = Vector3.right;
 
         transform.localPosition = direction * offset;
         transform.up = direction;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && collision is BoxCollider2D)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.ReceiveDamage(damage);

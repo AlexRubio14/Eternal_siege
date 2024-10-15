@@ -36,9 +36,6 @@ public class Archer : Character
 
     protected override void BasicAbility()
     {
-        if (playerController.GetCurrentState() == PlayerController.State.KNOCKBACK || playerController.GetCurrentState() == PlayerController.State.DEAD)
-            return;
-
         if (abilityTimer <= 0f)
         {
             Instantiate(abilityPrefab, transform);            
@@ -82,13 +79,6 @@ public class Archer : Character
         if (abilityTimer > 0f)
         {
             abilityTimer -= Time.deltaTime;
-            if (abilityTimer < abilityCooldown)
-            {
-                attackSpeed = baseAttackSpeed;
-                doubleShooting = false;
-                movementSpeed = baseMovementSpeed;
-                playerController.SetSpeed(movementSpeed);
-            }
         }
     }
 
