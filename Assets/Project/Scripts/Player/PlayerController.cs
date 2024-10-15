@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private PlayerInformation playerInformation;
 
+    [SerializeField] private bool isShielding;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,6 +41,8 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
 
         transform.position = PlayersManager.instance.posToSpawnList[0].position;
+
+        isShielding = false;
     }
 
     void Start()
@@ -204,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && collision.collider is BoxCollider)
+        if (collision.gameObject.CompareTag("Enemy") && collision.collider is BoxCollider && !isShielding)
         {
             ReceiveDamage(collision.gameObject.GetComponent<Enemy>().GetDamage());
         }
@@ -245,5 +249,10 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerInformation(PlayerInformation _playerInformation)
     {
         playerInformation = _playerInformation;
+    }
+
+    public void SetIsShielding(bool _isShielding)
+    {
+        isShielding = _isShielding;
     }
 }

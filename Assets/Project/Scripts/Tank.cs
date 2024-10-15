@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Tank : Character
 {
-    [SerializeField] private CapsuleCollider attackCollider;
-    [SerializeField] private MeshRenderer attackMeshRenderer;
+    [SerializeField] private GameObject attackCollider;
 
     [SerializeField] private float abilityDuration;
     [SerializeField] private GameObject abilityCollider;
@@ -45,9 +44,8 @@ public class Tank : Character
     #region ATTACKS & ABILITIES
     protected override void BasicAttack()
     {
-        attackCollider.enabled = true;
-        attackMeshRenderer.enabled = true;
-        Invoke("DisableAttackCollider", 0.2f);
+        attackCollider.SetActive(true);
+        Invoke("DisableAttackCollider", 0.15f);
     }
 
     protected override void BasicAbility()
@@ -55,6 +53,7 @@ public class Tank : Character
         if (abilityTimer <= 0f && !isUltimateActive)
         {
             isAbiltyActive = true;
+            playerController.SetIsShielding(true);
             interpolationTime = 0f;
             movementSpeed *= abilitySpeedMultiplier;
             playerController.SetSpeed(movementSpeed);
@@ -98,6 +97,7 @@ public class Tank : Character
             if (abilityTimer < abilityCooldown && isAbiltyActive)
             {
                 isAbiltyActive = false;
+                playerController.SetIsShielding(false);
                 movementSpeed = baseMovementSpeed;
                 playerController.SetSpeed(movementSpeed);
                 interpolationTime = 0f;
@@ -113,6 +113,7 @@ public class Tank : Character
             if (ultimateTimer < ultimateCooldown)
             {
                 isUltimateActive = false;
+                playerController.ChangeState(PlayerController.State.MOVING);
                 movementSpeed = baseMovementSpeed;
                 playerController.SetSpeed(movementSpeed);
             }
@@ -122,8 +123,7 @@ public class Tank : Character
 
     private void DisableAttackCollider()
     {
-        attackCollider.enabled = false;
-        attackMeshRenderer.enabled = false;
+        attackCollider.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)

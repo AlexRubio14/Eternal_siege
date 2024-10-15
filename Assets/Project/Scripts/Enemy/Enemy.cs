@@ -166,7 +166,7 @@ public abstract class Enemy : MonoBehaviour
             canMove = false;
             rgbd.velocity = Vector3.zero;
             GenerateExperienceBall();
-            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
             EnemyManager.instance.GetEnemies().Remove(gameObject);
             Invoke("Die", animator.GetCurrentAnimatorStateInfo(0).length / animationDivide);
         }
