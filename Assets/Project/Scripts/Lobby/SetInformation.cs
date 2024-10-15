@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -45,7 +46,7 @@ public class SetInformation : MonoBehaviour
             {
                 for(int i = 0; i < players.Count; i++) 
                 {
-                    PlayerLobbyManager.instance.SetController(players[i].GetPlayerSelected());
+                    PlayerLobbyManager.instance.SetController(players[i].GetPlayerSelected(), players[i].GetComponent<PlayerInput>().devices[0]);
                 }
                 SceneManager.LoadScene("GamePlay3DScene");
             }
