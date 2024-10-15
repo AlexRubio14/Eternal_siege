@@ -38,7 +38,9 @@ public class ShotEnemy : Enemy
     private void Shoot()
     {
         GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.identity);
-        _bullet.GetComponent<Rigidbody>().velocity = (currentTarget.transform.position - transform.localPosition).normalized * bulletSpeed * Time.deltaTime;
+        _bullet.GetComponent<Rigidbody>().velocity = (currentTarget.transform.position - transform.localPosition).normalized * bulletSpeed 
+            * Time.deltaTime * TimeManager.instance.GetPaused();
+
         time = 0;
     }
 

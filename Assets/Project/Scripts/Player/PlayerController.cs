@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         movementDirection = new Vector3(inputMovementDirection.x, 0, inputMovementDirection.y);
-        rb.AddForce(movementDirection * speed * Time.deltaTime, ForceMode.Force);
+        rb.AddForce(movementDirection * speed * Time.deltaTime * TimeManager.instance.GetPaused(), ForceMode.Force);
     }
 
     private void Rotate()

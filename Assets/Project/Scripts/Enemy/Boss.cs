@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniBoss : Enemy
+public class Boss : Enemy
 {
     [Header("SmashAttack")]
     [SerializeField] private float cd;

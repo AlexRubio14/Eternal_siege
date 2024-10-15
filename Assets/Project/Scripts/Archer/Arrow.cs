@@ -31,9 +31,9 @@ public class Arrow : MonoBehaviour
     private void FixedUpdate()
     {
         if(isAbility)
-            rb.velocity = transform.up * speed * Time.deltaTime;
+            rb.velocity = transform.up * speed * Time.deltaTime * TimeManager.instance.GetPaused();
         else
-            rb.velocity = direction * speed * Time.deltaTime;
+            rb.velocity = direction * speed * Time.deltaTime * TimeManager.instance.GetPaused();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
