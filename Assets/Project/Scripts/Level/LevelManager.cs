@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -18,6 +15,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int initQuantity;
 
     [SerializeField] private int bossSpawnTime;
+
 
     private float[] totalOfEnemies;
     private float[] spawnTime;

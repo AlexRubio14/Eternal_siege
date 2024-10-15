@@ -22,10 +22,9 @@ public class RoguelikeCanvas : MonoBehaviour
 
     public void LevelUp()
     {
+        TimeManager.instance.PauseTime();
         InputController.Instance.ChangeActionMap("RoguelikeMenu");
         animator.Play("FadeIn");
-
-
     }
 
     public void ReturnToGameplay()

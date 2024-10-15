@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null || instance != this)
+        if(instance != null && instance != this)
         {
             Destroy(this);
             return;

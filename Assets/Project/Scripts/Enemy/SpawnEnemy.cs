@@ -14,6 +14,8 @@ public class SpawnEnemy : MonoBehaviour
     private bool[] cornerCheck;
     Camera cam;
 
+    [SerializeField] private Transform midPointTransform;
+
     private void Start()
     {
         cam = Camera.main;
@@ -48,7 +50,7 @@ public class SpawnEnemy : MonoBehaviour
         float xOffset = Mathf.Cos(radians) * spawnDistance;
         float zOffset = Mathf.Sin(radians) * spawnDistance;
 
-        Vector3 spawnPosition = new Vector3(midPoint.GetMidPoint().position.x + xOffset, midPoint.GetMidPoint().position.y, midPoint.GetMidPoint().position.z + zOffset);
+        Vector3 spawnPosition = new Vector3(midPointTransform.position.x + xOffset, midPointTransform.position.y, midPointTransform.position.z + zOffset);
 
         if (spawnPosition.z < -26 || spawnPosition.z > 25 || spawnPosition.x < -50 || spawnPosition.x > 50)
             spawnPosition = Vector3.zero;
