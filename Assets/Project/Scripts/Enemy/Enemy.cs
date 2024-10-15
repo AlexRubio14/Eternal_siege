@@ -80,7 +80,7 @@ public abstract class Enemy : MonoBehaviour
     private void MoveEnemy()
     {
         Vector3 combinedDirection = (direction.normalized + separationForce).normalized;
-        Vector3 movement = combinedDirection * speed * Time.deltaTime;
+        Vector3 movement = combinedDirection * speed * Time.deltaTime * TimeManager.instance.GetPaused();
         rgbd.AddForce(movement, ForceMode.Force);
     }
 

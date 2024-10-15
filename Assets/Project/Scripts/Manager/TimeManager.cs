@@ -6,7 +6,7 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
 
-    private bool paused;
+    private float paused;
 
     private void Awake()
     {
@@ -19,20 +19,20 @@ public class TimeManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(instance);
 
-        paused = false;
+        paused = 1f;
     }
 
     public void PauseTime()
     {
-        paused = true;
+        paused = 0.0f;
     }
 
     public void ResumeTime()
     {
-        paused = false;
+        paused = 1f;
     }
 
-    public bool GetPaused()
+    public float GetPaused()
     {
         return paused;
     }
