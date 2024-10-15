@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerLobbyManager : MonoBehaviour
 {
     public static PlayerLobbyManager instance;
 
     private List<int> playersList = new List<int>();
+
+    private List<InputDevice> inputs = new List<InputDevice>();
 
     private void Awake()
     {
@@ -21,13 +24,19 @@ public class PlayerLobbyManager : MonoBehaviour
         }
     }
 
-    public void SetController(int typePlayer)
+    public void SetController(int typePlayer, InputDevice input)
     {
         playersList.Add(typePlayer);
+        inputs.Add(input);
     }
 
     public List<int> GetTypeCharacter()
     {
         return playersList;
+    }
+
+    public List<InputDevice> GetInputDevice()
+    {
+        return inputs;
     }
 }

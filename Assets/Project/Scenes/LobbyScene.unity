@@ -8843,7 +8843,7 @@ MonoBehaviour:
   - {fileID: 2125176767}
   - {fileID: 268324143}
   playGame: {fileID: 961163961}
-  maxTime: 5
+  maxTime: 2
   secondPlayerCharacter: {fileID: 185374758}
   upgrades: {fileID: 20488549}
   texts:

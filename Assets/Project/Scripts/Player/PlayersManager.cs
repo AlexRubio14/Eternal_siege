@@ -55,6 +55,7 @@ public class PlayersManager : MonoBehaviour
     private void AddPlayer(int index)
     {
         GameObject player = Instantiate(characters[PlayerLobbyManager.instance.GetTypeCharacter()[index]]);
+        player.GetComponent<PlayerInput>().SwitchCurrentControlScheme(PlayerLobbyManager.instance.GetInputDevice()[index]);
         player.transform.position = posToSpawnList[index].position;
         playersList.Add(player);
         Collider collider = player.GetComponent<Collider>();
