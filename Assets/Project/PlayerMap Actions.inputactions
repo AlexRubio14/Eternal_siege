@@ -276,6 +276,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "RoguelikeMenu",
+            "id": "f9c4f3b0-445f-4e47-ba3f-1e737ce56de3",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "78e6694d-4986-4350-a18a-51bd78a6d478",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8591f75e-3bce-481d-91b1-a1e64ce9cdfa",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

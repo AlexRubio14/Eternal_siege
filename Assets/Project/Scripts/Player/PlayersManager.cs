@@ -13,7 +13,7 @@ public class PlayersManager : MonoBehaviour
 
     [SerializeField] public List<Transform> posToSpawnList;
 
-    [SerializeField] CameraController cameraController;
+    [SerializeField] private CameraController cameraController;
 
 
     private void Awake()

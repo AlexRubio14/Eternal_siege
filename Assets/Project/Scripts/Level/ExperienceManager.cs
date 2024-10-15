@@ -29,6 +29,12 @@ public class ExperienceManager : MonoBehaviour
         experience = 0;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.N)) {
+            SetExperience(experience + 20);
+        }
+    }
     public void SetExperience(float _experience)
     {
         experience += _experience;
@@ -45,6 +51,7 @@ public class ExperienceManager : MonoBehaviour
 
             SetExperience(0);
             //Selecionar cartas y parar tiempo
+            RoguelikeCanvas.Instance.LevelUp();
 
         }
         for (int i = 0; i < playerInformation.Count; i++)
