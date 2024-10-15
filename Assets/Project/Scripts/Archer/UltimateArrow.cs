@@ -13,7 +13,7 @@ public class UltimateArrow : MonoBehaviour
 
     [SerializeField] private float distance;
 
-    private Vector2 direction;
+    private Vector3 direction;
     private Rigidbody rb;
 
     private void Awake()
@@ -26,12 +26,14 @@ public class UltimateArrow : MonoBehaviour
         Destroy(gameObject, lifeTime);
         if (EnemyManager.instance.GetEnemies().Count > 0)
         {
-            Vector3 nearestEnemyDirection;
-            Vector3 nearestEnemyPosition;
+            Vector2 nearestEnemyDirection;
+            Vector2 nearestEnemyPosition;
 
-            EnemyManager.instance.GetNearestEnemyDirection(transform.position, out nearestEnemyDirection, out nearestEnemyPosition);
-            if ((nearestEnemyPosition - new Vector3(transform.position.x, 0, transform.position.z)).magnitude < distance)
-                direction = nearestEnemyDirection;
+            Vector2 arrowPosition = new Vector2(transform.localPosition.x, transform.localPosition.z);
+
+            EnemyManager.instance.GetNearestEnemyDirection(arrowPosition, out nearestEnemyDirection, out nearestEnemyPosition);
+            if ((nearestEnemyPosition - new Vector2(transform.localPosition.x, transform.localPosition.z)).magnitude < distance)
+                direction = new Vector3(nearestEnemyDirection.x, 0, nearestEnemyDirection.y);
             else
                 direction = Vector3.right;
         }
@@ -46,7 +48,7 @@ public class UltimateArrow : MonoBehaviour
         rb.velocity = direction * speed * Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {

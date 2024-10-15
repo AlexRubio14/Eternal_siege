@@ -151,4 +151,4 @@ MonoBehaviour:
   speed: 400
   lifeTime: 3
   damage: 100
-  distance: 5
+  distance: 20

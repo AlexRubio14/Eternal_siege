@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933720109609930389}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 1, z: 2.82}
   m_LocalScale: {x: 1, y: 1.6169, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5597851092650213768}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!33 &6255508331433478918
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -296,6 +296,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ab8f63bc-93ef-4729-89ab-16e20187647d
     m_ActionName: Lobby/JoysitckDown[/XInputControllerWindows/leftStick/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78e6694d-4986-4350-a18a-51bd78a6d478
+    m_ActionName: RoguelikeMenu/New action
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
