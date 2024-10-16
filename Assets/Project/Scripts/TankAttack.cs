@@ -6,30 +6,30 @@ public class TankAttack : MonoBehaviour
 
     [SerializeField] private float damage;
 
-    [SerializeField] private float offset;
-    [SerializeField] private float distance;
-    private Vector3 direction;
+    [SerializeField] private float initialZ;
+    [SerializeField] private float finalZ;
+    [SerializeField] private float duration;
+
+    private float timer;
 
     private void OnEnable()
     {
-        //if (EnemyManager.instance.GetEnemies().Count > 0)
-        //{
-        //    Vector2 nearestEnemyDirection;
-        //    Vector2 nearestEnemyPosition;
+        timer = 0;
+        transform.localPosition = new Vector3(
+            transform.localPosition.x,
+            transform.localPosition.y,
+            initialZ);
+    }
 
-        //    Vector2 attackPosition = new Vector2(transform.localPosition.x, transform.localPosition.z);
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        float t = timer / duration;
 
-        //    EnemyManager.instance.GetNearestEnemyDirection(attackPosition, out nearestEnemyDirection, out nearestEnemyPosition);
-        //    if ((nearestEnemyPosition - new Vector2(transform.localPosition.x, transform.localPosition.z)).magnitude < distance)
-        //        direction = new Vector3(nearestEnemyDirection.x, 0, nearestEnemyDirection.y);
-        //    else
-        //        direction = Vector3.right;
-        //}
-        //else
-        //    direction = Vector3.right;
-
-        //transform.localPosition = direction * offset;
-        //transform.up = direction;
+        transform.localPosition = new Vector3(
+            transform.localPosition.x, 
+            transform.localPosition.y,
+            Mathf.Lerp(initialZ, finalZ, t));
     }
 
     private void OnTriggerEnter(Collider collision)
