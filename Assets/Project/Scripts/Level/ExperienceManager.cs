@@ -9,6 +9,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] private float initExperience;
     [SerializeField] private float multiplier;
     [SerializeField] private List<PlayerInformation> playerInformation;
+    [SerializeField] private List<RoguelikeUpgrade> roguelikeUpgrades;
     private int currentLevel;
     private float experience;
 
@@ -58,5 +59,10 @@ public class ExperienceManager : MonoBehaviour
         {
             playerInformation[i].SetExperienceBar(experience / initExperience);
         }
+    }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
     }
 }

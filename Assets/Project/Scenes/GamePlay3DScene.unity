@@ -1669,7 +1669,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4087
+    m_Bits: 4294967295
 --- !u!114 &73260551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5896,6 +5896,10 @@ MonoBehaviour:
   playerInformation:
   - {fileID: 1611249482}
   - {fileID: 1632910871}
+  roguelikeUpgrades:
+  - {fileID: 1310829034}
+  - {fileID: 315681508}
+  - {fileID: 468971564}
 --- !u!1001 &262283881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6954,6 +6958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 315681504}
   - component: {fileID: 315681507}
+  - component: {fileID: 315681508}
   - component: {fileID: 315681506}
   - component: {fileID: 315681505}
   m_Layer: 0
@@ -7028,13 +7033,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 315681508}
+        m_TargetAssemblyTypeName: RoguelikeUpgrade, Assembly-CSharp
+        m_MethodName: ActiveUprade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7078,6 +7083,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315681503}
   m_CullTransparentMesh: 1
+--- !u!114 &315681508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315681503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da9fda055803194b8f226a904fdcd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  lvlUpgrade: 02000000
 --- !u!1001 &318141167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10029,6 +10048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 468971560}
   - component: {fileID: 468971563}
+  - component: {fileID: 468971564}
   - component: {fileID: 468971562}
   - component: {fileID: 468971561}
   m_Layer: 0
@@ -10102,7 +10122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 468971562}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 468971564}
+        m_TargetAssemblyTypeName: RoguelikeUpgrade, Assembly-CSharp
+        m_MethodName: ActiveUprade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &468971562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10141,6 +10173,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468971559}
   m_CullTransparentMesh: 1
+--- !u!114 &468971564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468971559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da9fda055803194b8f226a904fdcd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  lvlUpgrade: 03000000
 --- !u!4 &469920847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 423422, guid: 6878c12c9d7e9d9438adbbffd421590d, type: 3}
@@ -26130,7 +26176,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1310829032}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1310829034}
+        m_TargetAssemblyTypeName: RoguelikeUpgrade, Assembly-CSharp
+        m_MethodName: ActiveUprade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1310829032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26182,6 +26240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  lvlUpgrade: 00000000
 --- !u!1001 &1310960197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33383,6 +33442,10 @@ MonoBehaviour:
   characters:
   - {fileID: 5618392707706961348, guid: 8e59fa15a92d2364e8db5b5d23263497, type: 3}
   - {fileID: 3967785702642562780, guid: 489fe0c01e7a7e94d9375a620fb55c9a, type: 3}
+  roguelikeUpgrades:
+  - {fileID: 1310829034}
+  - {fileID: 315681508}
+  - {fileID: 468971564}
   posToSpawnList:
   - {fileID: 1785261459}
   - {fileID: 64990623}

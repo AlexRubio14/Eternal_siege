@@ -8,6 +8,7 @@ public class PlayersManager : MonoBehaviour
     [SerializeField] private List<GameObject> playersList = new List<GameObject>();
     [SerializeField] private List<PlayerInformation> playerInformation;
     [SerializeField] private List<GameObject> characters;
+    [SerializeField] private List<RoguelikeUpgrade> roguelikeUpgrades;
 
     public static PlayersManager instance;
 
@@ -57,6 +58,13 @@ public class PlayersManager : MonoBehaviour
     {
         GameObject player = Instantiate(characters[PlayerLobbyManager.instance.GetTypeCharacter()[index]]);
         player.GetComponent<PlayerInput>().SwitchCurrentControlScheme(PlayerLobbyManager.instance.GetInputDevice()[index]);
+        for(int i = 0; i< roguelikeUpgrades.Count; i++) 
+        {
+            if (roguelikeUpgrades[i].GetIndex() == index)
+            {
+                roguelikeUpgrades[i].SetPlayer(player);
+            }
+        }
         player.transform.position = posToSpawnList[index].position;
         playersList.Add(player);
         Collider collider = player.GetComponent<Collider>();
