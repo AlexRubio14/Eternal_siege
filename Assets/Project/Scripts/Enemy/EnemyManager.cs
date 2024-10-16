@@ -47,7 +47,7 @@ public class EnemyManager : MonoBehaviour
             if(distancePosition1.magnitude < direction.magnitude)
             {
                 direction = distancePosition1;
-                enemyPosition = new Vector2(enemies[0].transform.localPosition.x, enemies[0].transform.localPosition.z);
+                enemyPosition = new Vector2(enemies[i].transform.localPosition.x, enemies[i].transform.localPosition.z);
             }
         }
         _direction = direction.normalized;
