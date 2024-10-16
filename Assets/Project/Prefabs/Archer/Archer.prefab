@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 6602087518992892664}
   - component: {fileID: 4452658442242151803}
   - component: {fileID: 476511642155033389}
+  - component: {fileID: 84394968812376840}
   - component: {fileID: 517044968066499861}
   - component: {fileID: 2983161915876607815}
   m_Layer: 6
@@ -464,6 +465,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &84394968812376840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618392707706961348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940d33660f3bfd74a856dabb71ef507a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicCape: {fileID: 3644879491550420163, guid: 56bc6fbfee6f94241a42928bdf41a29c, type: 3}
+  distanceToSpawn: 3
+  generateCd: 3
 --- !u!135 &517044968066499861
 SphereCollider:
   m_ObjectHideFlags: 0

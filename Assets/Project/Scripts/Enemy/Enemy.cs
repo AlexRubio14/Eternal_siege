@@ -33,6 +33,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float animationDivide;
     protected Animator animator;
 
+    private bool dead;
+
     protected void Initialize()
     {
         animator = GetComponent<Animator>();
@@ -41,6 +43,7 @@ public abstract class Enemy : MonoBehaviour
         currentHP = maxHP;
         canMove = true;
         direction = Vector3.zero;
+        dead = false;
     }
 
     protected virtual void Update()
@@ -160,10 +163,11 @@ public abstract class Enemy : MonoBehaviour
     public void ReceiveDamage(float amount)
     {
         currentHP -= amount;
-        if (currentHP <= 0)
+        if (currentHP <= 0 && !dead)
         {
             animator.SetBool("Die", true);
             canMove = false;
+            dead = true;
             rgbd.velocity = Vector3.zero;
             GenerateExperienceBall();
             GetComponent<BoxCollider>().enabled = false;

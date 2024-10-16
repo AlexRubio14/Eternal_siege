@@ -23,6 +23,9 @@ public class LevelManager : MonoBehaviour
     private int currentTime;
     private float time;
 
+
+    private bool enemySpawned;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -46,6 +49,8 @@ public class LevelManager : MonoBehaviour
         totalOfEnemies[0] = initQuantity;
         spawnTime[0] = 60 / totalOfEnemies[0];
         spawnEnemyTime[0] = 0;
+
+        enemySpawned = false;
     }
 
     private void Update()
@@ -66,9 +71,10 @@ public class LevelManager : MonoBehaviour
             }
             MinuteChange();
 
-            if(time > bossSpawnTime * 60)
+            if(time > bossSpawnTime * 60 && !enemySpawned)
             {
                 SpawnBoss();
+                enemySpawned = true;
             }
         }
     }
