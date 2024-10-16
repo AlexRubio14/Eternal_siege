@@ -27,19 +27,16 @@ public class Thunder : MonoBehaviour
         if(isGenerating)
         {
             generationTime += Time.deltaTime;
-            transform.localScale = Vector3.Lerp(Vector3.one, new Vector3(maxScale, maxScale, maxScale), generationTime/durationGeneration);
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(maxScale, 0.1f, maxScale), generationTime/durationGeneration);
             if(generationTime > durationGeneration) 
             {
                 isGenerating = false;
             }
         }
-        else
+        currentTime += Time.deltaTime;
+        if (currentTime > durationTime)
         {
-            currentTime += Time.deltaTime;
-            if (currentTime > durationTime)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
 
     }
