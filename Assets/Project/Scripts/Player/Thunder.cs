@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.CompositeCollider2D;
 
-public class MagicCape : MonoBehaviour
+public class Thunder : MonoBehaviour
 {
     [SerializeField] private float damage;
     [SerializeField] private float durationTime;
