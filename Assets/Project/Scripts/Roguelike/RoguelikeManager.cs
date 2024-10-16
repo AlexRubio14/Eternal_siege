@@ -7,6 +7,7 @@ public class RoguelikeManager : MonoBehaviour
     [SerializeField] private GameObject onePlayerCanvas;
     [SerializeField] private GameObject twoPlayersCanvas;
 
+    [HideInInspector]
     public GameObject gameCanvas;
 
     private void Awake()
