@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class GenerateMagicCape : MonoBehaviour
+public class GenerateThunder : MonoBehaviour
 {
     [SerializeField] private GameObject magicCape;
 
