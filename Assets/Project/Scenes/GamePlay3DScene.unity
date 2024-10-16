@@ -1628,6 +1628,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1198533002}
+  onePlayerButton: {fileID: 315681505}
+  twoPlayersButtonOne: {fileID: 1869241386}
+  twoPlayersButtonTwo: {fileID: 369210926}
+  timeToEndPickUpgrade: 0
 --- !u!95 &73260549
 Animator:
   serializedVersion: 5
@@ -7023,7 +7027,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 315681506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &315681506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22952,7 +22968,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 2000, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1198533002
 MonoBehaviour:
@@ -26040,6 +26056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1310829030}
   - component: {fileID: 1310829033}
+  - component: {fileID: 1310829034}
   - component: {fileID: 1310829032}
   - component: {fileID: 1310829031}
   m_Layer: 0
@@ -26152,6 +26169,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310829029}
   m_CullTransparentMesh: 1
+--- !u!114 &1310829034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310829029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da9fda055803194b8f226a904fdcd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1001 &1310960197
 PrefabInstance:
   m_ObjectHideFlags: 0

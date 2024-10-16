@@ -15,6 +15,7 @@ public class PlayersManager : MonoBehaviour
 
     [SerializeField] private CameraController cameraController;
 
+    private PlayerInput inputSystem;
 
     private void Awake()
     {
@@ -81,6 +82,17 @@ public class PlayersManager : MonoBehaviour
         PlayerLobbyManager.instance.ClearPlayers();
         SceneManager.LoadScene("LobbyScene");
         return true;
+    }
+
+    public void ChangeActionMap(string _nextActionMap)
+    {
+        foreach (GameObject player in playersList)
+        {
+            inputSystem = player.GetComponent<PlayerInput>();
+
+            if (inputSystem)
+                inputSystem.SwitchCurrentActionMap(_nextActionMap);
+        }
     }
 
     public List<GameObject> GetPlayersList()

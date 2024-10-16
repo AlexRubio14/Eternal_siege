@@ -1,6 +1,9 @@
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using System.Collections;
+using System.Security.Cryptography;
+using Unity.Mathematics;
 
 public class RoguelikeCanvas : MonoBehaviour
 {
@@ -14,6 +17,13 @@ public class RoguelikeCanvas : MonoBehaviour
 
     private Animator animator;
 
+    [SerializeField] public Button onePlayerButton;
+    [SerializeField] public Button twoPlayersButtonOne;
+    [SerializeField] public Button twoPlayersButtonTwo;
+
+    [SerializeField] private float timeToEndPickUpgrade;
+
+
     private void Awake()
     {
         Instance = this;
@@ -23,8 +33,27 @@ public class RoguelikeCanvas : MonoBehaviour
     public void LevelUp()
     {
         TimeManager.instance.PauseTime();
-        InputController.Instance.ChangeActionMap("RoguelikeMenu");
+        PlayersManager.instance.ChangeActionMap("RoguelikeMenu");
+
+        onFadeIn += SelectButton;
         animator.Play("FadeIn");
+    }
+
+    IEnumerator EndPickUpgrade()
+    {
+        yield return timeToEndPickUpgrade;
+
+        float randomValue = UnityEngine.Random.Range(0, 3);
+
+
+    }
+
+    private void SelectButton()
+    {
+        if (Input.GetJoystickNames().Length == 1)
+        {
+            onePlayerButton.Select();
+        }
     }
 
     public void ReturnToGameplay()
