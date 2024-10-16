@@ -78,7 +78,7 @@ public class PlayersManager : MonoBehaviour
             if (controller.GetCurrentState() != PlayerController.State.DEAD)
                 return false;
         }
-
+        PlayerLobbyManager.instance.ClearPlayers();
         SceneManager.LoadScene("LobbyScene");
         return true;
     }

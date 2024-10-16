@@ -31013,8 +31013,8 @@ MonoBehaviour:
   - {fileID: 1611249482}
   - {fileID: 1632910871}
   characters:
-  - {fileID: 2949630026446072946, guid: 8e59fa15a92d2364e8db5b5d23263497, type: 3}
-  - {fileID: 2949630026446072946, guid: 489fe0c01e7a7e94d9375a620fb55c9a, type: 3}
+  - {fileID: 5618392707706961348, guid: 8e59fa15a92d2364e8db5b5d23263497, type: 3}
+  - {fileID: 3967785702642562780, guid: 489fe0c01e7a7e94d9375a620fb55c9a, type: 3}
   posToSpawnList:
   - {fileID: 1785261459}
   - {fileID: 64990623}

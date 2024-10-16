@@ -30,6 +30,11 @@ public class PlayerLobbyManager : MonoBehaviour
         inputs.Add(input);
     }
 
+    public void ClearPlayers()
+    {
+        playersList.Clear();
+    }
+
     public List<int> GetTypeCharacter()
     {
         return playersList;
@@ -39,4 +44,6 @@ public class PlayerLobbyManager : MonoBehaviour
     {
         return inputs;
     }
+
+
 }

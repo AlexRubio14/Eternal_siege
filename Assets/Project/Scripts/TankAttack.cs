@@ -34,7 +34,7 @@ public class TankAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && collision is BoxCollider)
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.ReceiveDamage(damage);

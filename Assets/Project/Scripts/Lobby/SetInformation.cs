@@ -24,7 +24,6 @@ public class SetInformation : MonoBehaviour
     private int currentBackGround;
     private float time;
     private bool startTime;
-
     private void Start()
     {
         players = new List<LobbyController>(2);
@@ -32,6 +31,7 @@ public class SetInformation : MonoBehaviour
         currentBackGround = 0;
         time = maxTime;
         secondPlayerCharacter.SetActive(false);
+        players.Clear();
     }
 
     private void Update()
