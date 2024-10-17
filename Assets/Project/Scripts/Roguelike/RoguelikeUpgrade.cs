@@ -8,6 +8,11 @@ public class RoguelikeUpgrade : MonoBehaviour
     [SerializeField] private List<int> lvlUpgrade;
     private int upgradeIndex;
 
+    [SerializeField] private float healthUpgradeValue;
+    [SerializeField] private float speedUpgradeValue;
+    [SerializeField] private float attackSpeedUpgradeValue;
+    [SerializeField] private float armorUpgradeValue;
+
     private GameObject player;
 
     private void Start()
@@ -34,27 +39,38 @@ public class RoguelikeUpgrade : MonoBehaviour
                     AddSpeed();
                     break;
             }
+
+            AddUpgradeIndex();
+
+            RoguelikeManager.instance.SetPlayersHaveSelectedUpgradeList(index, true);
+            RoguelikeManager.instance.CheckIfAllPlayersHaveSelectedUpgrade();
+        }
+        else
+        {
+            AddHP();
+            RoguelikeCanvas.Instance.ReturnToGameplay();
+            PlayersManager.instance.ChangeActionMap("Player");
         }
     }
 
     private void AddHP()
     {
-        player.GetComponent<Character>().AddHealth(50);
+        player.GetComponent<Character>().AddHealth(healthUpgradeValue);
     }
 
     private void AddArmor()
     {
-        player.GetComponent<Character>().AddArmor(10);
+        player.GetComponent<Character>().AddArmor(armorUpgradeValue);
     }
 
     private void AddAttackSpeed()
     {
-        player.GetComponent<Character>().AddAttackSpeed(0.5f);
+        player.GetComponent<Character>().AddAttackSpeed(attackSpeedUpgradeValue);
     }
 
     private void AddSpeed()
     {
-        player.GetComponent<Character>().AddSpeed(150);
+        player.GetComponent<Character>().AddSpeed(speedUpgradeValue);
     }
 
     public void SetPlayer(GameObject _player)

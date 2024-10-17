@@ -58,6 +58,7 @@ public class RoguelikeCanvas : MonoBehaviour
 
     public void ReturnToGameplay()
     {
+        TimeManager.instance.ResumeTime();
         animator.Play("FadeOut");
     }
 

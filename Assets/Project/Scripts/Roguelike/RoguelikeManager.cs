@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RoguelikeManager : MonoBehaviour
@@ -10,9 +11,11 @@ public class RoguelikeManager : MonoBehaviour
     [HideInInspector]
     public GameObject gameCanvas;
 
+    [SerializeField] private List<bool> playersHaveSelectedUpgradeList;
+
     private void Awake()
     {
-        if(instance != null || instance != this)
+        if(instance != null && instance != this)
         {
             Destroy(this);
             return;
@@ -22,10 +25,13 @@ public class RoguelikeManager : MonoBehaviour
 
         DontDestroyOnLoad(instance);
 
-        switch (Input.GetJoystickNames().Length) 
+        int numOfPlayers = Input.GetJoystickNames().Length;
+
+        switch (numOfPlayers) 
         {
             case 1: 
                 gameCanvas = onePlayerCanvas;
+
                 break;
             case 2: 
                 gameCanvas = twoPlayersCanvas; 
@@ -33,5 +39,39 @@ public class RoguelikeManager : MonoBehaviour
             default: 
                 break;
         }
+
+        for(int i = 0; i < numOfPlayers; i++)
+        {
+            playersHaveSelectedUpgradeList.Add(false);
+        }
+    }
+
+    public void CheckIfAllPlayersHaveSelectedUpgrade()
+    {
+        foreach(bool hasSelectedUpgrade in playersHaveSelectedUpgradeList)
+        {
+            if(!hasSelectedUpgrade)
+            {
+                return;
+            }
+        }
+
+        RoguelikeCanvas.Instance.ReturnToGameplay();
+        PlayersManager.instance.ChangeActionMap("Player");
+
+        for(int i = 0; i <playersHaveSelectedUpgradeList.Count; i++)
+        {
+            playersHaveSelectedUpgradeList[i] = false;
+        }
+    }
+
+    public List<bool> GetPlayersHaveSelectedUpgradeList()
+    {
+        return playersHaveSelectedUpgradeList;
+    }
+
+    public void SetPlayersHaveSelectedUpgradeList(int index,bool value)
+    {
+        playersHaveSelectedUpgradeList[index] = value;
     }
 }

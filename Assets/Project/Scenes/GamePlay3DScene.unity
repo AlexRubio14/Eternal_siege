@@ -7096,7 +7096,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  lvlUpgrade: 02000000
+  lvlUpgrade: 0200000002000000020000000200000002000000
+  healthUpgradeValue: 0
+  speedUpgradeValue: 0
+  attackSpeedUpgradeValue: 1
+  armorUpgradeValue: 0
 --- !u!1001 &318141167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10186,7 +10190,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  lvlUpgrade: 03000000
+  lvlUpgrade: 0300000003000000030000000300000003000000
+  healthUpgradeValue: 0
+  speedUpgradeValue: 250
+  attackSpeedUpgradeValue: 0
+  armorUpgradeValue: 0
 --- !u!4 &469920847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 423422, guid: 6878c12c9d7e9d9438adbbffd421590d, type: 3}
@@ -26240,7 +26248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  lvlUpgrade: 00000000
+  lvlUpgrade: 0000000000000000000000000000000000000000
+  healthUpgradeValue: 50
+  speedUpgradeValue: 0
+  attackSpeedUpgradeValue: 0
+  armorUpgradeValue: 0
 --- !u!1001 &1310960197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29799,6 +29811,7 @@ MonoBehaviour:
   onePlayerCanvas: {fileID: 889696370}
   twoPlayersCanvas: {fileID: 406421495}
   gameCanvas: {fileID: 0}
+  playersHaveSelectedUpgradeList: 
 --- !u!1001 &1545597351
 PrefabInstance:
   m_ObjectHideFlags: 0

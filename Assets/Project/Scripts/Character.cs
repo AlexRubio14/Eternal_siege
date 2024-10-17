@@ -97,11 +97,12 @@ public abstract class Character : MonoBehaviour
 
     public void AddSpeed(float quantity)
     {
-        playerController.SetSpeed(movementSpeed + quantity);
+        playerController.SetSpeed(playerController.GetSpeed() + quantity);
     }
 
     public void AddAttackSpeed(float quantity)
     {
         baseAttackSpeed += quantity;
+        attackSpeed += quantity;
     }
 }
