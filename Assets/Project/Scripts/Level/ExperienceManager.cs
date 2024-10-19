@@ -9,6 +9,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] private float initExperience;
     [SerializeField] private float multiplier;
     [SerializeField] private List<PlayerInformation> playerInformation;
+    [SerializeField] private List<RoguelikeUpgrade> roguelikeUpgrades;
     private int currentLevel;
     private float experience;
 
@@ -51,12 +52,17 @@ public class ExperienceManager : MonoBehaviour
 
             SetExperience(0);
             //Selecionar cartas y parar tiempo
-            //RoguelikeCanvas.Instance.LevelUp();
+            RoguelikeCanvas.instance.LevelUp();
 
         }
         for (int i = 0; i < playerInformation.Count; i++)
         {
             playerInformation[i].SetExperienceBar(experience / initExperience);
         }
+    }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
     }
 }

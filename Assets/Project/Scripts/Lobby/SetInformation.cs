@@ -46,6 +46,10 @@ public class SetInformation : MonoBehaviour
                 {
                     PlayerLobbyManager.instance.SetController(players[i].GetPlayerSelected(), players[i].GetComponent<PlayerInput>().devices[0]);
                 }
+                if(RoguelikeManager.instance != null)
+                {
+                    RoguelikeManager.instance.SetNumOfPlayers(players.Count);
+                }
                 SceneManager.LoadScene("GamePlay3DScene");
             }
         }

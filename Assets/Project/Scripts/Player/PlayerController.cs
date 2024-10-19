@@ -235,6 +235,11 @@ public class PlayerController : MonoBehaviour
         return isInArea;
     }
 
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
     public void SetSpeed(float _speed)
     {
         speed = _speed;

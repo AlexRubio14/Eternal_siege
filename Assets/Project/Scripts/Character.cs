@@ -64,6 +64,9 @@ public abstract class Character : MonoBehaviour
 
     protected void Update()
     {
+        if(TimeManager.instance.GetPaused() == 0) 
+            return;
+
         UpdateFireTimer();
         UpdateAbilityTimer();
         UpdateUltimateTimer();
@@ -72,7 +75,7 @@ public abstract class Character : MonoBehaviour
     public void BasicAbilityAction(InputAction.CallbackContext obj)
     {
         if (playerController.GetCurrentState() == PlayerController.State.KNOCKBACK || playerController.GetCurrentState() == PlayerController.State.DEAD)
-            return; 
+            return;
 
         BasicAbility();
     }
@@ -83,5 +86,26 @@ public abstract class Character : MonoBehaviour
             return;
 
         UltimateAbility();
+    }
+
+    public void AddHealth(float quantity)
+    {
+        playerController.SetMaxHealth(health + quantity);
+    }
+
+    public void AddArmor(float quantity)
+    {
+        armor += quantity;
+    }
+
+    public void AddSpeed(float quantity)
+    {
+        playerController.SetSpeed(playerController.GetSpeed() + quantity);
+    }
+
+    public void AddAttackSpeed(float quantity)
+    {
+        baseAttackSpeed += quantity;
+        attackSpeed += quantity;
     }
 }

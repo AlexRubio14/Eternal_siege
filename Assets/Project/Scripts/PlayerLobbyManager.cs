@@ -40,7 +40,7 @@ public class PlayerLobbyManager : MonoBehaviour
         return playersList;
     }
 
-    public List<InputDevice> GetInputDevice()
+    public List<InputDevice> GetInputsList()
     {
         return inputs;
     }
