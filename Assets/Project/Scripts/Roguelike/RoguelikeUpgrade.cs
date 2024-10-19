@@ -12,6 +12,8 @@ public class RoguelikeUpgrade : MonoBehaviour
     [SerializeField] private float speedUpgradeValue;
     [SerializeField] private float attackSpeedUpgradeValue;
     [SerializeField] private float armorUpgradeValue;
+    [SerializeField] private float pickUpRadiusValue;
+    [SerializeField] private float damageUpgradeValue;
 
     private GameObject player;
 
@@ -30,7 +32,7 @@ public class RoguelikeUpgrade : MonoBehaviour
                     AddHP();
                     break;
                 case 1:
-                    AddArmor();
+                    AddPicUpRadius();
                     break;
                 case 2:
                     AddAttackSpeed();
@@ -58,11 +60,6 @@ public class RoguelikeUpgrade : MonoBehaviour
         player.GetComponent<Character>().AddHealth(healthUpgradeValue);
     }
 
-    private void AddArmor()
-    {
-        player.GetComponent<Character>().AddArmor(armorUpgradeValue);
-    }
-
     private void AddAttackSpeed()
     {
         player.GetComponent<Character>().AddAttackSpeed(attackSpeedUpgradeValue);
@@ -71,6 +68,11 @@ public class RoguelikeUpgrade : MonoBehaviour
     private void AddSpeed()
     {
         player.GetComponent<Character>().AddSpeed(speedUpgradeValue);
+    }
+
+    private void AddPicUpRadius()
+    {
+        player.GetComponent<SphereCollider>().radius += pickUpRadiusValue;
     }
 
     public void SetPlayer(GameObject _player)
