@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using static UnityEngine.CompositeCollider2D;
 
@@ -9,8 +10,7 @@ public class Thunder : MonoBehaviour
     [SerializeField] private float durationTime;
     [SerializeField] private float durationGeneration;
 
-    [SerializeField] private float maxScale;
-
+    float maxScale;
     private float currentTime;
     private float generationTime;
     private bool isGenerating;
@@ -58,5 +58,10 @@ public class Thunder : MonoBehaviour
         {
             enemy.ReceiveDamage(damage);
         }
+    }
+
+    public void SetScale(float scale)
+    {
+        maxScale = scale;
     }
 }
