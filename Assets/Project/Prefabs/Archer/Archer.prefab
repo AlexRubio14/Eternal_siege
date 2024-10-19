@@ -472,7 +472,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5618392707706961348}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 940d33660f3bfd74a856dabb71ef507a, type: 3}
   m_Name: 
@@ -480,6 +480,7 @@ MonoBehaviour:
   magicCape: {fileID: 3644879491550420163, guid: 56bc6fbfee6f94241a42928bdf41a29c, type: 3}
   distanceToSpawn: 5
   generateCd: 3
+  currentScale: 3
 --- !u!135 &517044968066499861
 SphereCollider:
   m_ObjectHideFlags: 0

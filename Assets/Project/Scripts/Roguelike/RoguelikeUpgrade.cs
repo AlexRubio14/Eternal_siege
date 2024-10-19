@@ -14,6 +14,7 @@ public class RoguelikeUpgrade : MonoBehaviour
     [SerializeField] private float armorUpgradeValue;
     [SerializeField] private float pickUpRadiusValue;
     [SerializeField] private float damageUpgradeValue;
+    [SerializeField] private float thunderScaleValue;
 
     private GameObject player;
 
@@ -39,6 +40,12 @@ public class RoguelikeUpgrade : MonoBehaviour
                     break;
                 case 3:
                     AddSpeed();
+                    break;
+                case 4:
+                    UpgradeThunder();
+                    break;
+                 case 5:
+                    UpgradeCape();
                     break;
             }
 
@@ -73,6 +80,34 @@ public class RoguelikeUpgrade : MonoBehaviour
     private void AddPicUpRadius()
     {
         player.GetComponent<SphereCollider>().radius += pickUpRadiusValue;
+    }
+
+    private void UpgradeThunder()
+    {
+        GenerateThunder generateThunder = player.GetComponent<GenerateThunder>();
+
+        if (!generateThunder.enabled)
+        {
+            generateThunder.enabled = true;
+        }
+        else
+        {
+            generateThunder.AddScale(thunderScaleValue);
+        }
+    }
+
+    private void UpgradeCape()
+    {
+        MagicCape magicCape = player.GetComponent<MagicCape>();
+
+        if (!magicCape.enabled)
+        {
+            magicCape.enabled = true;
+        }
+        else
+        {
+            magicCape.LevelUp();
+        }
     }
 
     public void SetPlayer(GameObject _player)

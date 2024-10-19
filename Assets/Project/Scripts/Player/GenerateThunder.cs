@@ -10,6 +10,7 @@ public class GenerateThunder : MonoBehaviour
 
     [SerializeField] private float distanceToSpawn;
     [SerializeField] private float generateCd;
+    [SerializeField] private float currentScale;
 
     private float currentCdTime;
 
@@ -32,6 +33,7 @@ public class GenerateThunder : MonoBehaviour
     private void InstanciateGenerateCape()
     {
         GameObject _magicCape = Instantiate(magicCape);
+        _magicCape.GetComponent<Thunder>().SetScale(currentScale);
         _magicCape.transform.parent = null;
         _magicCape.transform.position = GenerateRandomPosition();
     }
@@ -58,5 +60,10 @@ public class GenerateThunder : MonoBehaviour
         position.y = -2.5f;
 
         return position;
+    }
+
+    public void AddScale(float scale)
+    {
+        currentScale += scale;
     }
 }
