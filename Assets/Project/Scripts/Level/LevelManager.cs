@@ -52,11 +52,11 @@ public class LevelManager : MonoBehaviour
     {
         if (PlayersManager.instance.GetPlayersList().Count > 0)
         {
-            time += Time.deltaTime;
+            time += Time.deltaTime * TimeManager.instance.GetPaused();
 
             for(int i = 0; i<spawnTime.Length; i++) 
             {
-                spawnEnemyTime[i] -= Time.deltaTime;
+                spawnEnemyTime[i] -= Time.deltaTime * TimeManager.instance.GetPaused();
                 ManageEnemy(i);
             }
             

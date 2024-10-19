@@ -64,6 +64,9 @@ public abstract class Character : MonoBehaviour
 
     protected void Update()
     {
+        if(TimeManager.instance.GetPaused() == 0) 
+            return;
+
         UpdateFireTimer();
         UpdateAbilityTimer();
         UpdateUltimateTimer();

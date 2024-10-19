@@ -18,6 +18,8 @@ public class PlayersManager : MonoBehaviour
 
     private PlayerInput inputSystem;
 
+   
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -57,7 +59,7 @@ public class PlayersManager : MonoBehaviour
     private void AddPlayer(int index)
     {
         GameObject player = Instantiate(characters[PlayerLobbyManager.instance.GetTypeCharacter()[index]]);
-        player.GetComponent<PlayerInput>().SwitchCurrentControlScheme(PlayerLobbyManager.instance.GetInputDevice()[index]);
+        player.GetComponent<PlayerInput>().SwitchCurrentControlScheme(PlayerLobbyManager.instance.GetInputsList()[index]);
         for(int i = 0; i< roguelikeUpgrades.Count; i++) 
         {
             if (roguelikeUpgrades[i].GetIndex() == index)
@@ -102,6 +104,8 @@ public class PlayersManager : MonoBehaviour
                 inputSystem.SwitchCurrentActionMap(_nextActionMap);
         }
     }
+
+   
 
     public List<GameObject> GetPlayersList()
     {

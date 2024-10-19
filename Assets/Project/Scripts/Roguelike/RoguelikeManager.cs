@@ -13,6 +13,8 @@ public class RoguelikeManager : MonoBehaviour
 
     [SerializeField] private List<bool> playersHaveSelectedUpgradeList;
 
+    public int numOfPlayers { get; private set; }
+
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -25,7 +27,9 @@ public class RoguelikeManager : MonoBehaviour
 
         DontDestroyOnLoad(instance);
 
-        int numOfPlayers = Input.GetJoystickNames().Length;
+
+
+        numOfPlayers = PlayerLobbyManager.instance.GetInputsList().Count;
 
         switch (numOfPlayers) 
         {
@@ -56,7 +60,7 @@ public class RoguelikeManager : MonoBehaviour
             }
         }
 
-        RoguelikeCanvas.Instance.ReturnToGameplay();
+        RoguelikeCanvas.instance.ReturnToGameplay();
         PlayersManager.instance.ChangeActionMap("Player");
 
         for(int i = 0; i <playersHaveSelectedUpgradeList.Count; i++)
@@ -73,5 +77,10 @@ public class RoguelikeManager : MonoBehaviour
     public void SetPlayersHaveSelectedUpgradeList(int index,bool value)
     {
         playersHaveSelectedUpgradeList[index] = value;
+    }
+
+    public void SetNumOfPlayers(int _numOfPlayers)
+    {
+        numOfPlayers = _numOfPlayers;
     }
 }

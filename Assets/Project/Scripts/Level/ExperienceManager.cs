@@ -52,7 +52,7 @@ public class ExperienceManager : MonoBehaviour
 
             SetExperience(0);
             //Selecionar cartas y parar tiempo
-            RoguelikeCanvas.Instance.LevelUp();
+            RoguelikeCanvas.instance.LevelUp();
 
         }
         for (int i = 0; i < playerInformation.Count; i++)

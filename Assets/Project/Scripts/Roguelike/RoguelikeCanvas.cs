@@ -2,12 +2,10 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using System.Collections;
-using System.Security.Cryptography;
-using Unity.Mathematics;
 
 public class RoguelikeCanvas : MonoBehaviour
 {
-    public static RoguelikeCanvas Instance;
+    public static RoguelikeCanvas instance;
 
     [SerializeField] private Image panel;
 
@@ -26,7 +24,7 @@ public class RoguelikeCanvas : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -36,7 +34,20 @@ public class RoguelikeCanvas : MonoBehaviour
         PlayersManager.instance.ChangeActionMap("RoguelikeMenu");
 
         onFadeIn += SelectButton;
-        animator.Play("FadeIn");
+
+
+        switch (RoguelikeManager.instance.numOfPlayers)
+        {
+            case 1:
+                animator.Play("FadeIn");
+                break;
+            case 2:
+                animator.Play("FadeIn2Players");
+                break;
+            default:
+                break;
+        }
+
     }
 
     IEnumerator EndPickUpgrade()
@@ -59,7 +70,17 @@ public class RoguelikeCanvas : MonoBehaviour
     public void ReturnToGameplay()
     {
         TimeManager.instance.ResumeTime();
-        animator.Play("FadeOut");
+        switch (RoguelikeManager.instance.numOfPlayers)
+        {
+            case 1:
+                animator.Play("FadeOut");
+                break;
+            case 2:
+                animator.Play("FadeOut2Players");
+                break;
+            default:
+                break;
+        }
     }
 
     public void OnFadeIn()

@@ -50,7 +50,7 @@ public class RoguelikeUpgrade : MonoBehaviour
         else
         {
             AddHP();
-            RoguelikeCanvas.Instance.ReturnToGameplay();
+            RoguelikeCanvas.instance.ReturnToGameplay();
             PlayersManager.instance.ChangeActionMap("Player");
         }
     }
