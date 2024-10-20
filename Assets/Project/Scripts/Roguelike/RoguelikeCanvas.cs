@@ -42,14 +42,15 @@ public class RoguelikeCanvas : MonoBehaviour
         {
             case 1:
                 animator.Play("FadeIn");
+                onFadeIn += RoguelikeManager.instance.Active1PlayerUpgradeCanvas;
                 break;
             case 2:
                 animator.Play("FadeIn2Players");
+                onFadeIn += RoguelikeManager.instance.Active2PlayersUpgradeCanvas;
                 break;
             default:
                 break;
         }
-
     }
 
     IEnumerator EndPickUpgrade()

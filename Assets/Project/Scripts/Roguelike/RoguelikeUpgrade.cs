@@ -25,19 +25,6 @@ public class RoguelikeUpgrade : MonoBehaviour
 
     public void ActiveUprade()
     {
-        switch (RoguelikeManager.instance.numOfPlayers)
-        {
-            case 1:
-                RoguelikeCanvas.instance.onFadeIn += RoguelikeManager.instance.Active1PlayerUpgradeCanvas;
-                break;
-            case 2:
-                RoguelikeCanvas.instance.onFadeIn += RoguelikeManager.instance.Active2PlayersUpgradeCanvas;
-                break;
-            default: 
-                break;
-        }
-
-
         if (lvlUpgrade.Count > upgradeIndex)
         {
             switch (lvlUpgrade[upgradeIndex])
