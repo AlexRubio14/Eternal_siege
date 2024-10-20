@@ -40,6 +40,7 @@ public class Archer : Character
         {
             Instantiate(abilityPrefab, firingPoint.position, Quaternion.identity);            
             abilityTimer = abilityCooldown;
+            UIManager.instance.InitTimer(false, this);
         }
     }
 
@@ -49,6 +50,7 @@ public class Archer : Character
         {
             Instantiate(ultimatePrefab, firingPoint.position, firingPoint.rotation);
             ultimateTimer = ultimateCooldown;
+            UIManager.instance.InitTimer(true, this);
         }
     }
     #endregion

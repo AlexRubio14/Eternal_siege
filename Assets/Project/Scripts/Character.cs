@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -107,5 +105,15 @@ public abstract class Character : MonoBehaviour
     {
         baseAttackSpeed += quantity;
         attackSpeed += quantity;
+    }
+
+    public float GetAbilityCooldown()
+    {
+        return abilityCooldown;
+    }
+
+    public float GetUltimateCooldown()
+    {
+        return ultimateCooldown;
     }
 }
