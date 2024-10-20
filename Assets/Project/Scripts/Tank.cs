@@ -17,6 +17,8 @@ public class Tank : Character
     [SerializeField] private float ultimateDamage;
     private bool isUltimateActive;
 
+    private Animator anim;
+
     private void Start()
     {
         base.Start();
@@ -24,6 +26,8 @@ public class Tank : Character
         interpolationTime = 1f;
         isAbiltyActive = false;
         isUltimateActive = false;
+
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -71,6 +75,7 @@ public class Tank : Character
             playerController.ChangeState(PlayerController.State.INVENCIBILITY);
             abilityTimer = abilityCooldown; //cancelar BasicAbility
             ultimateTimer = ultimateCooldown + ultimateDuration;
+            anim.SetBool("Walking", true);
         }
     }
     #endregion
@@ -110,10 +115,10 @@ public class Tank : Character
         if (ultimateTimer > 0f)
         {
             ultimateTimer -= Time.deltaTime;
-            if (ultimateTimer < ultimateCooldown)
+            if (ultimateTimer < ultimateCooldown && isUltimateActive)
             {
                 isUltimateActive = false;
-                playerController.ChangeState(PlayerController.State.MOVING);
+                playerController.ChangeState(PlayerController.State.IDLE);
                 movementSpeed = baseMovementSpeed;
                 playerController.SetSpeed(movementSpeed);
             }
