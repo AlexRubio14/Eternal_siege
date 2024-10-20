@@ -11,8 +11,7 @@ public class RoguelikeManager : MonoBehaviour
     [SerializeField] private GameObject player1Upgrades;
     [SerializeField] private GameObject player2Upgrades;
 
-    [HideInInspector]
-    public GameObject gameCanvas;
+    [HideInInspector] public GameObject gameCanvas;
 
     [SerializeField] private List<bool> playersHaveSelectedUpgradeList;
 
@@ -74,11 +73,13 @@ public class RoguelikeManager : MonoBehaviour
 
     public void Active1PlayerUpgradeCanvas()
     {
+        onePlayerCanvas.gameObject.SetActive(true);
         singlePlayerUpgrades.gameObject.SetActive(true);
     }
 
     public void Active2PlayersUpgradeCanvas()
     {
+        twoPlayersCanvas.gameObject.SetActive(true);
         player1Upgrades.gameObject.SetActive(true);
         player2Upgrades.gameObject.SetActive(true);
     }
