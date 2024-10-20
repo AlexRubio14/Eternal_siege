@@ -53,6 +53,7 @@ public class RoguelikeUpgrade : MonoBehaviour
 
             RoguelikeManager.instance.SetPlayersHaveSelectedUpgradeList(index, true);
             RoguelikeManager.instance.CheckIfAllPlayersHaveSelectedUpgrade();
+            transform.parent.gameObject.SetActive(false);
         }
         else
         {

@@ -70,17 +70,7 @@ public class RoguelikeCanvas : MonoBehaviour
     public void ReturnToGameplay()
     {
         TimeManager.instance.ResumeTime();
-        switch (RoguelikeManager.instance.numOfPlayers)
-        {
-            case 1:
-                animator.Play("FadeOut");
-                break;
-            case 2:
-                animator.Play("FadeOut2Players");
-                break;
-            default:
-                break;
-        }
+        animator.Play("FadeOut");
     }
 
     public void OnFadeIn()
