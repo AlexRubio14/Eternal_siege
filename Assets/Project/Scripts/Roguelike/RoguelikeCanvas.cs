@@ -21,6 +21,8 @@ public class RoguelikeCanvas : MonoBehaviour
 
     [SerializeField] private float timeToEndPickUpgrade;
 
+    [SerializeField] 
+
 
     private void Awake()
     {
@@ -36,7 +38,7 @@ public class RoguelikeCanvas : MonoBehaviour
         onFadeIn += SelectButton;
 
 
-        switch (RoguelikeManager.instance.numOfPlayers)
+         switch (RoguelikeManager.instance.numOfPlayers)
         {
             case 1:
                 animator.Play("FadeIn");
