@@ -21,6 +21,8 @@ public class RoguelikeCanvas : MonoBehaviour
 
     [SerializeField] private float timeToEndPickUpgrade;
 
+    [SerializeField] 
+
 
     private void Awake()
     {
@@ -36,18 +38,19 @@ public class RoguelikeCanvas : MonoBehaviour
         onFadeIn += SelectButton;
 
 
-        switch (RoguelikeManager.instance.numOfPlayers)
+         switch (RoguelikeManager.instance.numOfPlayers)
         {
             case 1:
                 animator.Play("FadeIn");
+                onFadeIn += RoguelikeManager.instance.Active1PlayerUpgradeCanvas;
                 break;
             case 2:
                 animator.Play("FadeIn2Players");
+                onFadeIn += RoguelikeManager.instance.Active2PlayersUpgradeCanvas;
                 break;
             default:
                 break;
         }
-
     }
 
     IEnumerator EndPickUpgrade()
@@ -70,17 +73,7 @@ public class RoguelikeCanvas : MonoBehaviour
     public void ReturnToGameplay()
     {
         TimeManager.instance.ResumeTime();
-        switch (RoguelikeManager.instance.numOfPlayers)
-        {
-            case 1:
-                animator.Play("FadeOut");
-                break;
-            case 2:
-                animator.Play("FadeOut2Players");
-                break;
-            default:
-                break;
-        }
+        animator.Play("FadeOut");
     }
 
     public void OnFadeIn()
