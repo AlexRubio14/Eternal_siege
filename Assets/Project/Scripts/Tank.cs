@@ -106,6 +106,7 @@ public class Tank : Character
                 movementSpeed = baseMovementSpeed;
                 playerController.SetSpeed(movementSpeed);
                 interpolationTime = 0f;
+                UIManager.instance.InitTimer(false, this);
             }
         }
     }
@@ -121,6 +122,7 @@ public class Tank : Character
                 playerController.ChangeState(PlayerController.State.IDLE);
                 movementSpeed = baseMovementSpeed;
                 playerController.SetSpeed(movementSpeed);
+                UIManager.instance.InitTimer(true, this);
             }
         }
     }
