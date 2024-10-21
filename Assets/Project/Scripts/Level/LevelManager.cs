@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     private float[] totalOfEnemies;
     private float[] spawnTime;
     private float[] spawnEnemyTime;
-    private int currentTime;
+    private float currentTime;
     private float time;
 
 
@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
         spawnEnemyTime = new float[quantity.Count];
 
         totalOfEnemies[0] = initQuantity;
-        spawnTime[0] = 60 / totalOfEnemies[0];
+        spawnTime[0] = 30 / totalOfEnemies[0];
         spawnEnemyTime[0] = 0;
 
         enemySpawned = false;
@@ -59,19 +59,19 @@ public class LevelManager : MonoBehaviour
         {
             time += Time.deltaTime * TimeManager.instance.GetPaused();
 
-            for(int i = 0; i<spawnTime.Length; i++) 
+            for(int i = 0; i < spawnTime.Length; i++) 
             {
                 spawnEnemyTime[i] -= Time.deltaTime * TimeManager.instance.GetPaused();
                 ManageEnemy(i);
             }
             
-            for(int i = 0; i<eventTime.Count; i++)
+            for(int i = 0; i < eventTime.Count; i++)
             {
                 ActiveEvent(i);
             }
             MinuteChange();
 
-            if(time > bossSpawnTime * 60 && !enemySpawned)
+            if(time > bossSpawnTime * 30 && !enemySpawned)
             {
                 SpawnBoss();
                 enemySpawned = true;
@@ -100,7 +100,7 @@ public class LevelManager : MonoBehaviour
 
     private void MinuteChange()
     {
-        if ((int)(time / 60) > currentTime)
+        if ((int)(time / 30) > currentTime)
         {
             currentTime++;
             if(currentTime < enemyTime[0])
@@ -121,7 +121,7 @@ public class LevelManager : MonoBehaviour
     private void SetTimes(int index, int _quantity)
     {
         totalOfEnemies[index] += _quantity;
-        spawnTime[index] = 60 / totalOfEnemies[index];
+        spawnTime[index] = 30 / totalOfEnemies[index];
         spawnEnemyTime[index] = 0;
     }
     public void SpawnMiniBoss()

@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armor: 20
   health: 750
-  attackSpeed: 1
+  attackSpeed: 0.6
   movementSpeed: 14000
   pickUpRadius: 100
   abilityCooldown: 12
