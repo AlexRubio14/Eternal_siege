@@ -22,6 +22,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float ultimateCooldown;
     protected float ultimateTimer;
 
+    private bool magicCapeSpawned;
+
 
     [SerializeField] protected PlayerController playerController;
 
@@ -36,6 +38,7 @@ public abstract class Character : MonoBehaviour
     protected void Start()
     {
         InitStats();
+        magicCapeSpawned = false;
     }
 
     private void InitStats()
@@ -103,8 +106,17 @@ public abstract class Character : MonoBehaviour
 
     public void AddAttackSpeed(float quantity)
     {
-        baseAttackSpeed += quantity;
         attackSpeed += quantity;
+    }
+
+    public void SetMagicCapeSpawned(bool state)
+    {
+        magicCapeSpawned = state;
+    }
+
+    public bool GetMagicCapeSpawned()
+    {
+        return magicCapeSpawned;
     }
 
     public float GetAbilityCooldown()

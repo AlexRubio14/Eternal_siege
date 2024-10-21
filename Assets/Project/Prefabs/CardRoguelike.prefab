@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5634077746400715316}
   - component: {fileID: 5480757336884191575}
   - component: {fileID: 4122481742803036994}
+  - component: {fileID: 8351171294153766253}
   m_Layer: 0
   m_Name: CardRoguelike
   m_TagString: Untagged
@@ -62,13 +63,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  lvlUpgrade: 0000000000000000000000000000000000000000
   healthUpgradeValue: 50
   speedUpgradeValue: 0
   attackSpeedUpgradeValue: 0
   armorUpgradeValue: 0
   pickUpRadiusValue: 0
   damageUpgradeValue: 0
+  thunderScaleValue: 0
+  magicCapeObject: {fileID: 0}
 --- !u!114 &5480757336884191575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +157,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8351171294153766253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4465077311789778395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0.9528302, b: 0.047247775, a: 0.15686275}
+  m_EffectDistance: {x: 15, y: 15}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4477489824830758454
 GameObject:
   m_ObjectHideFlags: 0
