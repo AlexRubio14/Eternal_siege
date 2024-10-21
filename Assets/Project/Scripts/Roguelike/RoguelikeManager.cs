@@ -75,6 +75,8 @@ public class RoguelikeManager : MonoBehaviour
     {
         onePlayerCanvas.gameObject.SetActive(true);
         singlePlayerUpgrades.gameObject.SetActive(true);
+
+        SetRandomValue(singlePlayerUpgrades);
     }
 
     public void Active2PlayersUpgradeCanvas()
@@ -82,6 +84,31 @@ public class RoguelikeManager : MonoBehaviour
         twoPlayersCanvas.gameObject.SetActive(true);
         player1Upgrades.gameObject.SetActive(true);
         player2Upgrades.gameObject.SetActive(true);
+
+        SetRandomValue(player1Upgrades);
+        SetRandomValue(player2Upgrades);
+    }
+
+    private void SetRandomValue(GameObject _playerUpgrades)
+    {
+        int randomValue = UnityEngine.Random.Range(0, 6);
+        _playerUpgrades.transform.GetChild(0).GetComponent<RoguelikeUpgrade>().SetCurrentUpgrade(randomValue);
+        _playerUpgrades.transform.GetChild(0).GetComponent<RoguelikeUpgrade>().SetText();
+
+        while (randomValue == _playerUpgrades.transform.GetChild(0).GetComponent<RoguelikeUpgrade>().GetCurrentUpgrade())
+        {
+            randomValue = UnityEngine.Random.Range(0, 6);
+            _playerUpgrades.transform.GetChild(1).GetComponent<RoguelikeUpgrade>().SetCurrentUpgrade(randomValue);
+            _playerUpgrades.transform.GetChild(1).GetComponent<RoguelikeUpgrade>().SetText();
+        }
+
+        while (randomValue == _playerUpgrades.transform.GetChild(0).GetComponent<RoguelikeUpgrade>().GetCurrentUpgrade()
+            || randomValue == _playerUpgrades.transform.GetChild(1).GetComponent<RoguelikeUpgrade>().GetCurrentUpgrade())
+        {
+            randomValue = UnityEngine.Random.Range(0, 6);
+            _playerUpgrades.transform.GetChild(2).GetComponent<RoguelikeUpgrade>().SetCurrentUpgrade(randomValue);
+            _playerUpgrades.transform.GetChild(2).GetComponent<RoguelikeUpgrade>().SetText();
+        }
     }
 
     public void DeactiveUpgradeCanvas()

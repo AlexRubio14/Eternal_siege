@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RoguelikeUpgrade : MonoBehaviour
 {
     [SerializeField] private int index;
-    [SerializeField] private List<int> lvlUpgrade;
-    private int upgradeIndex;
 
     [SerializeField] private float healthUpgradeValue;
     [SerializeField] private float speedUpgradeValue;
@@ -15,52 +14,38 @@ public class RoguelikeUpgrade : MonoBehaviour
     [SerializeField] private float pickUpRadiusValue;
     [SerializeField] private float damageUpgradeValue;
     [SerializeField] private float thunderScaleValue;
+    [SerializeField] private GameObject magicCapeObject;
 
+    private int currentUpgrade;
     private GameObject player;
-
-    private void Start()
-    {
-        upgradeIndex = 0;
-    }
 
     public void ActiveUprade()
     {
-        if (lvlUpgrade.Count > upgradeIndex)
+        switch (currentUpgrade)
         {
-            switch (lvlUpgrade[upgradeIndex])
-            {
-                case 0:
-                    AddHP();
-                    break;
-                case 1:
-                    AddPicUpRadius();
-                    break;
-                case 2:
-                    AddAttackSpeed();
-                    break;
-                case 3:
-                    AddSpeed();
-                    break;
-                case 4:
-                    UpgradeThunder();
-                    break;
-                 case 5:
-                    UpgradeCape();
-                    break;
-            }
-
-            AddUpgradeIndex();
-
-            RoguelikeManager.instance.SetPlayersHaveSelectedUpgradeList(index, true);
-            RoguelikeManager.instance.CheckIfAllPlayersHaveSelectedUpgrade();
-            transform.parent.gameObject.SetActive(false);
+            case 0:
+                AddHP();
+                break;
+            case 1:
+                AddPicUpRadius();
+                break;
+            case 2:
+                AddAttackSpeed();
+                break;
+            case 3:
+                AddSpeed();
+                break;
+            case 4:
+                UpgradeThunder();
+                break;
+            case 5:
+                UpgradeCape();
+                break;
         }
-        else
-        {
-            AddHP();
-            RoguelikeCanvas.instance.ReturnToGameplay();
-            PlayersManager.instance.ChangeActionMap("Player");
-        }
+
+        RoguelikeManager.instance.SetPlayersHaveSelectedUpgradeList(index, true);
+        RoguelikeManager.instance.CheckIfAllPlayersHaveSelectedUpgrade();
+        transform.parent.gameObject.SetActive(false);
     }
 
     private void AddHP()
@@ -99,30 +84,66 @@ public class RoguelikeUpgrade : MonoBehaviour
 
     private void UpgradeCape()
     {
-        MagicCape magicCape = player.GetComponent<MagicCape>();
-
-        if (!magicCape.enabled)
+        if (!player.GetComponent<Character>().GetMagicCapeSpawned())
         {
-            magicCape.enabled = true;
+            Instantiate(magicCapeObject);
+            magicCapeObject.transform.SetParent(player.transform, true);
+            player.GetComponent<Character>().SetMagicCapeSpawned(true);
         }
         else
         {
-            magicCape.LevelUp();
+            player.transform.Find("MagicCape").GetComponent<MagicCape>().LevelUp();
         }
     }
+
+    public void SetText()
+    {
+        switch(currentUpgrade)
+        {
+            case 0:
+                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Obtain 50 HP";
+                break;
+            case 1:
+                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "The expeience radius increase";
+                break;
+            case 2:
+                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase the attack speed";
+                break;
+            case 3:
+                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Run faster";
+                break;
+            case 4:
+                if(!player.GetComponent<GenerateThunder>().enabled)
+                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Generate swamps that damage the enemies";
+                else
+                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase swamps scale";
+                break;
+            case 5:
+                if (!player.GetComponent<Character>().GetMagicCapeSpawned())
+                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Generate a magic cape under the player that damage the enemies";
+                else
+                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase this magic cap scale";
+                break;
+            }
+        }
 
     public void SetPlayer(GameObject _player)
     {
         player = _player;
     }
 
-    public int GetIndex() 
-    { 
-        return index; 
+    public void SetCurrentUpgrade(int _currentUpgrade)
+    {
+        currentUpgrade = _currentUpgrade;
     }
 
-    public void AddUpgradeIndex()
+    public int GetIndex()
     {
-        upgradeIndex++;
+        return index;
+    }
+
+    public int GetCurrentUpgrade()
+    {
+        return currentUpgrade;
     }
 }
