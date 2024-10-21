@@ -19,6 +19,7 @@ public class MagicCape : MonoBehaviour
         level = 1;
         timer = 0;
         transform.localScale = new Vector3(initScale, transform.localScale.y, initScale);
+        sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.enabled = false;
     }
 

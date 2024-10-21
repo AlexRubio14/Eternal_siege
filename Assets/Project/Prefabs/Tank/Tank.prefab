@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 1300461014113858657}
   - component: {fileID: 3235586422592566749}
   - component: {fileID: 9070022824617647384}
+  - component: {fileID: 6709081891571155123}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -230,9 +231,53 @@ MonoBehaviour:
     m_ActionId: ab8f63bc-93ef-4729-89ab-16e20187647d
     m_ActionName: Lobby/JoysitckDown[/XInputControllerWindows/leftStick/down]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6709081891571155123}
+        m_TargetAssemblyTypeName: ChooseUpgrade, Assembly-CSharp
+        m_MethodName: MoveRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 78e6694d-4986-4350-a18a-51bd78a6d478
-    m_ActionName: RoguelikeMenu/New action
+    m_ActionName: RoguelikeMenu/MoveRight
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6709081891571155123}
+        m_TargetAssemblyTypeName: ChooseUpgrade, Assembly-CSharp
+        m_MethodName: MoveLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d506d50c-9f71-43da-8021-21afb27e1f61
+    m_ActionName: RoguelikeMenu/MoveRight1[/DualSenseGamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6709081891571155123}
+        m_TargetAssemblyTypeName: ChooseUpgrade, Assembly-CSharp
+        m_MethodName: ActiveCard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: acbecd36-6ae5-47c0-84cb-b8d613a86c9e
+    m_ActionName: RoguelikeMenu/MoveLeft1[/DualSenseGamepadHID/leftStick/left]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -375,6 +420,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6709081891571155123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3967785702642562780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24331aea11440694b86bb64b027d6fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4346454224965308879
 GameObject:
   m_ObjectHideFlags: 0

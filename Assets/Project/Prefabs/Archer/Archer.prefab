@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 84394968812376840}
   - component: {fileID: 517044968066499861}
   - component: {fileID: 2983161915876607815}
+  - component: {fileID: 1573303767410654280}
   m_Layer: 6
   m_Name: Archer
   m_TagString: Player
@@ -384,9 +385,53 @@ MonoBehaviour:
     m_ActionId: ab8f63bc-93ef-4729-89ab-16e20187647d
     m_ActionName: Lobby/JoysitckDown[/XInputControllerWindows/leftStick/down]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1573303767410654280}
+        m_TargetAssemblyTypeName: ChooseUpgrade, Assembly-CSharp
+        m_MethodName: MoveRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 78e6694d-4986-4350-a18a-51bd78a6d478
     m_ActionName: RoguelikeMenu/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1573303767410654280}
+        m_TargetAssemblyTypeName: ChooseUpgrade, Assembly-CSharp
+        m_MethodName: MoveLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d506d50c-9f71-43da-8021-21afb27e1f61
+    m_ActionName: RoguelikeMenu/MoveLeft[/DualSenseGamepadHID/leftStick/left]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1573303767410654280}
+        m_TargetAssemblyTypeName: ChooseUpgrade, Assembly-CSharp
+        m_MethodName: ActiveCard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: acbecd36-6ae5-47c0-84cb-b8d613a86c9e
+    m_ActionName: RoguelikeMenu/Accept[/DualSenseGamepadHID/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -529,6 +574,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 1
+--- !u!114 &1573303767410654280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618392707706961348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24331aea11440694b86bb64b027d6fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6092207522758342932
 GameObject:
   m_ObjectHideFlags: 0

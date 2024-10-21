@@ -72,27 +72,30 @@ public class RoguelikeUpgrade : MonoBehaviour
     {
         GenerateThunder generateThunder = player.GetComponent<GenerateThunder>();
 
-        if (!generateThunder.enabled)
+        if (generateThunder.enabled)
         {
-            generateThunder.enabled = true;
+            generateThunder.AddScale(thunderScaleValue);
         }
         else
         {
-            generateThunder.AddScale(thunderScaleValue);
+            generateThunder.enabled = true;
+            return;
         }
     }
 
     private void UpgradeCape()
     {
-        if (!player.GetComponent<Character>().GetMagicCapeSpawned())
+        if (player.GetComponent<Character>().GetMagicCapeSpawned())
         {
-            Instantiate(magicCapeObject);
-            magicCapeObject.transform.SetParent(player.transform, true);
-            player.GetComponent<Character>().SetMagicCapeSpawned(true);
+            player.transform.Find("MagicCape(Clone)").GetComponent<MagicCape>().LevelUp();
         }
         else
         {
-            player.transform.Find("MagicCape").GetComponent<MagicCape>().LevelUp();
+            GameObject _magixCape = Instantiate(magicCapeObject);
+            _magixCape.transform.SetParent(player.transform, true);
+            _magixCape.transform.position = new Vector3(player.transform.position.x, -2.55f, player.transform.position.z);
+            player.GetComponent<Character>().SetMagicCapeSpawned(true);
+            return;
         }
     }
 

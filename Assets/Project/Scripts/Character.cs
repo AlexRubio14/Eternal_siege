@@ -108,7 +108,6 @@ public abstract class Character : MonoBehaviour
 
     public void AddAttackSpeed(float quantity)
     {
-        baseAttackSpeed += quantity;
         attackSpeed += quantity;
     }
 

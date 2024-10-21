@@ -10,6 +10,8 @@ public class PlayersManager : MonoBehaviour
     [SerializeField] private List<GameObject> characters;
     [SerializeField] private List<RoguelikeUpgrade> roguelikeUpgrades;
 
+    [SerializeField] private List<GameObject> card;
+
     public static PlayersManager instance;
 
     [SerializeField] public List<Transform> posToSpawnList;
@@ -68,11 +70,34 @@ public class PlayersManager : MonoBehaviour
             }
         }
         player.transform.position = posToSpawnList[index].position;
+        SetCard(player);
         playersList.Add(player);
         Collider collider = player.GetComponent<Collider>();
         cameraController.AddPlayerIntoList(collider);
         playerInformation[playersList.Count - 1].gameObject.SetActive(true);
         playersList[playersList.Count - 1].GetComponent<PlayerController>().SetPlayerInformation(playerInformation[playersList.Count - 1]);
+    }
+
+    private void SetCard(GameObject _player)
+    {
+        if (PlayerLobbyManager.instance.GetTypeCharacter().Count == 1)
+        {
+            List<GameObject> _card = new List<GameObject>(3) { card[0], card[1], card[2] };
+            _player.GetComponent<ChooseUpgrade>().SetCard(_card);
+        }
+        else
+        { 
+            if(playersList.Count == 0)
+            {
+                List<GameObject> _card = new List<GameObject>(3) { card[3], card[4], card[5] };
+                _player.GetComponent<ChooseUpgrade>().SetCard(_card);
+            }
+            else
+            {
+                List<GameObject> _card = new List<GameObject>(3) { card[6], card[7], card[8] };
+                _player.GetComponent<ChooseUpgrade>().SetCard(_card);
+            }
+        }
     }
 
     public void ErasePlayer(GameObject player)
