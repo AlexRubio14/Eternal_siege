@@ -8106,11 +8106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8142,7 +8142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8209,7 +8209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -162, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &411134407
@@ -8332,11 +8332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8368,7 +8368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 400
+      value: 770
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -10653,7 +10653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 360, y: 0}
+  m_AnchoredPosition: {x: 236, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531605032
@@ -10674,7 +10674,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -11185,7 +11185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &546578606
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11206,7 +11206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -295, y: 0}
+  m_AnchoredPosition: {x: -490, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &546578607
@@ -13120,7 +13120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -720, y: 0}
+  m_AnchoredPosition: {x: -725, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &621804644
@@ -13141,7 +13141,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -17105,7 +17105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &889696371
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17230,7 +17230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMin.x
@@ -17238,15 +17238,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17278,11 +17278,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 80
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17299,14 +17299,6 @@ PrefabInstance:
     - target: {fileID: 4465077311789778395, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Name
       value: CardRoguelike2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: healthUpgradeValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: attackSpeedUpgradeValue
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21029,7 +21021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMin.x
@@ -21037,15 +21029,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21077,11 +21069,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 375
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21515,11 +21507,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21551,7 +21543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 240
+      value: 460
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -26721,7 +26713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMin.x
@@ -26729,15 +26721,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26769,11 +26761,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 80
+      value: 950
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -26790,14 +26782,6 @@ PrefabInstance:
     - target: {fileID: 4465077311789778395, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Name
       value: CardRoguelike3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: speedUpgradeValue
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: healthUpgradeValue
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29379,9 +29363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onePlayerCanvas: {fileID: 889696370}
   twoPlayersCanvas: {fileID: 406421495}
-  singlePlayerUpgrades: {fileID: 0}
-  player1Upgrades: {fileID: 0}
-  player2Upgrades: {fileID: 0}
+  singlePlayerUpgrades: {fileID: 546578605}
+  player1Upgrades: {fileID: 621804642}
+  player2Upgrades: {fileID: 531605030}
   gameCanvas: {fileID: 0}
   playersHaveSelectedUpgradeList: 
 --- !u!1001 &1545597351
@@ -33077,11 +33061,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33113,7 +33097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 400
+      value: 770
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -33135,6 +33119,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardRoguelike9
       objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6539707
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: index
       value: 1
@@ -33146,6 +33142,18 @@ PrefabInstance:
     - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: healthUpgradeValue
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0.019001007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35814,11 +35822,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35850,7 +35858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -35872,8 +35880,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardRoguelike7
       objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6539707
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0.019001007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.r
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -39298,11 +39330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -39334,7 +39366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 240
+      value: 460
       objectReference: {fileID: 0}
     - target: {fileID: 3237790904665487751, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -39356,6 +39388,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardRoguelike8
       objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6539707
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: index
       value: 1
@@ -39366,6 +39410,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: attackSpeedUpgradeValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0.019001007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.r
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
