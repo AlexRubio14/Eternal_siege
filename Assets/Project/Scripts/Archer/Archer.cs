@@ -10,13 +10,6 @@ public class Archer : Character
     [SerializeField] protected GameObject ultimatePrefab;
 
     [SerializeField] protected Transform firingPoint;
-    [SerializeField] protected Transform firingPointLeft;
-    [SerializeField] protected Transform firingPointRight;
-
-    [SerializeField] private float abilitySpeedMultiplier;
-    [SerializeField] protected float abilityDuration;
-    [SerializeField] protected float attackSpeedAugment;
-    protected bool doubleShooting;
 
     private void Start()
     {
@@ -63,10 +56,7 @@ public class Archer : Character
 
         if (fireTimer <= 0f)
         {
-            if (doubleShooting)
-                DoubleShoot();
-            else
-                BasicAttack();
+            BasicAttack();
 
             fireTimer = 1 / attackSpeed;
         }
@@ -92,10 +82,4 @@ public class Archer : Character
         }
     }
     #endregion
-
-    protected void DoubleShoot()
-    {
-        Instantiate(arrowPrefab, firingPointLeft.position, Quaternion.identity);
-        Instantiate(arrowPrefab, firingPointRight.position, Quaternion.identity);
-    }
 }

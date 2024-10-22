@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +7,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private CameraMovement camState = CameraMovement.NONE;
 
+    [SerializeField] private GameObject cameraHolder;
 
     [Header("Players"), SerializeField] private List<Collider> players;
 
@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
         //    Collider collider = player.GetComponent<Collider>();
         //    players.Add(collider);
         //}
-        distanceFromMidPointToCamera = transform.position - midPointTransform.position;
+        distanceFromMidPointToCamera = cameraHolder.transform.position - midPointTransform.position;
         currentZoomValue = minZoomValue;
     }
 
@@ -104,7 +104,7 @@ public class CameraController : MonoBehaviour
 
     private void MoveCamera()
     {
-        Vector3 destinyPos = transform.position;
+        Vector3 destinyPos = cameraHolder.transform.position;
         if (camState != CameraMovement.NONE)
         {
             float zoomSpeed;
@@ -116,17 +116,17 @@ public class CameraController : MonoBehaviour
 
                         currentZoomValue -= zoomValueSpeed;
                         zoomSpeed = -zoomInSpeed;
-                        distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
+                        distanceFromMidPointToCamera += -cameraHolder.transform.forward * zoomSpeed * Time.deltaTime;
                         destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
 
                         Vector3 finalPos = Vector3.Lerp
                         (
-                        transform.position,
+                        cameraHolder.transform.position,
                         destinyPos,
                         movementSpeed * Time.fixedDeltaTime
                         );
 
-                        transform.position = finalPos;
+                        cameraHolder.transform.position = finalPos;
                     }
                     break;
 
@@ -135,17 +135,17 @@ public class CameraController : MonoBehaviour
                     {
                         currentZoomValue += zoomValueSpeed;
                         zoomSpeed = zoomOutSpeed;
-                        distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
+                        distanceFromMidPointToCamera += -cameraHolder.transform.forward * zoomSpeed * Time.deltaTime;
                         destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
 
                         Vector3 finalPos = Vector3.Lerp
                         (
-                        transform.position,
+                        cameraHolder.transform.position,
                         destinyPos,
                         movementSpeed * Time.fixedDeltaTime
                         );
 
-                        transform.position = finalPos;
+                        cameraHolder.transform.position = finalPos;
                     }
                     break;
 
@@ -160,12 +160,12 @@ public class CameraController : MonoBehaviour
         Vector3 destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
 
         Vector3 finalPos = Vector3.Lerp(
-            transform.position,
+            cameraHolder.transform.position,
             destinyPos,
             2 * Time.deltaTime
             );
 
-        transform.position = finalPos;
+        cameraHolder.transform.position = finalPos;
     }
 
     private void OnDrawGizmos()
@@ -175,39 +175,39 @@ public class CameraController : MonoBehaviour
 
     public void IncreaseDecreaseCamareInTankAbility(bool state, float _zoomValueSpeed, float _zoomOutSpeed)
     {
-        Vector3 destinyPos = transform.position;
+        Vector3 destinyPos = cameraHolder.transform.position;
         float zoomSpeed;
         if (state)
         {
             currentZoomValue += zoomValueSpeed;
             zoomSpeed = -zoomInSpeed;
-            distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
+            distanceFromMidPointToCamera += -cameraHolder.transform.forward * zoomSpeed * Time.deltaTime;
             destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
 
             Vector3 finalPos = Vector3.Lerp
             (
-            transform.position,
+            cameraHolder.transform.position,
             destinyPos,
             movementSpeed * Time.fixedDeltaTime
             );
 
-            transform.position = finalPos;
+            cameraHolder.transform.position = finalPos;
         }
         else
         {
             currentZoomValue -= _zoomValueSpeed;
             zoomSpeed = _zoomOutSpeed;
-            distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
+            distanceFromMidPointToCamera += -cameraHolder.transform.forward * zoomSpeed * Time.deltaTime;
             destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
 
             Vector3 finalPos = Vector3.Lerp
             (
-            transform.position,
+            cameraHolder.transform.position,
             destinyPos,
             movementSpeed * Time.fixedDeltaTime
             );
 
-            transform.position = finalPos;
+            cameraHolder.transform.position = finalPos;
         }
     }   
 

@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class MidPointController : MonoBehaviour
 {
-    private Vector3 posToGo = Vector3.zero;
+    private Vector3 posToGo;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
+        posToGo = Vector3.zero;
     }
 
-    // Update is called once per frame
     void Update()
     {
         CalculatePosToGo();

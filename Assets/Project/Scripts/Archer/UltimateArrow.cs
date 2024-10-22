@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class UltimateArrow : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
-
-    [SerializeField] private float lifeTime = 3f;
-
+    [SerializeField] private float speed;
+    [SerializeField] private float lifeTime;
     [SerializeField] private float damage;
-
     [SerializeField] private float distance;
+
+    [SerializeField] private float shakeDuration;
+    [SerializeField] protected float shakeStrenght;
+    [SerializeField] protected float rotationStrenght;
 
     private Vector3 direction;
     private Rigidbody rb;
@@ -24,6 +25,9 @@ public class UltimateArrow : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, lifeTime);
+
+        CameraShaker.instance.Shake(shakeDuration, shakeStrenght, rotationStrenght);
+
         if (EnemyManager.instance.GetEnemies().Count > 0)
         {
             Vector2 nearestEnemyDirection;
