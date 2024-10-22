@@ -16,7 +16,7 @@ public class GenerateThunder : MonoBehaviour
 
     private void Start()
     {
-        currentCdTime = 0;
+        currentCdTime = generateCd - 1f;
     }
 
     private void Update()

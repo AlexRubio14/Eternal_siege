@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MagicCape : MonoBehaviour
@@ -6,10 +7,9 @@ public class MagicCape : MonoBehaviour
     [SerializeField] private float initScale;
     [SerializeField] private float augmentScale;
     [SerializeField] private float damage;
-    [SerializeField] private float augmentDamage;
     [SerializeField] private float timeToActivate;
 
-    private SphereCollider sphereCollider;
+    private List<Enemy> enemies;
     private float timer;
 
     private int level;
@@ -19,19 +19,26 @@ public class MagicCape : MonoBehaviour
         level = 1;
         timer = 0;
         transform.localScale = new Vector3(initScale, transform.localScale.y, initScale);
-        sphereCollider = GetComponent<SphereCollider>();
-        sphereCollider.enabled = false;
+        enemies = new List<Enemy>();
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * TimeManager.instance.GetPaused();
 
-        if (timer >= timeToActivate)
+        if(timer >= timeToActivate)
         {
-            sphereCollider.enabled = true;
-            Invoke("DisableCollision", 0.1f);
-            //un vfx q resalte q este es el instante en el q daña
+            timer = 0;
+            for (int i = 0; i < enemies.Count - 1; i++)
+            {
+                if (enemies[i] == null)
+                {
+                    enemies.RemoveAt(i);
+                    i--;
+                }
+                else
+                    enemies[i].ReceiveDamage(damage);
+            }
         }
     }
 
@@ -40,13 +47,18 @@ public class MagicCape : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && other is BoxCollider)
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            enemy.ReceiveDamage(damage);
+            if (!enemies.Contains(enemy))
+                enemies.Add(enemy);
         }
     }
 
-    private void DisableCollision()
+    private void OnTriggerExit(Collider other)
     {
-        sphereCollider.enabled = false;
+        if (other.gameObject.CompareTag("Enemy") && other is BoxCollider)
+        {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            enemies.Remove(enemy);
+        }
     }
 
     public void LevelUp()

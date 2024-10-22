@@ -281,10 +281,10 @@ public class PlayerController : MonoBehaviour
         speed = _speed;
     }
 
-    public void SetMaxHealth(float _health)
+    public void AddMaxHealth(float _health)
     {
-        currentHealth += (_health - maxHealth);
-        maxHealth = _health;
+        currentHealth += _health;
+        maxHealth += _health;
     }
 
     public void SetPlayerInformation(PlayerInformation _playerInformation)

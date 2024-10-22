@@ -1,22 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using static UnityEngine.CompositeCollider2D;
 
 public class Thunder : MonoBehaviour
 {
     [SerializeField] private float damage;
     [SerializeField] private float durationTime;
     [SerializeField] private float durationGeneration;
+    [SerializeField] private float timeToDamage;
 
+    private List<Enemy> enemies;
     float maxScale;
+    private float timer;
     private float currentTime;
     private float generationTime;
     private bool isGenerating;
 
-    private void Start()
+    private void Awake()
     {
+        enemies = new List<Enemy>();
+        timer = 0;
         currentTime = 0;
         generationTime = 0;
         isGenerating = true;
@@ -24,6 +27,9 @@ public class Thunder : MonoBehaviour
 
     private void Update()
     {
+        timer += Time.deltaTime * TimeManager.instance.GetPaused();
+        currentTime += Time.deltaTime * TimeManager.instance.GetPaused();
+
         if(isGenerating)
         {
             generationTime += Time.deltaTime;
@@ -33,30 +39,42 @@ public class Thunder : MonoBehaviour
                 isGenerating = false;
             }
         }
-        currentTime += Time.deltaTime;
+
+        if (timer >= timeToDamage)
+        {
+            timer = 0;
+            for (int i = 0; i < enemies.Count - 1; i++)
+            {
+                if (enemies[i] == null)
+                {
+                    enemies.RemoveAt(i);
+                    i--;
+                }
+                else
+                    enemies[i].ReceiveDamage(damage);
+            }
+        }
+
         if (currentTime > durationTime)
-        {
             Destroy(gameObject);
-        }
-
     }
 
-    private void OnTriggerStay(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy") && collision is BoxCollider)
+        if (other.gameObject.CompareTag("Enemy") && other is BoxCollider)
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            StartCoroutine(DamageEnemy(enemy, 1f));
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            if (!enemies.Contains(enemy))
+                enemies.Add(enemy);
         }
     }
 
-    private IEnumerator DamageEnemy(Enemy enemy, float delay)
+    private void OnTriggerExit(Collider other)
     {
-        yield return new WaitForSeconds(delay);
-
-        if (enemy != null)
+        if (other.gameObject.CompareTag("Enemy") && other is BoxCollider)
         {
-            enemy.ReceiveDamage(damage);
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            enemies.Remove(enemy);
         }
     }
 

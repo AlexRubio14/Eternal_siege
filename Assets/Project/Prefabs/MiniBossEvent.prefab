@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxActiveTime: 3
-  maxDesactiveTime: 120
+  maxDesactiveTime: 60
   eventMesage: Defeat the Big Skeleton
 --- !u!135 &1431909948910834367
 SphereCollider:

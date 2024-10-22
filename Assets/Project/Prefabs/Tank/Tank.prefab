@@ -353,10 +353,10 @@ MonoBehaviour:
   armor: 20
   health: 750
   attackSpeed: 0.6
-  movementSpeed: 14000
+  movementSpeed: 16000
   pickUpRadius: 100
-  abilityCooldown: 12
-  ultimateCooldown: 20
+  abilityCooldown: 30
+  ultimateCooldown: 60
   playerController: {fileID: 249939751593801106}
   attackCollider: {fileID: 8841280449235305702}
   abilityDuration: 6
@@ -367,7 +367,7 @@ MonoBehaviour:
   abulityCameraSpeed: 5
   ultimateDuration: 7
   ultimateSpeedMultiplier: 2
-  ultimateDamage: 15
+  ultimateDamage: 30
 --- !u!114 &1300461014113858657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magicCape: {fileID: 3644879491550420163, guid: 56bc6fbfee6f94241a42928bdf41a29c, type: 3}
   distanceToSpawn: 5
-  generateCd: 3
+  generateCd: 6
   currentScale: 3
 --- !u!95 &3235586422592566749
 Animator:
