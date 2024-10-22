@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class PlayersManager : MonoBehaviour
 {
@@ -62,7 +63,11 @@ public class PlayersManager : MonoBehaviour
     {
         GameObject player = Instantiate(characters[PlayerLobbyManager.instance.GetTypeCharacter()[index]]);
         player.GetComponent<PlayerInput>().SwitchCurrentControlScheme(PlayerLobbyManager.instance.GetInputsList()[index]);
-        for(int i = 0; i< roguelikeUpgrades.Count; i++) 
+        if (PlayerLobbyManager.instance.GetInputsList()[index] is Gamepad gamepad)
+        {
+            player.GetComponent<PlayerController>().SetPlayerGamePad(gamepad);
+        }
+        for (int i = 0; i< roguelikeUpgrades.Count; i++) 
         {
             if (roguelikeUpgrades[i].GetIndex() == index)
             {

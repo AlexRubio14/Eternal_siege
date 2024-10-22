@@ -9,6 +9,7 @@ public class Tank : Character
     [SerializeField] private float minScale;
     [SerializeField] private float maxScale;
     [SerializeField] private float abilitySpeedMultiplier;
+    [SerializeField] private float abulityCameraSpeed;
     private float interpolationTime;
     private bool isAbiltyActive;
 
@@ -37,11 +38,13 @@ public class Tank : Character
         {
             interpolationTime += Time.deltaTime;
             abilityCollider.transform.localScale = new Vector3(Mathf.Lerp(minScale, maxScale, interpolationTime), Mathf.Lerp(minScale, maxScale, interpolationTime), Mathf.Lerp(minScale, maxScale, interpolationTime));
+            Camera.main.GetComponent<CameraController>().IncreaseDecreaseCamareInTankAbility(false, 0.5f, abulityCameraSpeed);
         }
         else if(interpolationTime < 1f)
         {
             interpolationTime += Time.deltaTime;
             abilityCollider.transform.localScale = new Vector3(Mathf.Lerp(maxScale, minScale, interpolationTime), Mathf.Lerp(maxScale, minScale, interpolationTime), Mathf.Lerp(maxScale, minScale, interpolationTime));
+            Camera.main.GetComponent<CameraController>().IncreaseDecreaseCamareInTankAbility(true, 0.5f, abulityCameraSpeed);
         }
     }
 

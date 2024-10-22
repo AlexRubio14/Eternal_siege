@@ -271,6 +271,11 @@ MonoBehaviour:
   invencibilityTime: 1.5
   reviveRadius: {fileID: 4522442418975507797}
   isShielding: 0
+  meshRenderer: {fileID: 9140066041890632099}
+  changeColorVelocity: 5
+  vibrationDuration: 0.5
+  lowFrequencyVibration: 0.5
+  highFrequencyVibration: 0.8
 --- !u!114 &4497486300609674249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,5 +828,10 @@ PrefabInstance:
 --- !u!4 &9140066041887935569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 422474, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
+  m_PrefabInstance: {fileID: 9140066041887538715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &9140066041890632099 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13717432, guid: 1447e908d8b6d08489be7a563ff42e07, type: 3}
   m_PrefabInstance: {fileID: 9140066041887538715}
   m_PrefabAsset: {fileID: 0}
