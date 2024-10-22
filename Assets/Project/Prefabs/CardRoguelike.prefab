@@ -63,13 +63,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  healthUpgradeValue: 0
+  healthUpgradeValue: 50
   speedUpgradeValue: 250
-  attackSpeedUpgradeValue: 0
-  armorUpgradeValue: 0
-  pickUpRadiusValue: 0
-  damageUpgradeValue: 0
-  thunderScaleValue: 0
+  attackSpeedUpgradeValue: 0.25
+  pickUpRadiusValue: 0.5
+  thunderScaleValue: 0.2
   magicCapeObject: {fileID: 47117081463922557, guid: 1950141c19d223649a109dd1bff1727c, type: 3}
 --- !u!114 &5480757336884191575
 MonoBehaviour:

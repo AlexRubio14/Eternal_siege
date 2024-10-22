@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 400
-  lifeTime: 3
+  lifeTime: 2
   damage: 20
   distance: 20
   isAbility: 0

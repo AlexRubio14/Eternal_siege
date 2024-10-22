@@ -10471,6 +10471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa685e0f57154c4dbc71297d766eac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnDistance: 0
+  midPoint: {fileID: 0}
+  midPointTransform: {fileID: 0}
 --- !u!114 &595790941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15525,6 +15528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corner: 50
+  centerPoint: {fileID: 0}
 --- !u!222 &843614079
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15661,9 +15665,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersList: []
   playerInformation: []
+  characters: []
+  roguelikeUpgrades: []
+  card: []
   posToSpawnList:
   - {fileID: 359948034}
-  cameraController: {fileID: 1566085356}
+  cameraController: {fileID: 0}
 --- !u!1001 &875100954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16829,6 +16836,8 @@ MonoBehaviour:
   levelText: {fileID: 278403709}
   HpSlider: {fileID: 1337035405}
   ExpSlider: {fileID: 1753563295}
+  image: []
+  index: 0
 --- !u!1001 &954383572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25243,8 +25252,9 @@ MonoBehaviour:
   - 1
   - 3
   - 5
-  quantity: 
-  initQuantity: 3
+  quantity: 0f0000000500000002000000
+  initQuantity: 45
+  bossSpawnTime: 5
 --- !u!1001 &1446478425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26815,6 +26825,7 @@ MonoBehaviour:
   initExperience: 100
   multiplier: 1.25
   playerInformation: []
+  roguelikeUpgrades: []
 --- !u!1001 &1542424622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27360,17 +27371,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1566085359}
   m_SourcePrefab: {fileID: 100100000, guid: 8ce429487c119ce479a0dc29b6f69514, type: 3}
---- !u!114 &1566085356 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2821621629979348495, guid: 8ce429487c119ce479a0dc29b6f69514, type: 3}
-  m_PrefabInstance: {fileID: 1566085355}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6e38ddb0fad27438a2cf408f21f7e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1566085357 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1491701993758047083, guid: 8ce429487c119ce479a0dc29b6f69514, type: 3}
@@ -31596,6 +31596,8 @@ MonoBehaviour:
   levelText: {fileID: 683783301}
   HpSlider: {fileID: 2068208403}
   ExpSlider: {fileID: 1830254414}
+  image: []
+  index: 0
 --- !u!1001 &1820242247
 PrefabInstance:
   m_ObjectHideFlags: 0

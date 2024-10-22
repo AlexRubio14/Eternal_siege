@@ -56,7 +56,7 @@ MonoBehaviour:
   alligmentWeight: 1
   maxHP: 220
   damage: 35
-  experience: 300
+  experience: 750
   experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   animationDivide: 1
   maxSpeed: 1.2

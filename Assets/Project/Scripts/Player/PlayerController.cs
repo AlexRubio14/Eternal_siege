@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetMaxHealth(float _health)
     {
-        currentHealth += (_health - maxHealth);
+        currentHealth += _health;
         maxHealth = _health;
     }
 

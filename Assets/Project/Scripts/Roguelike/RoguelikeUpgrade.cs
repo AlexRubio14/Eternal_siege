@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,9 +8,7 @@ public class RoguelikeUpgrade : MonoBehaviour
     [SerializeField] private float healthUpgradeValue;
     [SerializeField] private float speedUpgradeValue;
     [SerializeField] private float attackSpeedUpgradeValue;
-    [SerializeField] private float armorUpgradeValue;
     [SerializeField] private float pickUpRadiusValue;
-    [SerializeField] private float damageUpgradeValue;
     [SerializeField] private float thunderScaleValue;
     [SerializeField] private GameObject magicCapeObject;
 
@@ -27,7 +23,7 @@ public class RoguelikeUpgrade : MonoBehaviour
                 AddHP();
                 break;
             case 1:
-                AddPicUpRadius();
+                AddPickUpRadius();
                 break;
             case 2:
                 AddAttackSpeed();
@@ -63,7 +59,7 @@ public class RoguelikeUpgrade : MonoBehaviour
         player.GetComponent<Character>().AddSpeed(speedUpgradeValue);
     }
 
-    private void AddPicUpRadius()
+    private void AddPickUpRadius()
     {
         player.GetComponent<SphereCollider>().radius += pickUpRadiusValue;
     }
@@ -107,25 +103,25 @@ public class RoguelikeUpgrade : MonoBehaviour
                 transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Obtain 50 HP";
                 break;
             case 1:
-                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "The expeience radius increase";
+                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "The Pick Up Radius Increase";
                 break;
             case 2:
-                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase the attack speed";
+                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase the Attack Speed";
                 break;
             case 3:
-                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Run faster";
+                transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Run Faster";
                 break;
             case 4:
                 if(!player.GetComponent<GenerateThunder>().enabled)
-                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Generate swamps that damage the enemies";
+                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Generate Swamps that Damage the Enemies";
                 else
-                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase swamps scale";
+                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase Swamps Scale";
                 break;
             case 5:
                 if (!player.GetComponent<Character>().GetMagicCapeSpawned())
-                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Generate a magic cape under the player that damage the enemies";
+                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Generate a Magic Cape under the player that Damage the Enemies";
                 else
-                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase this magic cap scale";
+                    transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Increase this Magic Cape Scale";
                 break;
             }
         }

@@ -51,7 +51,7 @@ public abstract class LevelEvent : MonoBehaviour
 
     private void ActiveEvent()
     {
-        activeTime += Time.deltaTime * (currentPlayersIn / PlayersManager.instance.GetPlayersList().Count);
+        activeTime += Time.deltaTime * (currentPlayersIn / PlayersManager.instance.GetPlayersList().Count) * TimeManager.instance.GetPaused();
         transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, activeTime/maxActiveTime);
         if (activeTime > maxActiveTime)
         {
@@ -68,7 +68,7 @@ public abstract class LevelEvent : MonoBehaviour
 
     private void DesactiveEvent()
     {
-        desactiveTime += Time.deltaTime;
+        desactiveTime += Time.deltaTime * TimeManager.instance.GetPaused();
         if (desactiveTime > maxDesactiveTime)
         {
             Destroy(gameObject);

@@ -8390,14 +8390,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardRoguelike6
       objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: speedUpgradeValue
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: healthUpgradeValue
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21565,14 +21557,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardRoguelike5
       objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: healthUpgradeValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: attackSpeedUpgradeValue
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33121,39 +33105,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.b
-      value: 0.6539707
+      value: 0.64705884
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.g
-      value: 0.64705884
+      value: 0.6646884
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: index
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: speedUpgradeValue
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: healthUpgradeValue
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_EffectColor.b
-      value: 0.019001007
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_EffectColor.g
-      value: 0
+      value: 0.04360587
       objectReference: {fileID: 0}
     - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_EffectColor.r
-      value: 1
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35882,31 +35854,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.b
-      value: 0.6539707
+      value: 0.64705884
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.g
-      value: 0.64705884
+      value: 0.6646884
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: index
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_EffectColor.b
-      value: 0.019001007
-      objectReference: {fileID: 0}
-    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: m_EffectColor.g
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0.04360587
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_EffectColor.r
-      value: 1
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39390,39 +39358,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.b
-      value: 0.6539707
+      value: 0.64705884
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.g
-      value: 0.64705884
+      value: 0.6646884
       objectReference: {fileID: 0}
     - target: {fileID: 5480757336884191575, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: index
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: healthUpgradeValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634077746400715316, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
-      propertyPath: attackSpeedUpgradeValue
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_EffectColor.b
-      value: 0.019001007
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_EffectColor.g
-      value: 0
+      value: 0.04360587
       objectReference: {fileID: 0}
     - target: {fileID: 8351171294153766253, guid: 55e7a45c24708b6468dfca36b2b52485, type: 3}
       propertyPath: m_EffectColor.r
-      value: 1
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40771,6 +40727,14 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 1400207873}
+    - target: {fileID: 3442259580184235441, guid: 80a4add2b9ebe84488b4760810f64de1, type: 3}
+      propertyPath: eventTime.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3442259580184235441, guid: 80a4add2b9ebe84488b4760810f64de1, type: 3}
+      propertyPath: eventTime.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7235059191129477789, guid: 80a4add2b9ebe84488b4760810f64de1, type: 3}
       propertyPath: m_Name
       value: LevelManager

@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initScale: 6
-  augmentScale: 0
+  augmentScale: 0.5
   damage: 2
-  augmentDamage: 0
-  timeToActivate: 0
+  timeToActivate: 0.5

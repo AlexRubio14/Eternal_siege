@@ -55,7 +55,7 @@ MonoBehaviour:
   alligmentWeight: 1
   maxHP: 1000
   damage: 20
-  experience: 0
+  experience: 3000
   experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   animationDivide: 1
   hasToDropCard: 1
