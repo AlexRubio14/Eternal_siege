@@ -5516,7 +5516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initExperience: 100
-  multiplier: 1.25
+  multiplier: 1.4
   playerInformation:
   - {fileID: 1611249482}
   - {fileID: 1632910871}

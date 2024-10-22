@@ -25,7 +25,7 @@ public class ExperienceBall : MonoBehaviour
         if (follow)
         {
             Vector3 direction = target.transform.localPosition - transform.localPosition;
-            GetComponent<Rigidbody>().velocity = direction * speed * Time.deltaTime;
+            GetComponent<Rigidbody>().velocity = direction.normalized * speed * Time.deltaTime;
         }
     }
 
