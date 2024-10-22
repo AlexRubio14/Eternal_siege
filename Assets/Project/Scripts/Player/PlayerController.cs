@@ -188,6 +188,7 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            playerGamepad.SetMotorSpeeds(0, 0);
             return;
         }
 
