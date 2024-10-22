@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 3982872609392757027}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 79435274454258945}
   m_Father: {fileID: 0}
@@ -55,9 +55,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 7.287801
+  m_Height: 5.929911
   m_Direction: 1
-  m_Center: {x: -7.533039e-16, y: 0.0575447, z: 0}
+  m_Center: {x: 2.836092e-14, y: -2.8098257, z: 0}
 --- !u!54 &248877060407091215
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119,15 +119,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 448162, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_LocalScale.x
-      value: 800
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 448162, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_LocalScale.y
-      value: 800
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 448162, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_LocalScale.z
-      value: 800
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 448162, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_LocalPosition.x
@@ -135,7 +135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 448162, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 448162, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_LocalPosition.z
@@ -171,16 +171,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 448162, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2398106, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4d5e68f2787f2054aa0a14839b9de933, type: 2}
+      objectReference: {fileID: 2100000, guid: 0e4341987a86a6e40bef3603def47f0e, type: 2}
     - target: {fileID: 3336180, guid: 677f8dab1aca0434294b9422e5a72660, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7630312881025386917, guid: 3ebe3f6e979e31a4fb4499b8fbf5cd72, type: 3}
+      objectReference: {fileID: 963943079855917295, guid: bbeff8fc5ef4067458155c5d7aaf2bd3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
