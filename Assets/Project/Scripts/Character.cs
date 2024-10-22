@@ -60,7 +60,7 @@ public abstract class Character : MonoBehaviour
         damageMultiplier = 1f;
 
         playerController.SetSpeed(movementSpeed);
-        playerController.SetMaxHealth(health);
+        playerController.AddMaxHealth(health);
     }
 
     protected void Update()
@@ -91,7 +91,7 @@ public abstract class Character : MonoBehaviour
 
     public void AddHealth(float quantity)
     {
-        playerController.SetMaxHealth(health + quantity);
+        playerController.AddMaxHealth(quantity);
     }
 
     public void AddArmor(float quantity)
