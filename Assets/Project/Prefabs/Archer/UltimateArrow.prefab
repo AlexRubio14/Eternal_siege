@@ -101,6 +101,9 @@ MonoBehaviour:
   lifeTime: 3
   damage: 100
   distance: 20
+  shakeDuration: 0.25
+  shakeStrenght: 0.5
+  rotationStrenght: 0
 --- !u!1001 &79435274454401955
 PrefabInstance:
   m_ObjectHideFlags: 0
