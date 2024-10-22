@@ -43,7 +43,7 @@ public class GenerateEvent : MonoBehaviour
 
         _event.transform.localPosition = new Vector3(
             UnityEngine.Random.Range(corner[0].position.x + radius.x, corner[1].position.x - radius.x),
-            -2.5f,
+            -2.65f,
             UnityEngine.Random.Range(corner[0].position.y + radius.y, corner[1].position.y - radius.y)
             );
 

@@ -131,6 +131,7 @@ public class LobbyController : MonoBehaviour
     public void StartGame(InputAction.CallbackContext obj)
     {
         if(obj.started && information.GetCurrentBackGround() == 0)
+
         {
             ActiveGame();
         }
