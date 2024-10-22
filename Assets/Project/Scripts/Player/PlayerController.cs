@@ -32,6 +32,15 @@ public class PlayerController : MonoBehaviour
     private PlayerInformation playerInformation;
 
     [SerializeField] private bool isShielding;
+    [SerializeField] private SkinnedMeshRenderer meshRenderer;
+    [SerializeField] private float changeColorVelocity;
+    private Color startColor;
+
+    [SerializeField] private float vibrationDuration;
+    [SerializeField] private float lowFrequencyVibration; 
+    [SerializeField] private float highFrequencyVibration;
+
+    private Gamepad playerGamepad;
 
     private void Awake()
     {
@@ -43,6 +52,7 @@ public class PlayerController : MonoBehaviour
         transform.position = PlayersManager.instance.posToSpawnList[0].position;
 
         isShielding = false;
+        startColor = meshRenderer.material.color;
     }
 
     void Start()
@@ -67,6 +77,8 @@ public class PlayerController : MonoBehaviour
             case State.INVENCIBILITY:
                 Move();
                 Rotate();
+                CheckIdleOrMovingState();
+                InvisibilityColorChange();
                 break;
             case State.DEAD:
                 break;
@@ -77,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIdleOrMovingState()
     {
-        if(inputMovementDirection == Vector2.zero && currentState == State.MOVING)
+        if(inputMovementDirection == Vector2.zero && (currentState == State.MOVING || currentState == State.INVENCIBILITY))
         {
             ChangeState(State.IDLE);
             anim.SetBool("Walking", false);
@@ -87,6 +99,13 @@ public class PlayerController : MonoBehaviour
             ChangeState(State.MOVING);
             anim.SetBool("Walking", true);
         }
+    }
+
+    private void InvisibilityColorChange()
+    {
+        float pingPongValue = Mathf.PingPong(Time.time * changeColorVelocity, 1f);
+        Color color = Color.Lerp(startColor, Color.gray, pingPongValue);
+        meshRenderer.material.color = color;
     }
 
     public void ChangeState(State state)
@@ -164,6 +183,8 @@ public class PlayerController : MonoBehaviour
 
         ChangeState(State.INVENCIBILITY);
 
+        TriggerVibration(lowFrequencyVibration, highFrequencyVibration, vibrationDuration);
+
         if (currentHealth <= 0)
         {
             Die();
@@ -173,11 +194,26 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(StopInvencibility());
     }
 
+    private void TriggerVibration(float lowFrequency, float highFrequency, float duration)
+    {
+        playerGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
+
+        StartCoroutine(StopVibrationAfterDelay(duration));
+    }
+
+    private IEnumerator StopVibrationAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        playerGamepad.SetMotorSpeeds(0, 0);
+    }
+
     private IEnumerator StopInvencibility()
     {
         yield return new WaitForSeconds(invencibilityTime);
 
         Debug.Log("Invencibility time ended");
+        meshRenderer.material.color = startColor;
         ChangeState(State.MOVING);
     }
 
@@ -259,5 +295,10 @@ public class PlayerController : MonoBehaviour
     public void SetIsShielding(bool _isShielding)
     {
         isShielding = _isShielding;
+    }
+
+    public void SetPlayerGamePad(Gamepad gamepad)
+    {
+        playerGamepad = gamepad;
     }
 }

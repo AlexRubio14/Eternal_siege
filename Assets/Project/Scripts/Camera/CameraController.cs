@@ -173,6 +173,44 @@ public class CameraController : MonoBehaviour
         Gizmos.color = Color.magenta;
     }
 
+    public void IncreaseDecreaseCamareInTankAbility(bool state, float _zoomValueSpeed, float _zoomOutSpeed)
+    {
+        Vector3 destinyPos = transform.position;
+        float zoomSpeed;
+        if (state)
+        {
+            currentZoomValue += zoomValueSpeed;
+            zoomSpeed = -zoomInSpeed;
+            distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
+            destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
+
+            Vector3 finalPos = Vector3.Lerp
+            (
+            transform.position,
+            destinyPos,
+            movementSpeed * Time.fixedDeltaTime
+            );
+
+            transform.position = finalPos;
+        }
+        else
+        {
+            currentZoomValue -= _zoomValueSpeed;
+            zoomSpeed = _zoomOutSpeed;
+            distanceFromMidPointToCamera += -transform.forward * zoomSpeed * Time.deltaTime;
+            destinyPos = midPointTransform.position + distanceFromMidPointToCamera;
+
+            Vector3 finalPos = Vector3.Lerp
+            (
+            transform.position,
+            destinyPos,
+            movementSpeed * Time.fixedDeltaTime
+            );
+
+            transform.position = finalPos;
+        }
+    }   
+
     public void AddPlayerIntoList(Collider collider)
     {
         players.Add(collider);
