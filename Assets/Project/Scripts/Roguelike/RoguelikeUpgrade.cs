@@ -15,6 +15,8 @@ public class RoguelikeUpgrade : MonoBehaviour
     private int currentUpgrade;
     private GameObject player;
 
+    [SerializeField] private AudioClip clip;
+
     public void ActiveUprade()
     {
         switch (currentUpgrade)
@@ -43,6 +45,9 @@ public class RoguelikeUpgrade : MonoBehaviour
         Debug.Log(index);
         RoguelikeManager.instance.CheckIfAllPlayersHaveSelectedUpgrade();
         transform.parent.gameObject.SetActive(false);
+
+        AudioManager.instance.Play2dOneShotSound(clip, "Sfx", 0.7f, 1, 1);
+
     }
 
     private void AddHP()

@@ -10,6 +10,8 @@ public class ExperienceBall : MonoBehaviour
     private bool follow;
     private GameObject target;
 
+    [SerializeField] private AudioClip clip;
+
     private void Start()
     {
         follow = false;
@@ -36,6 +38,7 @@ public class ExperienceBall : MonoBehaviour
             if(collision is CapsuleCollider)
             {
                 ExperienceManager.instance.SetExperience(experience);
+                AudioManager.instance.Play2dOneShotSound(clip, "Sfx", 0.5f);
                 Destroy(gameObject);
             }
             else if(collision is SphereCollider && !follow) 

@@ -21,6 +21,9 @@ public class AudioManager : MonoBehaviour
     GameObject actions3dASObj;
     private AudioSource[] actions3dAS;
 
+    private AudioSource _as;
+    [SerializeField] private AudioClip music;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -50,6 +53,9 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
+        _as = GetComponent<AudioSource>();
+        _as = Play2dLoop(music, "Music", 1, 1, 1);
     }
 
     public AudioSource GetUnused2dAS() 

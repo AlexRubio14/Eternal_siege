@@ -33,13 +33,12 @@ public class RoguelikeCanvas : MonoBehaviour
     public void LevelUp()
     {
         TimeManager.instance.PauseTime();
-        PlayersManager.instance.ChangeActionMap("RoguelikeMenu");
-
+        onFadeIn += ChangeActionMapToRoguelikeMenu;
         onFadeIn += SelectButton;
 
 
          switch (RoguelikeManager.instance.numOfPlayers)
-        {
+         {
             case 1:
                 animator.Play("FadeIn");
                 onFadeIn += RoguelikeManager.instance.Active1PlayerUpgradeCanvas;
@@ -50,7 +49,12 @@ public class RoguelikeCanvas : MonoBehaviour
                 break;
             default:
                 break;
-        }
+         }
+    }
+
+    private void ChangeActionMapToRoguelikeMenu()
+    {
+        PlayersManager.instance.ChangeActionMap("RoguelikeMenu");
     }
 
     IEnumerator EndPickUpgrade()

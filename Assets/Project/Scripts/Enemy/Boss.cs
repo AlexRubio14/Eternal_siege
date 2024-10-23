@@ -8,8 +8,10 @@ public class Boss : Enemy
     [SerializeField] private float attackCircleDamage;
     [SerializeField] private GameObject attackCircle;
 
+    [SerializeField] private AudioClip clip;
     [SerializeField] private float shakeDuration;
     [SerializeField] protected float shakeStrenght;
+
 
     private bool startAttack;
     private float timeCd;
@@ -75,6 +77,7 @@ public class Boss : Enemy
         }
         CameraShaker.instance.Shake(shakeDuration, shakeStrenght);
         Destroy(transform.GetChild(1).gameObject);
+        AudioManager.instance.Play2dOneShotSound(clip, "Sfx", 1, 1, 1);
     }
 
     private void SmashCd()

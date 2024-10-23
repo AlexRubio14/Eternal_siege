@@ -1143,7 +1143,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 1
 --- !u!136 &6320383224448541451
 CapsuleCollider:
@@ -1187,6 +1187,9 @@ MonoBehaviour:
   pickUpRadius: 100
   abilityCooldown: 10
   ultimateCooldown: 20
+  basicAttackClip: {fileID: 8300000, guid: 6791cf7b22c70e743ae8a59c00fe2762, type: 3}
+  basicAbilityClip: {fileID: 8300000, guid: 9b0370b08d3a70141bb6387b93aafd99, type: 3}
+  ultimateAbilityClip: {fileID: 8300000, guid: 96927cb8b9ce94d40827da97263acade, type: 3}
   playerController: {fileID: 249939751593801106}
   attackCollider: {fileID: 8841280449235305702}
   abilityDuration: 8

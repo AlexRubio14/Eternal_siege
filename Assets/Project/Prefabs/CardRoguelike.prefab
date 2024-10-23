@@ -69,6 +69,7 @@ MonoBehaviour:
   pickUpRadiusValue: 0.5
   thunderScaleValue: 0.2
   magicCapeObject: {fileID: 47117081463922557, guid: 1950141c19d223649a109dd1bff1727c, type: 3}
+  clip: {fileID: 8300000, guid: fcd39841095eba3489ddc10e5b558425, type: 3}
 --- !u!114 &5480757336884191575
 MonoBehaviour:
   m_ObjectHideFlags: 0

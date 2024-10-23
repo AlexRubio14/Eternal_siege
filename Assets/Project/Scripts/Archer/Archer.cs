@@ -25,6 +25,7 @@ public class Archer : Character
     protected override void BasicAttack() 
     {
         Instantiate(arrowPrefab, firingPoint.position, Quaternion.identity);
+        AudioManager.instance.Play2dOneShotSound(basicAttackClip, "Sfx", 0.7f, 0.9f, 1.1f);
     }
 
     protected override void BasicAbility()
@@ -34,6 +35,7 @@ public class Archer : Character
             Instantiate(abilityPrefab, firingPoint.position, Quaternion.identity);            
             abilityTimer = abilityCooldown;
             UIManager.instance.InitTimer(false, this);
+            AudioManager.instance.Play2dOneShotSound(basicAbilityClip, "Sfx");
         }
     }
 
@@ -44,6 +46,7 @@ public class Archer : Character
             Instantiate(ultimatePrefab, firingPoint.position, firingPoint.rotation);
             ultimateTimer = ultimateCooldown;
             UIManager.instance.InitTimer(true, this);
+            AudioManager.instance.Play2dOneShotSound(basicAttackClip, "Sfx", 1.5f, 0.2f, 0.4f);
         }
     }
     #endregion

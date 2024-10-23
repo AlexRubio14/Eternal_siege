@@ -461,6 +461,9 @@ MonoBehaviour:
   pickUpRadius: 50
   abilityCooldown: 5
   ultimateCooldown: 15
+  basicAttackClip: {fileID: 8300000, guid: 8a34f087c14e0ee4c93eaa16bedefb81, type: 3}
+  basicAbilityClip: {fileID: 8300000, guid: faf57338a1d540245bc114be539ee74c, type: 3}
+  ultimateAbilityClip: {fileID: 0}
   playerController: {fileID: 8907622928619227048}
   arrowPrefab: {fileID: 3982872609392757027, guid: 85a04dbe215530d4396a8ffd9aa5c219, type: 3}
   abilityPrefab: {fileID: 5932198598772518333, guid: 8714ac134e517b2449f62f9e9eea570b, type: 3}
@@ -572,7 +575,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 1
 --- !u!114 &1573303767410654280
 MonoBehaviour:

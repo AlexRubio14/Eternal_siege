@@ -24,6 +24,9 @@ public abstract class Character : MonoBehaviour
 
     private bool magicCapeSpawned;
 
+    [Header("Audio"), SerializeField] protected AudioClip basicAttackClip;
+    [SerializeField] protected AudioClip basicAbilityClip;
+    [SerializeField] protected AudioClip ultimateAbilityClip;
 
     [SerializeField] protected PlayerController playerController;
 
