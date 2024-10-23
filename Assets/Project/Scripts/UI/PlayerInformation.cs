@@ -8,14 +8,13 @@ public class PlayerInformation : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Slider HpSlider;
-    [SerializeField] Slider ExpSlider;
+
     [SerializeField] private GameObject[] image;
     [SerializeField] private int index;
 
     private void Start()
     {
         levelText.text = "0";
-        ExpSlider.value = 0;
         HpSlider.value = 600;
         image[PlayerLobbyManager.instance.GetTypeCharacter()[index]].SetActive(true);
     }
@@ -32,10 +31,5 @@ public class PlayerInformation : MonoBehaviour
             hp = 0;
         }
         HpSlider.value = hp;
-    }
-
-    public void SetExperienceBar(float exp)
-    {
-        ExpSlider.value = exp;
     }
 }

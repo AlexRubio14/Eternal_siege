@@ -18,6 +18,7 @@ public class SetInformation : MonoBehaviour
     [SerializeField] private GameObject secondPlayerCharacter;
     [SerializeField] private GameObject upgrades;
     [SerializeField] private List<GameObject> texts;
+    [SerializeField] private List<GameObject> startText;
 
     private List<LobbyController> players;
     private int currentPlayersReady;
@@ -150,6 +151,7 @@ public class SetInformation : MonoBehaviour
     public void AddPlayer(LobbyController _player)
     {
         players.Add(_player);
+        startText[players.Count - 1].SetActive(false);
     }
 
     public void SetCurrentPlayersReady(int state)
