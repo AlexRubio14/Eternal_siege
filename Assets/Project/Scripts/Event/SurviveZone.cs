@@ -7,7 +7,6 @@ public class SurviveZone : MonoBehaviour
 {
     [SerializeField] private float maxTimeComplete;
     [SerializeField] private float maxTimeLose;
-    [SerializeField] private GameObject timer = null;
     private float timeComplete;
     private float timeLose;
 
@@ -26,24 +25,15 @@ public class SurviveZone : MonoBehaviour
 
     private void Update()
     {
-        if(timer != null)
+        switch (state)
         {
-            switch (state)
-            {
-                case surviveState.In:
-                    Surviving();
-                    Losing();
-                    break;
-                case surviveState.Out:
-                    Losing();
-                    break;
-            }
-        }
-        else
-        {
-            GameObject canvas = GameObject.Find("Canvas");
-            timer = canvas.transform.GetChild(5).gameObject;
-            timer.SetActive(true);
+            case surviveState.In:
+                Surviving();
+                Losing();
+                break;
+            case surviveState.Out:
+                Losing();
+                break;
         }
 
     }
@@ -55,7 +45,6 @@ public class SurviveZone : MonoBehaviour
         if(timeComplete > maxTimeComplete) 
         {
             //Victoria
-            timer.SetActive(false);
             Destroy(gameObject);
         }
     }
@@ -65,10 +54,8 @@ public class SurviveZone : MonoBehaviour
         timeLose -= Time.deltaTime;
         int minutes = (int)timeLose / 60;
         int seconds = (int)timeLose - (minutes * 60);
-        timer.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "The event ends in: " +  minutes.ToString("00") + ":" + seconds.ToString("00");
         if (timeLose < 0)
         {
-            timer.SetActive(false);
             Destroy(gameObject);
         }
     }

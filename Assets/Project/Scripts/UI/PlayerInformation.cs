@@ -15,7 +15,7 @@ public class PlayerInformation : MonoBehaviour
     private void Start()
     {
         levelText.text = "0";
-        HpSlider.value = 600;
+        HpSlider.value = 1;
         image[PlayerLobbyManager.instance.GetTypeCharacter()[index]].SetActive(true);
     }
 
@@ -31,5 +31,10 @@ public class PlayerInformation : MonoBehaviour
             hp = 0;
         }
         HpSlider.value = hp;
+    }
+
+    public float GetValue()
+    {
+        return HpSlider.value;
     }
 }

@@ -62,7 +62,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        playerInformation.SetHPBar(currentHealth / maxHealth);
+        if(playerInformation.GetValue().ToString() != (currentHealth/maxHealth).ToString())
+        {
+            playerInformation.SetHPBar(currentHealth / maxHealth);
+        }
 
         switch (currentState)
         {
@@ -290,6 +293,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth += _health;
         maxHealth += _health;
+        playerInformation.SetHPBar(currentHealth / maxHealth);
     }
 
     public void SetPlayerInformation(PlayerInformation _playerInformation)
