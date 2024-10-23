@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && TimeManager.instance.GetPaused() != 0)
         {
             collision.gameObject.GetComponent<PlayerController>().ReceiveDamage(damage);
             Destroy(gameObject);

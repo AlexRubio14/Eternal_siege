@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExperienceManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] private float initExperience;
     [SerializeField] private float multiplier;
     [SerializeField] private List<PlayerInformation> playerInformation;
-    [SerializeField] private List<RoguelikeUpgrade> roguelikeUpgrades;
+    [SerializeField] Slider ExpSlider;
     private int currentLevel;
     private float experience;
 
@@ -28,6 +29,7 @@ public class ExperienceManager : MonoBehaviour
     {
         currentLevel = 0;
         experience = 0;
+        ExpSlider.value = 0;
     }
 
     private void Update()
@@ -55,10 +57,7 @@ public class ExperienceManager : MonoBehaviour
             RoguelikeCanvas.instance.LevelUp();
 
         }
-        for (int i = 0; i < playerInformation.Count; i++)
-        {
-            playerInformation[i].SetExperienceBar(experience / initExperience);
-        }
+        ExpSlider.value = experience / initExperience;
     }
 
     public int GetCurrentLevel()

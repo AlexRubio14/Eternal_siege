@@ -13,6 +13,11 @@ public class ActiveUI : MonoBehaviour
         {
             ActiveChild(0);
         }
+
+        if (PlayersManager.instance.GetPlayersList().Count > 1)
+        {
+            ActiveChild(2);
+        }
     }
 
     private void ActiveChild(int index)

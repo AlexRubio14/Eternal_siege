@@ -54,7 +54,7 @@ public class ChargeEnemy : Enemy
 
     private void FinishDistance()
     {
-        timeStopCharging += Time.deltaTime;
+        timeStopCharging += Time.deltaTime * TimeManager.instance.GetPaused();
         if (timeStopCharging > maxTimeCharging && chargeStarted)
         {
             chargeStarted = false;
@@ -66,7 +66,7 @@ public class ChargeEnemy : Enemy
 
     private void Recovery()
     {
-        time += Time.deltaTime;
+        time += Time.deltaTime * TimeManager.instance.GetPaused();
         if (time > maxTime)
         {
             canCharge = true;
