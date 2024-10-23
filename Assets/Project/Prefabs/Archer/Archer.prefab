@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
   maxHealth: 0
-  invencibilityTime: 1.5
+  invencibilityTime: 0.5
   reviveRadius: {fileID: 4522442418975507797}
   isShielding: 0
   meshRenderer: {fileID: 9140066041890632099}
@@ -466,11 +466,6 @@ MonoBehaviour:
   abilityPrefab: {fileID: 5932198598772518333, guid: 8714ac134e517b2449f62f9e9eea570b, type: 3}
   ultimatePrefab: {fileID: 3982872609392757027, guid: a2c34ec0dfe43b945921feefc808731c, type: 3}
   firingPoint: {fileID: 457120437112564765}
-  firingPointLeft: {fileID: 8919008696606281586}
-  firingPointRight: {fileID: 1092356798169654297}
-  abilitySpeedMultiplier: 0
-  abilityDuration: 5
-  attackSpeedAugment: 0.2
 --- !u!95 &4452658442242151803
 Animator:
   serializedVersion: 5

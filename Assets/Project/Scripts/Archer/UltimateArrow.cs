@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UltimateArrow : MonoBehaviour
@@ -12,7 +9,6 @@ public class UltimateArrow : MonoBehaviour
 
     [SerializeField] private float shakeDuration;
     [SerializeField] protected float shakeStrenght;
-    [SerializeField] protected float rotationStrenght;
 
     private Vector3 direction;
     private Rigidbody rb;
@@ -26,7 +22,7 @@ public class UltimateArrow : MonoBehaviour
     {
         Destroy(gameObject, lifeTime);
 
-        CameraShaker.instance.Shake(shakeDuration, shakeStrenght, rotationStrenght);
+        CameraShaker.instance.Shake(shakeDuration, shakeStrenght);
 
         if (EnemyManager.instance.GetEnemies().Count > 0)
         {

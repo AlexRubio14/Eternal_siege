@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boss : Enemy
 {
@@ -9,6 +10,8 @@ public class Boss : Enemy
     [SerializeField] private float attackCircleDamage;
     [SerializeField] private GameObject attackCircle;
 
+    [SerializeField] private float shakeDuration;
+    [SerializeField] protected float shakeStrenght;
 
     private bool startAttack;
     private float timeCd;
@@ -33,6 +36,7 @@ public class Boss : Enemy
     protected override void Die()
     {
         base.Die();
+        SceneManager.LoadScene(0);
     }
 
     private void OnTriggerStay(Collider collision)
@@ -70,6 +74,7 @@ public class Boss : Enemy
                 PlayersManager.instance.GetPlayersList()[i].GetComponent<PlayerController>().ReceiveDamage(attackCircleDamage);
             }
         }
+        CameraShaker.instance.Shake(shakeDuration, shakeStrenght);
         Destroy(transform.GetChild(1).gameObject);
     }
 

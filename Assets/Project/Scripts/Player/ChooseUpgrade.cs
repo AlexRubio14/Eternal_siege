@@ -56,7 +56,7 @@ public class ChooseUpgrade : MonoBehaviour
 
     public void ActiveCard(InputAction.CallbackContext obj)
     {
-        if(obj.started)
+        if(obj.started && cards[index].transform.parent.gameObject.activeSelf)
             cards[index].GetComponent<RoguelikeUpgrade>().ActiveUprade();
     }
 

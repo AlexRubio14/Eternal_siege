@@ -16,13 +16,13 @@ public class CameraShaker : MonoBehaviour
         instance = this;
     }
 
-    public void Shake(float duration, float positionOffsetStrength, float rotationOffsetStrength)
+    public void Shake(float duration, float positionOffsetStrength)
     {
         StopAllCoroutines();
-        StartCoroutine(CameraShakeCoroutine(duration, positionOffsetStrength, rotationOffsetStrength));
+        StartCoroutine(CameraShakeCoroutine(duration, positionOffsetStrength));
     }
 
-    private IEnumerator CameraShakeCoroutine(float duration, float positionOffsetStrength, float rotationOffsetStrength)
+    private IEnumerator CameraShakeCoroutine(float duration, float positionOffsetStrength)
     {
         float elapsed = 0f;
         float currentMagnitude = 1f;
@@ -32,11 +32,7 @@ public class CameraShaker : MonoBehaviour
             float x = (Random.value - 0.5f) * currentMagnitude * positionOffsetStrength;
             float y = (Random.value - 0.5f) * currentMagnitude * positionOffsetStrength;
 
-            float lerpAmount = currentMagnitude * rotationOffsetStrength;
-            Vector3 lookAtVector = Vector3.Lerp(Vector3.forward, Random.insideUnitCircle, lerpAmount);
-
             transform.localPosition = new Vector3(x, y, 0);
-            transform.localRotation = Quaternion.LookRotation(lookAtVector);
 
             elapsed += Time.deltaTime;
             currentMagnitude = (1 - (elapsed / duration)) * (1 - (elapsed / duration));
@@ -45,6 +41,5 @@ public class CameraShaker : MonoBehaviour
         }
 
         transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
     }
 }

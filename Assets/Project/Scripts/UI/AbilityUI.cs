@@ -32,7 +32,6 @@ public class AbilityUI : MonoBehaviour
     public void InitTimer()
     {
         timerIsInited = true;
-        Debug.Log("ENTRA");
         if (isPlayer1) 
             character = PlayersManager.instance.GetPlayersList()[0].GetComponent<Character>();
         else

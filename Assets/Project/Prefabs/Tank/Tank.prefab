@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAction: {fileID: -6335630492809770708, guid: 7ca420a121fe303448ca5d2825f99f58, type: 3}
-  maxHealth: 100
-  invencibilityTime: 1.5
+  maxHealth: 0
+  invencibilityTime: 0.5
   reviveRadius: {fileID: 4346454224965308879}
   isShielding: 0
   meshRenderer: {fileID: 3900758138584362195}
@@ -368,6 +368,8 @@ MonoBehaviour:
   ultimateDuration: 7
   ultimateSpeedMultiplier: 2
   ultimateDamage: 30
+  shakeDuration: 0.25
+  shakeStrenght: 1.5
 --- !u!114 &1300461014113858657
 MonoBehaviour:
   m_ObjectHideFlags: 0
