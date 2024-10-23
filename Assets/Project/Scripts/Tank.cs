@@ -20,6 +20,9 @@ public class Tank : Character
 
     private Animator anim;
 
+    [SerializeField] private float shakeDuration;
+    [SerializeField] protected float shakeStrenght;
+
     private void Start()
     {
         base.Start();
@@ -72,11 +75,13 @@ public class Tank : Character
     {
         if (ultimateTimer <= 0f)
         {
+            CameraShaker.instance.Shake(shakeDuration, shakeStrenght);
             isUltimateActive = true;
             movementSpeed *= ultimateSpeedMultiplier;
             playerController.SetSpeed(movementSpeed);
             playerController.ChangeState(PlayerController.State.INVENCIBILITY);
-            abilityTimer = abilityCooldown; //cancelar BasicAbility
+            if(isAbiltyActive)
+             abilityTimer = abilityCooldown; //cancelar BasicAbility
             ultimateTimer = ultimateCooldown + ultimateDuration;
             anim.SetBool("Walking", true);
         }
