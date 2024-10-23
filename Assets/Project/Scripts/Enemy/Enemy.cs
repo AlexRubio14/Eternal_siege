@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
 
 public abstract class Enemy : MonoBehaviour
 {
