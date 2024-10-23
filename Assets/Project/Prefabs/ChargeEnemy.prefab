@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cc8b2743ff4a04694068cc9381cc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 1000
   separationDistance: {x: 1, y: 1, z: 1}
   cohesionWeight: 1
   separationWeight: 1
@@ -59,7 +59,7 @@ MonoBehaviour:
   experience: 750
   experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}
   animationDivide: 1
-  maxSpeed: 1.2
+  maxSpeed: 1.05
   maxTimeCharging: 0.5
   maxTime: 5
 --- !u!95 &4987168112813254030
@@ -129,7 +129,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!135 &8642298117096232211
 SphereCollider:
