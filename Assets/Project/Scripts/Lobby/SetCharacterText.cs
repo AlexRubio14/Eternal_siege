@@ -16,7 +16,7 @@ public class SetCharacterText : MonoBehaviour
             charactersInformation[2].text = "Armor: 5";
             charactersInformation[3].text = "Damage: 20";
             charactersInformation[4].text = "HP Regen: 0";
-            charactersInformation[5].text = "Attk Speed: 2";
+            charactersInformation[5].text = "Attk Speed: 0.65";
             charactersInformation[6].text = "Pick Up Radius: 5";
 
             charactersInformation[7].text = "Summons a large arrow that pierces enemies causing great damage";
@@ -27,10 +27,10 @@ public class SetCharacterText : MonoBehaviour
         {
             charactersInformation[0].text = "TANK";
             charactersInformation[1].text = "HP: 750";
-            charactersInformation[2].text = "Armor: 20";
-            charactersInformation[3].text = "Damage: 10";
+            charactersInformation[2].text = "Armor: 10";
+            charactersInformation[3].text = "Damage: 30";
             charactersInformation[4].text = "HP Regen: 0";
-            charactersInformation[5].text = "Attk Speed: 1";
+            charactersInformation[5].text = "Attk Speed: 0.6";
             charactersInformation[6].text = "Pick Up Radius: 5";
 
             charactersInformation[7].text = "Charges against enemies violently, damaging them and negating the damage received";
