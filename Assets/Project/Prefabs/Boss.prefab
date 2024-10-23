@@ -54,7 +54,7 @@ MonoBehaviour:
   cohesionWeight: 1
   separationWeight: 1
   alligmentWeight: 1
-  maxHP: 10000
+  maxHP: 1200
   damage: 50
   experience: 0
   experienceBall: {fileID: 3644879491550420163, guid: e900748bdd4ece24289e90a61bc3ed1e, type: 3}

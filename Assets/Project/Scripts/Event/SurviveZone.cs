@@ -40,18 +40,19 @@ public class SurviveZone : MonoBehaviour
 
     private void Surviving()
     {
-        timeComplete += Time.deltaTime;
+        timeComplete += Time.deltaTime * TimeManager.instance.GetPaused();
         transform.GetChild(0).transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, timeComplete / maxTimeComplete);
         if(timeComplete > maxTimeComplete) 
         {
             //Victoria
+            RoguelikeCanvas.instance.LevelUp();
             Destroy(gameObject);
         }
     }
 
     private void Losing()
     {
-        timeLose -= Time.deltaTime;
+        timeLose -= Time.deltaTime * TimeManager.instance.GetPaused();
         int minutes = (int)timeLose / 60;
         int seconds = (int)timeLose - (minutes * 60);
         if (timeLose < 0)
