@@ -1186,7 +1186,7 @@ MonoBehaviour:
   movementSpeed: 16000
   pickUpRadius: 100
   abilityCooldown: 10
-  ultimateCooldown: 25
+  ultimateCooldown: 20
   playerController: {fileID: 249939751593801106}
   attackCollider: {fileID: 8841280449235305702}
   abilityDuration: 8
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   abulityCameraSpeed: 5
   ultimateDuration: 7
   ultimateSpeedMultiplier: 2
-  ultimateDamage: 30
+  ultimateDamage: 60
   shakeDuration: 0.25
   shakeStrenght: 1.5
 --- !u!114 &1300461014113858657
@@ -2009,7 +2009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tank: {fileID: 1140191523411735156}
-  damage: 20
+  damage: 30
   initialZ: 0.85
   finalZ: 3.5
   duration: 0.3

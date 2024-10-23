@@ -459,8 +459,8 @@ MonoBehaviour:
   attackSpeed: 0.65
   movementSpeed: 16000
   pickUpRadius: 50
-  abilityCooldown: 8
-  ultimateCooldown: 20
+  abilityCooldown: 5
+  ultimateCooldown: 15
   playerController: {fileID: 8907622928619227048}
   arrowPrefab: {fileID: 3982872609392757027, guid: 85a04dbe215530d4396a8ffd9aa5c219, type: 3}
   abilityPrefab: {fileID: 5932198598772518333, guid: 8714ac134e517b2449f62f9e9eea570b, type: 3}
