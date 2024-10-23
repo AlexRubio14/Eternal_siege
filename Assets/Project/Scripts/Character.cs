@@ -106,7 +106,7 @@ public abstract class Character : MonoBehaviour
 
     public void AddAttackSpeed(float quantity)
     {
-        attackSpeed += quantity;
+        attackSpeed *= quantity;
     }
 
     public void SetMagicCapeSpawned(bool state)

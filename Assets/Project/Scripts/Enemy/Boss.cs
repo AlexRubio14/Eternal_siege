@@ -72,6 +72,7 @@ public class Boss : Enemy
             if (PlayersManager.instance.GetPlayersList()[i].GetComponent<PlayerController>().GetIsInArea())
             {
                 PlayersManager.instance.GetPlayersList()[i].GetComponent<PlayerController>().ReceiveDamage(attackCircleDamage);
+                Debug.Log("boss");
             }
         }
         CameraShaker.instance.Shake(shakeDuration, shakeStrenght);

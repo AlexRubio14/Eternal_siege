@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        playerInformation.SetHPBar(currentHealth / maxHealth);
+
         switch (currentState)
         {
             case State.IDLE:
@@ -178,8 +180,8 @@ public class PlayerController : MonoBehaviour
 
         currentHealth -= damage;
 
-
         playerInformation.SetHPBar(currentHealth / maxHealth);
+        Debug.Log("receiveDamage");
 
         ChangeState(State.INVENCIBILITY);
 
@@ -232,6 +234,7 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
 
         playerInformation.SetHPBar(currentHealth / maxHealth);
+        Debug.Log("revive");
 
         ChangeState(State.INVENCIBILITY);
         
@@ -248,6 +251,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && collision.collider is BoxCollider && !isShielding)
         {
             ReceiveDamage(collision.gameObject.GetComponent<Enemy>().GetDamage());
+            Debug.Log("enemy");
         }
     }
 
