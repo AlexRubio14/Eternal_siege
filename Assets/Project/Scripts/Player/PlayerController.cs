@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(playerInformation.GetValue().ToString() != (currentHealth/maxHealth).ToString())
+        if(playerInformation.GetValue().ToString() != (currentHealth/maxHealth).ToString() && LevelManager.instance.GetTime() > 1)
         {
             playerInformation.SetHPBar(currentHealth / maxHealth);
         }
