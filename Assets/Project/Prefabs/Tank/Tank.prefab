@@ -355,11 +355,11 @@ MonoBehaviour:
   attackSpeed: 0.6
   movementSpeed: 16000
   pickUpRadius: 100
-  abilityCooldown: 30
-  ultimateCooldown: 60
+  abilityCooldown: 10
+  ultimateCooldown: 25
   playerController: {fileID: 249939751593801106}
   attackCollider: {fileID: 8841280449235305702}
-  abilityDuration: 6
+  abilityDuration: 8
   abilityCollider: {fileID: 7173820478018678395}
   minScale: 1
   maxScale: 300

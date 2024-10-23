@@ -65,22 +65,11 @@ public class MagicCape : MonoBehaviour
     {
         level += 1;
 
-        if (level < 5)
-        {
-            transform.localScale = new Vector3(
-                transform.localScale.x + augmentScale, 
-                transform.localScale.y, 
+        transform.localScale = new Vector3(
+                transform.localScale.x + augmentScale,
+                transform.localScale.y,
                 transform.localScale.z + augmentScale
                 );
-        }
-        else
-        {
-            transform.localScale = new Vector3(
-                transform.localScale.x + augmentScale * 2,
-                transform.localScale.y,
-                transform.localScale.z + augmentScale * 2
-                );
-        }
     }
     
 }
