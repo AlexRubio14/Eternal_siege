@@ -471,6 +471,8 @@ MonoBehaviour:
   abilitySpeedMultiplier: 0
   abilityDuration: 5
   attackSpeedAugment: 0.2
+  basicAttackClip: {fileID: 8300000, guid: 8a34f087c14e0ee4c93eaa16bedefb81, type: 3}
+  basicAbilityClip: {fileID: 8300000, guid: faf57338a1d540245bc114be539ee74c, type: 3}
 --- !u!95 &4452658442242151803
 Animator:
   serializedVersion: 5

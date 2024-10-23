@@ -53,6 +53,8 @@ public class Tank : Character
     {
         attackCollider.SetActive(true);
         Invoke("DisableAttackCollider", 0.15f);
+        AudioManager.instance.Play2dOneShotSound(basicAttackClip, "Sfx", 1, 0.5f, 0.75f);
+
     }
 
     protected override void BasicAbility()
@@ -65,6 +67,7 @@ public class Tank : Character
             movementSpeed *= abilitySpeedMultiplier;
             playerController.SetSpeed(movementSpeed);
             abilityTimer = abilityCooldown + abilityDuration;
+            AudioManager.instance.Play2dOneShotSound(basicAbilityClip, "Sfx", 1, 0.5f, 0.75f);
         }
     }
 
@@ -79,6 +82,7 @@ public class Tank : Character
             abilityTimer = abilityCooldown; //cancelar BasicAbility
             ultimateTimer = ultimateCooldown + ultimateDuration;
             anim.SetBool("Walking", true);
+            AudioManager.instance.Play2dOneShotSound(ultimateAbilityClip, "Sfx");
         }
     }
     #endregion

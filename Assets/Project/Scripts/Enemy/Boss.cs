@@ -9,6 +9,8 @@ public class Boss : Enemy
     [SerializeField] private float attackCircleDamage;
     [SerializeField] private GameObject attackCircle;
 
+    [SerializeField] private AudioClip clip;
+
 
     private bool startAttack;
     private float timeCd;
@@ -71,6 +73,7 @@ public class Boss : Enemy
             }
         }
         Destroy(transform.GetChild(1).gameObject);
+        AudioManager.instance.Play2dOneShotSound(clip, "Sfx", 1, 1, 1);
     }
 
     private void SmashCd()

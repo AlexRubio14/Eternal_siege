@@ -62,6 +62,7 @@ MonoBehaviour:
   cd: 5
   attackCircleDamage: 50
   attackCircle: {fileID: 3644879491550420163, guid: 1fa3dc14dc6a0a84c9ccd6036e62e392, type: 3}
+  clip: {fileID: 8300000, guid: 671ec5adaf67a0149a7a60ac2ee79663, type: 3}
 --- !u!95 &2180017127954408928
 Animator:
   serializedVersion: 5

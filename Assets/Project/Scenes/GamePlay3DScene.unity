@@ -40771,6 +40771,10 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 1400207873}
+    - target: {fileID: 3442259580184235441, guid: 80a4add2b9ebe84488b4760810f64de1, type: 3}
+      propertyPath: bossSpawnTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7235059191129477789, guid: 80a4add2b9ebe84488b4760810f64de1, type: 3}
       propertyPath: m_Name
       value: LevelManager
